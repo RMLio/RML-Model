@@ -5,7 +5,7 @@ RML Model description as an R2RML extension in Java based on [DB2Triples](https:
 
 Usage
 -----
-This is a library to be reused by the [RML Processor](http://github.com/rmlio/rmlprocessor)
+This is a library to be reused by the [RML Processor](http://github.com/mmlab/RMLProcessor)
 
 More Information
 ----------------
