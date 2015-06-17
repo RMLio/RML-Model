@@ -12,13 +12,19 @@ More Information
 
 More information about the solution can be found at http://rml.io
 
-Anastasia Dimou, Miel Vander Sande, Pieter Colpaert, Ruben Verborgh, Erik Mannens, and Rik Van de Walle. 
-RML: A Generic Language for Integrated RDF Mappings of Heterogeneous Data. 
-Proceedings of the 7th Workshop on Linked Data on the Web (2014)
-
 This is developed by Multimedia Lab http://www.mmlab.be
 
 Copyright 2015, Multimedia Lab - Ghent University - iMinds
+
+
+Related Publication
+-------------------
+Anastasia Dimou, Miel Vander Sande, Pieter Colpaert, Ruben Verborgh, Erik Mannens, and Rik Van de Walle.
+
+RML: A Generic Language for Integrated RDF Mappings of Heterogeneous Data.
+
+Proceedings of the 7th Workshop on Linked Data on the Web (2014)
+
 
 
 License
