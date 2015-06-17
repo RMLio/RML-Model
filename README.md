@@ -1,53 +1,27 @@
-RMLProcessor
+RML Model
 ============
 
-Processor for RML (R2RML extension) in Java based on [DB2Triples](https://github.com/antidot/db2triples/)
-
-Class diagram
--------------
-![alt text](https://raw.github.com/mmlab/RMLProcessor/master/docs/class-diagram.jpg)
-
-Installation
-------------
-
-The processor can be installed using Maven, so make sure you have installed it first: http://maven.apache.org/download.cgi and java 1.7
-
-    mvn clean install
+RML Model description as an R2RML extension in Java based on [DB2Triples](https://github.com/antidot/db2triples/)
 
 Usage
 -----
-You can run a mapping process by executing the following command.
-
-Master branch:    
-    
-    java -jar target/RMLMapper-0.1.jar -m <mapping_file> -f <output_file> -o <output_format> [-g <graph>]
-
-With 
-    
-    <mapping_file>  = The RML mapping file conform with the [RML specification](http://semweb.mmlab.be/ns/rml)
-    <output_file>   = The file where the output RDF triples are stored; default in [N-Triples](http://www.w3.org/TR/n-triples/) syntax.
-    <output_format> = The prefered output format, use one of the followings: turtle, ntriples, nquads, rdfxml, rdfjson, jsonld.
-    <graph> (optional) = The named graph in which the output RDF triples are stored.
-        
-For instance, to run example1, execute the following command by replacing the paths to the files with the local paths:
-
-    java -jar target/RMLMapper-0.1.jar /path/to/the/mapping/document/example.rml.ttl /path/to/the/output/file/example1_test.output.nt
-
-Remark
------
-
-On OSX, it might be needed to export JAVA_HOME=$(/usr/libexec/java_home)
+This is a library to be reused by the [RML Processor](http://github.com/rmlio/rmlprocessor)
 
 More Information
 ----------------
 
 More information about the solution can be found at http://rml.io
 
-This application is developed by Multimedia Lab http://www.mmlab.be
+Anastasia Dimou, Miel Vander Sande, Pieter Colpaert, Ruben Verborgh, Erik Mannens, and Rik Van de Walle. 
+RML: A Generic Language for Integrated RDF Mappings of Heterogeneous Data. 
+Proceedings of the 7th Workshop on Linked Data on the Web (2014)
 
-Copyright 2014, Multimedia Lab - Ghent University - iMinds
+This is developed by Multimedia Lab http://www.mmlab.be
+
+Copyright 2015, Multimedia Lab - Ghent University - iMinds
+
 
 License
 -------
 
-The RMLProcessor is released under the terms of the [MIT license](http://opensource.org/licenses/mit-license.html).
+The RML Model is released under the terms of the [MIT license](http://opensource.org/licenses/mit-license.html).
