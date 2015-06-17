@@ -21,7 +21,7 @@ Related Publication
 -------------------
 Anastasia Dimou, Miel Vander Sande, Pieter Colpaert, Ruben Verborgh, Erik Mannens, and Rik Van de Walle.
 
-RML: A Generic Language for Integrated RDF Mappings of Heterogeneous Data.
+[RML: A Generic Language for Integrated RDF Mappings of Heterogeneous Data](http://ruben.verborgh.org/publications/dimou_ldow_2014/).
 
 Proceedings of the 7th Workshop on Linked Data on the Web (2014)
 
