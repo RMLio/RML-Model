@@ -1,26 +1,40 @@
 package be.ugent.mmlab.rml.model.std;
 
 import be.ugent.mmlab.rml.condition.model.Condition;
-import be.ugent.mmlab.rml.condition.model.EqualCondition;
+import be.ugent.mmlab.rml.condition.model.BooleanCondition;
 import java.util.Set;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 /**
+ * RML - Model
  *
  * @author andimou
  */
-public class StdEqualCondition extends StdCondition implements EqualCondition {
+public class StdBooleanCondition extends StdCondition implements BooleanCondition {
     
     // Log
-    private static final Logger log = LogManager.getLogger(StdEqualCondition.class);
+    private static final Logger log = LogManager.getLogger(StdBooleanCondition.class);
     
-    public StdEqualCondition(String condition, String value) throws Exception {
+    /**
+     *
+     * @param condition
+     * @param value
+     * @throws Exception
+     */
+    public StdBooleanCondition(String condition, String value) throws Exception {
         setCondition(condition);
         setValue(value);
     }
     
-    public StdEqualCondition(String condition, String value, Set<Condition> nestedConditions) 
+    /**
+     *
+     * @param condition
+     * @param value
+     * @param nestedConditions
+     * @throws Exception
+     */
+    public StdBooleanCondition(String condition, String value, Set<Condition> nestedConditions) 
             throws Exception {
         setCondition(condition);
         setValue(value);

@@ -7,6 +7,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 /**
+ * RML - Model
  *
  * @author andimou
  */
@@ -15,21 +16,26 @@ public class StdProcessCondition extends StdCondition implements ProcessConditio
     // Log
     private static final Logger log = LogManager.getLogger(StdProcessCondition.class);
     
-    public StdProcessCondition(String condition, String value) throws Exception {
+    public StdProcessCondition(String condition, String value) {
         setCondition(condition);
         setValue(value);
     }
     
-    public StdProcessCondition(String condition, String value, Set<Condition> nestedConditions) 
-            throws Exception {
+    /**
+     *
+     * @param condition
+     * @param value
+     * @param nestedConditions
+     */
+    public StdProcessCondition(String condition, String value, Set<Condition> nestedConditions) {
         setCondition(condition);
         setValue(value);
         setNestedConditions(nestedConditions);
     }
     
-    private void setValue(String value) throws Exception {
+    private void setValue(String value) {
         if (value == null) {
-            throw new Exception(
+            log.error(
                     Thread.currentThread().getStackTrace()[1].getMethodName() + ": "
                     + "A process condition must "
                     + "have a value.");

@@ -7,6 +7,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 /**
+ * RML - Model
  *
  * @author andimou
  */
@@ -15,11 +16,20 @@ public class StdSplitCondition extends StdCondition implements SplitCondition {
     // Log
     private static final Logger log = LogManager.getLogger(StdSplitCondition.class);
     
-    public StdSplitCondition(String condition) throws Exception {
+    /**
+     *
+     * @param condition
+     */
+    public StdSplitCondition(String condition) {
         setCondition(condition);
     }
     
-    public StdSplitCondition(String condition, Set<Condition> nestedConditions) throws Exception {
+    /**
+     *
+     * @param condition
+     * @param nestedConditions
+     */
+    public StdSplitCondition(String condition, Set<Condition> nestedConditions) {
         setCondition(condition);
         setNestedConditions(nestedConditions);
     }

@@ -7,6 +7,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 /**
+ * RML - Model
  *
  * @author andimou
  */
@@ -14,9 +15,15 @@ public class StdBindCondition extends StdCondition implements BindCondition{
     private String reference;
     
     // Log
-    private static final Logger log = LogManager.getLogger(StdEqualCondition.class);
+    private static final Logger log = LogManager.getLogger(StdBindCondition.class);
     
-    public StdBindCondition(String condition, String value) throws Exception {
+    /**
+     *
+     * @param condition
+     * @param value
+     * @throws Exception
+     */
+    public StdBindCondition(String condition, String value) {
         setCondition(condition);
         setValue(value);
     }
@@ -30,9 +37,9 @@ public class StdBindCondition extends StdCondition implements BindCondition{
         setNestedConditions(nestedConditions);
     }
     
-    private void setValue(String value) throws Exception {
+    private void setValue(String value) {
         if (value == null) {
-            throw new Exception(
+            log.error(
                     Thread.currentThread().getStackTrace()[1].getMethodName() + ": "
                     + "A bind condition must "
                     + "have a value.");
@@ -40,9 +47,9 @@ public class StdBindCondition extends StdCondition implements BindCondition{
         this.value = value;
     }
     
-    private void setReference(String reference) throws Exception {
+    private void setReference(String reference) {
         if (reference == null) {
-            throw new Exception(
+            log.error(
                     Thread.currentThread().getStackTrace()[1].getMethodName() + ": "
                     + "A bind condition must "
                     + "have a value.");
@@ -50,6 +57,11 @@ public class StdBindCondition extends StdCondition implements BindCondition{
         this.reference = reference;
     }
     
+    /**
+     *
+     * @return
+     */
+    @Override
     public String getReference() {
         return this.reference;
     }    

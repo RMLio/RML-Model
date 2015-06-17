@@ -33,12 +33,11 @@ import be.ugent.mmlab.rml.model.PredicateObjectMap;
 import be.ugent.mmlab.rml.model.ReferencingObjectMap;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.condition.model.BindCondition;
-import be.ugent.mmlab.rml.condition.model.EqualCondition;
+import be.ugent.mmlab.rml.condition.model.BooleanCondition;
 import be.ugent.mmlab.rml.condition.model.ProcessCondition;
 import be.ugent.mmlab.rml.condition.model.SplitCondition;
 import java.util.HashSet;
 import java.util.Set;
-import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLStructureException;
 
 public class StdReferencingObjectMap implements ReferencingObjectMap {
 
@@ -47,14 +46,13 @@ public class StdReferencingObjectMap implements ReferencingObjectMap {
 	private PredicateObjectMap predicateObjectMap;
         protected TriplesMap ownTriplesMap;
         
-        private HashSet<EqualCondition> equalConditions;
+        private HashSet<BooleanCondition> equalConditions;
         private HashSet<ProcessCondition> processConditions;
         private HashSet<SplitCondition> splitConditions;
         private HashSet<BindCondition> bindConditions;
 
 	public StdReferencingObjectMap(PredicateObjectMap predicateObjectMap,
-			TriplesMap parentTriplesMap, Set<JoinCondition> joinConditions) 
-                throws InvalidR2RMLStructureException {
+			TriplesMap parentTriplesMap, Set<JoinCondition> joinConditions) {
 		setPredicateObjectMap(predicateObjectMap);
 		this.parentTriplesMap = parentTriplesMap;
 		setJoinConditions(joinConditions);
@@ -64,9 +62,8 @@ public class StdReferencingObjectMap implements ReferencingObjectMap {
         
         public StdReferencingObjectMap(PredicateObjectMap predicateObjectMap,
 			TriplesMap parentTriplesMap, Set<JoinCondition> joinConditions, 
-                        Set<EqualCondition> equalConditions, Set<ProcessCondition> processConditions, 
-                        Set<SplitCondition> splitConditions, Set<BindCondition> bindConditions) 
-                throws InvalidR2RMLStructureException {
+                        Set<BooleanCondition> equalConditions, Set<ProcessCondition> processConditions, 
+                        Set<SplitCondition> splitConditions, Set<BindCondition> bindConditions) {
 		setPredicateObjectMap(predicateObjectMap);
 		this.parentTriplesMap = parentTriplesMap;
 		setJoinConditions(joinConditions);
@@ -142,7 +139,7 @@ public class StdReferencingObjectMap implements ReferencingObjectMap {
         * @return
         */
         @Override
-       public HashSet<EqualCondition> getEqualConditions() {
+       public HashSet<BooleanCondition> getEqualConditions() {
            return this.equalConditions;
        }
         
@@ -174,25 +171,25 @@ public class StdReferencingObjectMap implements ReferencingObjectMap {
        }
 
         @Override
-	public void setPredicateObjectMap(PredicateObjectMap predicateObjectMap) {
-		// Update predicateObjectMap if not contains this object map
-		if (predicateObjectMap != null) {
-			if (predicateObjectMap.getReferencingObjectMaps() == null)
-				predicateObjectMap
-						.setReferencingObjectMap(new HashSet<ReferencingObjectMap>());
-			predicateObjectMap.getReferencingObjectMaps().add(this);
-		}
-		this.predicateObjectMap = predicateObjectMap;
-	}
+        public void setPredicateObjectMap(PredicateObjectMap predicateObjectMap) {
+            // Update predicateObjectMap if not contains this object map
+            if (predicateObjectMap != null) {
+                if (predicateObjectMap.getReferencingObjectMaps() == null) {
+                    predicateObjectMap
+                            .setReferencingObjectMap(new HashSet<ReferencingObjectMap>());
+                }
+                predicateObjectMap.getReferencingObjectMaps().add(this);
+            }
+            this.predicateObjectMap = predicateObjectMap;
+        }
 
         @Override
-        public void setOwnTriplesMap(TriplesMap ownTriplesMap)
-			throws InvalidR2RMLStructureException {
+        public void setOwnTriplesMap(TriplesMap ownTriplesMap) {
 		this.ownTriplesMap = ownTriplesMap;
 	}
         
-        private void setEqualConditions(Set<EqualCondition> equalConditions) {
-            this.equalConditions = new HashSet<EqualCondition>();
+        private void setEqualConditions(Set<BooleanCondition> equalConditions) {
+            this.equalConditions = new HashSet<BooleanCondition>();
             this.equalConditions.addAll(equalConditions);
         }
 

@@ -30,61 +30,69 @@
 package be.ugent.mmlab.rml.model.std;
 
 import be.ugent.mmlab.rml.model.JoinCondition;
-import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLStructureException;
-import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLSyntaxException;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 public class StdJoinCondition implements JoinCondition {
 
-	private String child;
-	private String parent;
+    // Log
+    private static final Logger log = LogManager.getLogger(StdJoinCondition.class);
+    private String child;
+    private String parent;
 
-	public StdJoinCondition(String child, String parent)
-			throws InvalidR2RMLStructureException, InvalidR2RMLSyntaxException {
-		setChild(child);
-		setParent(parent);
-	}
+    /**
+     *
+     * @param child
+     * @param parent
+     */
+    public StdJoinCondition(String child, String parent) {
+        setChild(child);
+        setParent(parent);
+    }
 
-	private void setParent(String parent)
-			throws InvalidR2RMLStructureException, InvalidR2RMLSyntaxException {
-		if (parent == null)
-			throw new InvalidR2RMLStructureException(
-					"[StdJoinCondition:setParent] A join condition must "
-							+ "have a parent column name.");
-		// old code
+    private void setParent(String parent) {
+        if (parent == null) {
+            log.error("Invalid Structure "
+                    + "[StdJoinCondition:setParent] A join condition must "
+                    + "have a parent column name.");
+        }
+        // old code
 //		if (!SQLDataValidator.isValidSQLIdentifier(parent))
 //			throw new InvalidR2RMLSyntaxException(
 //					"[StdJoinCondition:setParent] Not a valid column "
 //							+ "value : " + parent);
-                
-                // TODO check if reference is valid
 
-		this.parent = parent;
-	}
+        // TODO check if reference is valid
 
-	private void setChild(String child) throws InvalidR2RMLStructureException,
-			InvalidR2RMLSyntaxException {
-		if (child == null)
-			throw new InvalidR2RMLStructureException(
-					"[StdJoinCondition:construct] A join condition must "
-							+ "have a child column name.");
-		// old code
+        this.parent = parent;
+    }
+
+    private void setChild(String child) {
+        if (child == null) {
+            log.error("Invalid Structure "
+                    + "[StdJoinCondition:construct] A join condition must "
+                    + "have a child column name.");
+        }
+        // old code
 //		if (!SQLDataValidator.isValidSQLIdentifier(child))
 //			throw new InvalidR2RMLSyntaxException(
 //					"[StdJoinCondition:setParent] Not a valid column "
 //							+ "value : " + child);
-                // TODO check if reference is valid
-                
-                
-		this.child = child;
+        // TODO check if reference is valid
 
-	}
 
-	public String getChild() {
+        this.child = child;
+
+    }
+
+    @Override
+    public String getChild() {
 		return child;
 	}
 
-	public String getParent() {
-		return parent;
-	}
+    @Override
+    public String getParent() {
+        return parent;
+    }
 
 }

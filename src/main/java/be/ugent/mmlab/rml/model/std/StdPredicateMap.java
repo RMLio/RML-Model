@@ -37,86 +37,97 @@ import be.ugent.mmlab.rml.model.reference.ReferenceIdentifier;
 import java.util.HashSet;
 
 import net.antidot.semantic.rdf.model.tools.RDFDataValidator;
-import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLStructureException;
-import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLSyntaxException;
-import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.R2RMLDataError;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 
 public class StdPredicateMap extends AbstractTermMap implements TermMap,
-		PredicateMap {
+        PredicateMap {
+    
+    // Log
+    private static final Logger log = LogManager.getLogger(StdPredicateMap.class);
 
-	private PredicateObjectMap predicateObjectMap;
+    private PredicateObjectMap predicateObjectMap;
 
-	public StdPredicateMap(PredicateObjectMap predicateObjectMap,
-			Value constantValue, String stringTemplate,
-			String inverseExpression, ReferenceIdentifier referenceValue, URI termType)
-			throws R2RMLDataError, InvalidR2RMLStructureException,
-			InvalidR2RMLSyntaxException {
-		// No Literal term type
-		// ==> No datatype
-		// ==> No specified language tag
-		// No class IRI
-		super(constantValue, null, null, stringTemplate, termType,
-				inverseExpression, referenceValue);
-		setPredicateObjectMap(predicateObjectMap);
-                setOwnTriplesMap(ownTriplesMap);
-	}
+    /**
+     *
+     * @param predicateObjectMap
+     * @param constantValue
+     * @param stringTemplate
+     * @param inverseExpression
+     * @param referenceValue
+     * @param termType
+     */
+    public StdPredicateMap(PredicateObjectMap predicateObjectMap,
+            Value constantValue, String stringTemplate,
+            String inverseExpression, ReferenceIdentifier referenceValue, URI termType) {
+        // No Literal term type
+        // ==> No datatype
+        // ==> No specified language tag
+        // No class IRI
+        super(constantValue, null, null, stringTemplate, termType,
+                inverseExpression, referenceValue);
+        setPredicateObjectMap(predicateObjectMap);
+        setOwnTriplesMap(ownTriplesMap);
+    }
 
-        @Override
-	protected void checkSpecificTermType(TermType tt)
-			throws InvalidR2RMLStructureException {
-		// If the term map is a predicate map: rr:IRI
-		if (tt != TermType.IRI) {
-			throw new InvalidR2RMLStructureException(
-					"[StdPredicateMap:checkSpecificTermType] If the term map is a "
-							+ "predicate map: only rr:IRI  is required");
-		}
-	}
+    @Override
+    protected void checkSpecificTermType(TermType tt) {
+        // If the term map is a predicate map: rr:IRI
+        if (tt != TermType.IRI) {
+            log.error("Invalid Structure "
+                    + "[StdPredicateMap:checkSpecificTermType] If the term map is a "
+                    + "predicate map: only rr:IRI  is required");
+        }
+    }
 
-        @Override
-	protected void checkConstantValue(Value constantValue)
-			throws R2RMLDataError {
-		// If the constant-valued term map is a predicate map then its constant
-		// value must be an IRI.
-		if (!RDFDataValidator.isValidURI(constantValue.stringValue()))
-			throw new R2RMLDataError(
-					"[StdPredicateMap:checkConstantValue] Not a valid URI : "
-							+ constantValue);
-	}
+    @Override
+    protected void checkConstantValue(Value constantValue) {
+        // If the constant-valued term map is a predicate map then its constant
+        // value must be an IRI.
+        if (!RDFDataValidator.isValidURI(constantValue.stringValue())) {
+            log.error("Data Error "
+                    + "[StdPredicateMap:checkConstantValue] Not a valid URI : "
+                    + constantValue);
+        }
+    }
 
-        @Override
-	public PredicateObjectMap getPredicateObjectMap() {
-		return predicateObjectMap;
-	}
-        
-        @Override
-	public void setPredicateObjectMap(PredicateObjectMap predicateObjectMap) {
-		/*
-		 * if (predicateObjectMap.getPredicateMaps() != null) { if
-		 * (!predicateObjectMap.getPredicateMaps().contains(this)) throw new
-		 * IllegalStateException(
-		 * "[StdPredicateObjectMap:setPredicateObjectMap] " +
-		 * "The predicateObject map parent " +
-		 * "already contains another Predicate Map !"); } else {
-		 */
-		if (predicateObjectMap != null) {
-			// Update predicateObjectMap if not contains this object map
-			if (predicateObjectMap.getPredicateMaps() == null) {
-                        predicateObjectMap
-                                        .setPredicateMaps(new HashSet<PredicateMap>());
-                    }
-			predicateObjectMap.getPredicateMaps().add(this);
-		}
-		// }
-		this.predicateObjectMap = predicateObjectMap;
+    @Override
+    public PredicateObjectMap getPredicateObjectMap() {
+        return predicateObjectMap;
+    }
 
-	}
-        
-        @Override
-	public void setOwnTriplesMap(TriplesMap ownTriplesMap)
-			throws InvalidR2RMLStructureException {
-		this.ownTriplesMap = ownTriplesMap;
-	}
+    /**
+     *
+     * @param predicateObjectMap
+     */
+    @Override
+    public void setPredicateObjectMap(PredicateObjectMap predicateObjectMap) {
+        /*
+         * if (predicateObjectMap.getPredicateMaps() != null) { if
+         * (!predicateObjectMap.getPredicateMaps().contains(this)) throw new
+         * IllegalStateException(
+         * "[StdPredicateObjectMap:setPredicateObjectMap] " +
+         * "The predicateObject map parent " +
+         * "already contains another Predicate Map !"); } else {
+         */
+        if (predicateObjectMap != null) {
+            // Update predicateObjectMap if not contains this object map
+            if (predicateObjectMap.getPredicateMaps() == null) {
+                predicateObjectMap
+                        .setPredicateMaps(new HashSet<PredicateMap>());
+            }
+            predicateObjectMap.getPredicateMaps().add(this);
+        }
+        // }
+        this.predicateObjectMap = predicateObjectMap;
+
+    }
+
+    @Override
+    public void setOwnTriplesMap(TriplesMap ownTriplesMap) {
+        this.ownTriplesMap = ownTriplesMap;
+    }
 }

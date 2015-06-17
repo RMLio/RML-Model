@@ -6,6 +6,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 /**
+ * RML - Model
  *
  * @author andimou
  */
@@ -18,27 +19,47 @@ public class StdCondition {
     protected String value;
     protected Set<Condition> nestedConditions ;
     
-    protected void setCondition(String condition) throws Exception {
+    /**
+     *
+     * @param condition
+     */
+    protected void setCondition(String condition) {
         if (condition == null) {
-            throw new Exception(
+            log.error(
                     "A condition must "
                     + "have a condition value.");
         }
         this.condition = condition;
     }
     
-    protected void setNestedConditions(Set<Condition> nestedConditions) throws Exception {
+    /**
+     *
+     * @param nestedConditions
+     */
+    protected void setNestedConditions(Set<Condition> nestedConditions) {
         this.nestedConditions = nestedConditions;
     }
     
+    /**
+     *
+     * @return
+     */
     public Set<Condition> getNestedConditions() {
         return nestedConditions;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getCondition() {
         return condition;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getValue() {
         return value;
     }    

@@ -4,14 +4,14 @@ import be.ugent.mmlab.rml.input.model.InputSource;
 import be.ugent.mmlab.rml.model.LogicalSource;
 import be.ugent.mmlab.rml.condition.model.BindCondition;
 import be.ugent.mmlab.rml.condition.model.Condition;
-import be.ugent.mmlab.rml.condition.model.EqualCondition;
+import be.ugent.mmlab.rml.condition.model.BooleanCondition;
 import be.ugent.mmlab.rml.condition.model.ProcessCondition;
 import be.ugent.mmlab.rml.condition.model.SplitCondition;
 import be.ugent.mmlab.rml.vocabulary.QLVocabulary.QLTerm;
 import java.util.HashSet;
 import java.util.Set;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -21,39 +21,68 @@ import org.apache.commons.logging.LogFactory;
  */
 public class StdLogicalSource implements LogicalSource {
 
-    private static Log log = LogFactory.getLog(StdLogicalSource.class);
+    //Log
+    private static final Logger log = LogManager.getLogger(StdBindCondition.class);
     
     private String iterator;
     private QLTerm referenceFormulation = QLTerm.SQL_CLASS;
     private String splitCondition;
     private String source;
     private InputSource inputSource;
-    private Set<EqualCondition> equalConditions;
+    private Set<BooleanCondition> equalConditions;
     private Set<ProcessCondition> processConditions;
     private Set<SplitCondition> splitConditions;
     private Set<BindCondition> bindConditions;
 
+    /**
+     *
+     * @param inputSource
+     * @param referenceFormulation
+     */
     public StdLogicalSource(InputSource inputSource, QLTerm referenceFormulation) {
         this.referenceFormulation = referenceFormulation;
         this.inputSource = inputSource;
     }
 
+    /**
+     *
+     * @param source
+     * @param referenceFormulation
+     * @param splitCondition
+     */
     public StdLogicalSource(String source, QLTerm referenceFormulation, String splitCondition) {
         this.referenceFormulation = referenceFormulation;
         this.source = source;
         this.splitCondition = splitCondition;
     }
 
+    /**
+     *
+     * @param reference
+     */
     public StdLogicalSource(String reference) {
         this.iterator = reference;
     }
 
+    /**
+     *
+     * @param iterator
+     * @param inputSource
+     * @param referenceFormulation
+     */
     public StdLogicalSource(String iterator, InputSource inputSource, QLTerm referenceFormulation) {
         this.iterator = iterator;
         this.inputSource = inputSource;
         this.referenceFormulation = referenceFormulation;
     }
 
+    /**
+     *
+     * @param iterator
+     * @param inputSource
+     * @param referenceFormulation
+     * @param splitCondition
+     */
     public StdLogicalSource(String iterator, InputSource inputSource,
             QLTerm referenceFormulation, String splitCondition) {
         this.iterator = iterator;
@@ -62,8 +91,18 @@ public class StdLogicalSource implements LogicalSource {
         this.splitCondition = splitCondition;
     }
 
+    /**
+     *
+     * @param iterator
+     * @param inputSource
+     * @param referenceFormulation
+     * @param equalCondition
+     * @param processCondition
+     * @param splitCondition
+     * @param bindCondition
+     */
     public StdLogicalSource(String iterator, InputSource inputSource, QLTerm referenceFormulation,
-            Set<EqualCondition> equalCondition, Set<ProcessCondition> processCondition,
+            Set<BooleanCondition> equalCondition, Set<ProcessCondition> processCondition,
             Set<SplitCondition> splitCondition, Set<BindCondition> bindCondition) {
         this.iterator = iterator;
         this.inputSource = inputSource;
@@ -89,10 +128,15 @@ public class StdLogicalSource implements LogicalSource {
         return source;
     }
     
+    @Override
     public InputSource getInputSource() {
         return inputSource;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "[StdLogicalSource : iterator = " + iterator
@@ -105,8 +149,8 @@ public class StdLogicalSource implements LogicalSource {
         return splitCondition;
     }
 
-    private void setEqualConditions(Set<EqualCondition> equalConditions) {
-        this.equalConditions = new HashSet<EqualCondition>();
+    private void setEqualConditions(Set<BooleanCondition> equalConditions) {
+        this.equalConditions = new HashSet<BooleanCondition>();
         this.equalConditions.addAll(equalConditions);
     }
 
@@ -130,7 +174,7 @@ public class StdLogicalSource implements LogicalSource {
      * @return
      */
     @Override
-    public Set<EqualCondition> getEqualConditions() {
+    public Set<BooleanCondition> getEqualConditions() {
         return this.equalConditions;
     }
 

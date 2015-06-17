@@ -33,92 +33,101 @@ import be.ugent.mmlab.rml.model.PredicateObjectMap;
 import be.ugent.mmlab.rml.model.TermMap;
 import be.ugent.mmlab.rml.model.TermType;
 import be.ugent.mmlab.rml.model.TriplesMap;
-import be.ugent.mmlab.rml.condition.model.BindCondition;
-import be.ugent.mmlab.rml.condition.model.EqualCondition;
-import be.ugent.mmlab.rml.condition.model.ProcessCondition;
-import be.ugent.mmlab.rml.condition.model.SplitCondition;
 import be.ugent.mmlab.rml.model.reference.ReferenceIdentifier;
 import java.util.HashSet;
-import java.util.Set;
 
 import net.antidot.semantic.rdf.model.tools.RDFDataValidator;
-import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLStructureException;
-import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.InvalidR2RMLSyntaxException;
-import net.antidot.semantic.rdf.rdb2rdf.r2rml.exception.R2RMLDataError;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 
-public final class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap {
+public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap {
+    
+    // Log
+    private static final Logger log = LogManager.getLogger(StdObjectMap.class);
 
 	private PredicateObjectMap predicateObjectMap;
 
-	public StdObjectMap(PredicateObjectMap predicateObjectMap,
+	/**
+        *
+        * @param predicateObjectMap
+        * @param constantValue
+        * @param dataType
+        * @param languageTag
+        * @param stringTemplate
+        * @param termType
+        * @param inverseExpression
+        * @param referenceValue
+        */
+       public StdObjectMap(PredicateObjectMap predicateObjectMap,
 			Value constantValue, URI dataType, String languageTag,
 			String stringTemplate, URI termType, String inverseExpression,
-			ReferenceIdentifier referenceValue) throws R2RMLDataError,
-			InvalidR2RMLStructureException, InvalidR2RMLSyntaxException {
+			ReferenceIdentifier referenceValue)  {
 		super(constantValue, dataType, languageTag, stringTemplate, termType,
 				inverseExpression, referenceValue);
 		setPredicateObjectMap(predicateObjectMap);
 	}
         
-        public StdObjectMap(PredicateObjectMap predicateObjectMap,
+        /**
+        *
+        * @param predicateObjectMap
+        * @param constantValue
+        * @param dataType
+        * @param languageTag
+        * @param stringTemplate
+        * @param termType
+        * @param inverseExpression
+        * @param referenceValue
+        * @param split
+        * @param process
+        * @param replace
+        */
+       /*public StdObjectMap(PredicateObjectMap predicateObjectMap,
 			Value constantValue, URI dataType, String languageTag,
 			String stringTemplate, URI termType, String inverseExpression,
 			ReferenceIdentifier referenceValue, String split,
-                        String process, String replace) throws R2RMLDataError,
-			InvalidR2RMLStructureException, InvalidR2RMLSyntaxException {
+                        String process, String replace)  {
 		super(constantValue, dataType, languageTag, stringTemplate, termType,
 				inverseExpression, referenceValue,
                                 split, process, replace);
 		setPredicateObjectMap(predicateObjectMap);
-	}
-        
-        public StdObjectMap(PredicateObjectMap predicateObjectMap,
-			Value constantValue, URI dataType, String languageTag,
-			String stringTemplate, URI termType, String inverseExpression,
-			ReferenceIdentifier referenceValue, String split,
-                        String process, String replace, 
-                        Set<EqualCondition> equalCondition, Set<ProcessCondition> processCondition, 
-                        Set<SplitCondition> splitCondition, Set<BindCondition> bindCondition)
-                throws R2RMLDataError, InvalidR2RMLStructureException, InvalidR2RMLSyntaxException {
-		super(constantValue, dataType, languageTag, stringTemplate, termType,
-				inverseExpression, referenceValue, split, process, replace, 
-                                equalCondition, processCondition, splitCondition, bindCondition);
-		setPredicateObjectMap(predicateObjectMap);
-	}
+	}*/
 
         @Override
-	protected void checkSpecificTermType(TermType tt)
-			throws InvalidR2RMLStructureException {
-		// If the term map is a subject map: rr:IRI or rr:BlankNode or
-		// rr:Literal
-		if ((tt != TermType.IRI) && (tt != TermType.BLANK_NODE)
-				&& (tt != TermType.LITERAL)) {
-			throw new InvalidR2RMLStructureException(
-					"[StdObjectMap:checkSpecificTermType] If the term map is a "
-							+ "object map: only rr:IRI or rr:BlankNode is required");
-		}
-	}
+        protected void checkSpecificTermType(TermType tt) {
+            // If the term map is a subject map: rr:IRI or rr:BlankNode or
+            // rr:Literal
+            if ((tt != TermType.IRI) && (tt != TermType.BLANK_NODE)
+                    && (tt != TermType.LITERAL)) {
+                log.error("Invalid Structure "
+                        + "[StdObjectMap:checkSpecificTermType] If the term map is a "
+                        + "object map: only rr:IRI or rr:BlankNode is required");
+            }
+        }
 
         @Override
-	protected void checkConstantValue(Value constantValue)
-			throws R2RMLDataError {
-		if (!RDFDataValidator.isValidURI(constantValue.stringValue())
-				&& !RDFDataValidator
-						.isValidLiteral(constantValue.stringValue()))
-			throw new R2RMLDataError(
-					"[StdObjectMap:checkConstantValue] Not a valid URI or literal : "
-							+ constantValue);
-	}
+        protected void checkConstantValue(Value constantValue) {
+            if (!RDFDataValidator.isValidURI(constantValue.stringValue())
+                    && !RDFDataValidator
+                    .isValidLiteral(constantValue.stringValue())) {
+                log.error("Data Error "
+                        + "[StdObjectMap:checkConstantValue] Not a valid URI or literal : "
+                        + constantValue);
+            }
+        }
 
         @Override
 	public PredicateObjectMap getPredicateObjectMap() {
 		return predicateObjectMap;
 	}
 
-        @Override
+        /**
+        *
+        * @param predicateObjectMap
+        */
+       @Override
 	public void setPredicateObjectMap(PredicateObjectMap predicateObjectMap) {
 		/*
 		 * if (predicateObjectMap.getObjectMaps() != null) { if
@@ -138,8 +147,7 @@ public final class StdObjectMap extends AbstractTermMap implements TermMap, Obje
 	}
         
         @Override
-	public void setOwnTriplesMap(TriplesMap ownTriplesMap)
-			throws InvalidR2RMLStructureException {   
+	public void setOwnTriplesMap(TriplesMap ownTriplesMap) {   
             this.ownTriplesMap = ownTriplesMap;
 	}
 }
