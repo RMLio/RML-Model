@@ -19,12 +19,12 @@ public class CRMLVocabulary {
 
         // RML CLASSES
         BIND_CONDITION_CLASS("BindCondition"),
-        EQUAL_CONDITION_CLASS("EqualCondition"),
+        BOOLEAN_CONDITION_CLASS("BooleanCondition"),
         PROCESS_CONDITION_CLASS("ProcessCondition"),
         SPLIT_CONDITION_CLASS("SplitCondition"),
         // RPROPERTIES
         BIND_CONDITION("bindCondition"),
-        EQUAL_CONDITION("equalCondition"),
+        BOOLEAN_CONDITION("booleanCondition"),
         PROCESS_CONDITION("processCondition"),
         SPLIT_CONDITION("splitCondition"),
         CONDITION("condition"),

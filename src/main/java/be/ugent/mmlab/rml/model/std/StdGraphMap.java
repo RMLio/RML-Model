@@ -1,41 +1,20 @@
-/* 
- * Copyright 2011 Antidot opensource@antidot.net
- * https://github.com/antidot/db2triples
- * 
- * DB2Triples is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License as 
- * published by the Free Software Foundation; either version 2 of 
- * the License, or (at your option) any later version.
- * 
- * DB2Triples is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 /***************************************************************************
  *
- * R2RML Model : Standard GraphtMap Class
+ * RML Model : Graph Map
  *
- * Any subject map or predicate-object map may have one
- * or more associated graph maps. Graph maps are 
- * themselves term maps. When RDF triples are generated,
- * the set of target graphs is determined by taking into
- * account any graph maps associated with the subject map
- * or predicate-object map.
+ * A Term Map may have one or more associated graph maps. 
+ * A Graph Map is a Term Map itself. 
  * 
- * modified by mielvandersande
+ * @author mielvandersande, andimou
  *
  ****************************************************************************/
 package be.ugent.mmlab.rml.model.std;
 
-import be.ugent.mmlab.rml.model.AbstractTermMap;
-import be.ugent.mmlab.rml.model.GraphMap;
-import be.ugent.mmlab.rml.model.TermType;
-import be.ugent.mmlab.rml.model.reference.ReferenceIdentifier;
-import net.antidot.semantic.rdf.model.tools.RDFDataValidator;
+import be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap;
+import be.ugent.mmlab.rml.model.RDFTerm.GraphMap;
+import be.ugent.mmlab.rml.model.RDFTerm.TermType;
+import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -54,13 +33,10 @@ public class StdGraphMap extends AbstractTermMap implements GraphMap {
      * @param inverseExpression
      * @param referenceValue
      * @param termType
-     * @throws R2RMLDataError
-     * @throws InvalidR2RMLStructureException
-     * @throws InvalidR2RMLSyntaxException
      */
     public StdGraphMap(Value constantValue,
             String stringTemplate, String inverseExpression,
-            ReferenceIdentifier referenceValue, URI termType) {
+            ReferenceMap referenceValue, URI termType) {
         // No Literal term type
         // ==> No datatype
         // ==> No specified language tag
@@ -73,14 +49,12 @@ public class StdGraphMap extends AbstractTermMap implements GraphMap {
     /**
      *
      * @param tt
-     * @throws InvalidR2RMLStructureException
      */
     @Override
     protected void checkSpecificTermType(TermType tt) {
         // If the term map is a predicate map: rr:IRI
         if (tt != TermType.IRI) {
-            log.error("Invalid Structure"
-                    + "[StdGraphMap:checkSpecificTermType] If the term map is a "
+            log.error("[StdGraphMap:checkSpecificTermType] If the term map is a "
                     + "graph map: only rr:IRI  is required");
         }
     }
@@ -89,16 +63,10 @@ public class StdGraphMap extends AbstractTermMap implements GraphMap {
     protected void checkConstantValue(Value constantValue) {
         // If the constant-valued term map is a graph map then its constant
         // value must be an IRI.
-        if (!RDFDataValidator.isValidURI(constantValue.stringValue())) {
-            log.error(" Data Error "
-                    + "[StdGraphMap:checkConstantValue] Not a valid URI : "
+        if (!StdIriRdfTerm.isValidURI(constantValue.stringValue())) {
+            log.error("[StdGraphMap:checkConstantValue] Not a valid URI : "
                     + constantValue);
         }
     }
-	
-	/*public URI getGraph(){
-		return graph;
-	}*/
-	
-	
+
 }

@@ -1,42 +1,24 @@
-/* 
- * Copyright 2011 Antidot opensource@antidot.net
- * https://github.com/antidot/db2triples
- * 
- * DB2Triples is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License as 
- * published by the Free Software Foundation; either version 2 of 
- * the License, or (at your option) any later version.
- * 
- * DB2Triples is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 /***************************************************************************
  *
- * R2RML Model : Standard PredicateMap Class
+ * RML Model : Standard PredicateMap Class
  *
  * A predicate map is a specific term map used for 
  * representing RDF predicate. 
  * 
- * modified by mielvandersande, andimou
+ * @author mielvandersande, andimou
  * 
  ****************************************************************************/
 package be.ugent.mmlab.rml.model.std;
 
-import be.ugent.mmlab.rml.model.AbstractTermMap;
-import be.ugent.mmlab.rml.model.PredicateMap;
+import be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap;
+import be.ugent.mmlab.rml.model.RDFTerm.PredicateMap;
 import be.ugent.mmlab.rml.model.PredicateObjectMap;
-import be.ugent.mmlab.rml.model.TermMap;
-import be.ugent.mmlab.rml.model.TermType;
+import be.ugent.mmlab.rml.model.RDFTerm.TermMap;
+import be.ugent.mmlab.rml.model.RDFTerm.TermType;
 import be.ugent.mmlab.rml.model.TriplesMap;
-import be.ugent.mmlab.rml.model.reference.ReferenceIdentifier;
+import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import java.util.HashSet;
 
-import net.antidot.semantic.rdf.model.tools.RDFDataValidator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -62,7 +44,7 @@ public class StdPredicateMap extends AbstractTermMap implements TermMap,
      */
     public StdPredicateMap(PredicateObjectMap predicateObjectMap,
             Value constantValue, String stringTemplate,
-            String inverseExpression, ReferenceIdentifier referenceValue, URI termType) {
+            String inverseExpression, ReferenceMap referenceValue, URI termType) {
         // No Literal term type
         // ==> No datatype
         // ==> No specified language tag
@@ -87,7 +69,7 @@ public class StdPredicateMap extends AbstractTermMap implements TermMap,
     protected void checkConstantValue(Value constantValue) {
         // If the constant-valued term map is a predicate map then its constant
         // value must be an IRI.
-        if (!RDFDataValidator.isValidURI(constantValue.stringValue())) {
+        if (!StdIriRdfTerm.isValidURI(constantValue.stringValue())) {
             log.error("Data Error "
                     + "[StdPredicateMap:checkConstantValue] Not a valid URI : "
                     + constantValue);

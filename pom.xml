@@ -85,9 +85,15 @@
             <scope>compile</scope>        
         </dependency> 
         <dependency>
-            <groupId>net.antidot</groupId>
-            <artifactId>db2triples</artifactId>
-            <version>1.0.2</version>
+            <groupId>org.openrdf.sesame</groupId>  
+            <artifactId>sesame-repository-http</artifactId>  
+            <version>${sesame.version}</version> 
+        </dependency>
+        <dependency>
+            <groupId>org.openrdf.sesame</groupId>
+            <artifactId>sesame-sail-memory</artifactId>
+            <version>${sesame.version}</version>
+            <scope>compile</scope>        
         </dependency>
         <dependency>
             <groupId>log4j</groupId>

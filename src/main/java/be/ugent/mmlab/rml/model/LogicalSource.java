@@ -1,80 +1,82 @@
+/**
+ * *************************************************************************
+ *
+ * RML - Model : LogicalSource
+ *
+ *
+ * @author andimou
+ *
+ ***************************************************************************
+ */
+
 package be.ugent.mmlab.rml.model;
 
-import be.ugent.mmlab.rml.condition.model.BindCondition;
-import be.ugent.mmlab.rml.condition.model.Condition;
-import be.ugent.mmlab.rml.condition.model.BooleanCondition;
-import be.ugent.mmlab.rml.condition.model.ProcessCondition;
-import be.ugent.mmlab.rml.condition.model.SplitCondition;
-import be.ugent.mmlab.rml.input.model.InputSource;
 import be.ugent.mmlab.rml.vocabulary.QLVocabulary;
-import java.util.Set;
 
-/**
- * RML Model
- *
- * @author mielvandersande, andimou
- */
 public interface LogicalSource {
 
     /**
-     * Every logical source has an expression resulting in a list of iterating
-     * values.
+     * 
+     * Every logical source has an Iterator.
+     * The Iterator can be skipped when the data have tabular structure
+     * and the iteration is implied that it is per row.
+     * 
+     * @return String
+     * 
      */
-    public String getReference();
+    public String getIterator();
+    
+    /**
+     *
+     * @param iterator
+     */
+    public void setIterator(String iterator);
 
     /**
-     * Every logical source has an identifier, which is a schema-qualified name
-     * pointing at a source.
+     * 
+     * Every Logical Source refers to a source. 
+     * 
+     * @return String
+     *
      */
     public String getSource();
     
     /**
      *
-     * @return
+     * @param source
+     */
+    public void setSource(String source);
+    
+    /**
+     * 
+     * Every Logical Source has an Input Source
+     * where the data reside.
+     *
+     * @return InputSource
      */
     public InputSource getInputSource();
+    
+    /**
+     *
+     * @param inputSource
+     */
+    public void setInputSource(InputSource inputSource);
 
     /**
-     * Every logical source can indicate how its expression should be
-     * interpreted
+     * 
+     * Every Logical Source has a Reference Formulation 
+     * that specifies the grammar to refer to the input data.
+     * 
+     * @return QLVocabulary.QLTerm
+     * 
      */
     public QLVocabulary.QLTerm getReferenceFormulation();
     
-    //TODO:take the following separately
+    /**
+     *
+     * @param referenceFormulation
+     * 
+     */
+    public void setReferenceFormulation(QLVocabulary.QLTerm referenceFormulation);
     
-    /**
-     *
-     * @return
-     */
-    public String getSplitCondition();
-    
-    /**
-     *
-     * @return
-     */
-    public Set<BooleanCondition> getEqualConditions();
-        
-    /**
-     *
-     * @return
-     */
-    public Set<ProcessCondition> getProcessConditions();
-        
-    /**
-     *
-     * @return
-     */
-    public Set<SplitCondition> getSplitConditions();
-        
-    /**
-     *
-     * @return
-     */
-    public Set<BindCondition> getBindConditions();
-    
-    /**
-     *
-     * @return
-     */
-    public Set<Condition> getConditions();
 }

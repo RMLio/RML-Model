@@ -1,42 +1,24 @@
-/* 
- * Copyright 2011 Antidot opensource@antidot.net
- * https://github.com/antidot/db2triples
- * 
- * DB2Triples is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License as 
- * published by the Free Software Foundation; either version 2 of 
- * the License, or (at your option) any later version.
- * 
- * DB2Triples is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 /***************************************************************************
  *
- * R2RML Model : Standard ObjectMap Class
+ * RML Model : ObjectMap
  *
- * An object map is a specific term map used for 
+ * An Object Map is a specific Term Map used for 
  * representing RDF object. 
  * 
- * modified by mielvandersande, andimou
+ * @author mielvandersande, andimou
  * 
  ****************************************************************************/
 package be.ugent.mmlab.rml.model.std;
 
-import be.ugent.mmlab.rml.model.AbstractTermMap;
-import be.ugent.mmlab.rml.model.ObjectMap;
+import be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap;
+import be.ugent.mmlab.rml.model.RDFTerm.ObjectMap;
 import be.ugent.mmlab.rml.model.PredicateObjectMap;
-import be.ugent.mmlab.rml.model.TermMap;
-import be.ugent.mmlab.rml.model.TermType;
+import be.ugent.mmlab.rml.model.RDFTerm.TermMap;
+import be.ugent.mmlab.rml.model.RDFTerm.TermType;
 import be.ugent.mmlab.rml.model.TriplesMap;
-import be.ugent.mmlab.rml.model.reference.ReferenceIdentifier;
+import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import java.util.HashSet;
 
-import net.antidot.semantic.rdf.model.tools.RDFDataValidator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -64,7 +46,7 @@ public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap 
        public StdObjectMap(PredicateObjectMap predicateObjectMap,
 			Value constantValue, URI dataType, String languageTag,
 			String stringTemplate, URI termType, String inverseExpression,
-			ReferenceIdentifier referenceValue)  {
+			ReferenceMap referenceValue)  {
 		super(constantValue, dataType, languageTag, stringTemplate, termType,
 				inverseExpression, referenceValue);
 		setPredicateObjectMap(predicateObjectMap);
@@ -109,8 +91,8 @@ public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap 
 
         @Override
         protected void checkConstantValue(Value constantValue) {
-            if (!RDFDataValidator.isValidURI(constantValue.stringValue())
-                    && !RDFDataValidator
+            if (!StdIriRdfTerm.isValidURI(constantValue.stringValue())
+                    && !StdLiteralRdfTerm
                     .isValidLiteral(constantValue.stringValue())) {
                 log.error("Data Error "
                         + "[StdObjectMap:checkConstantValue] Not a valid URI or literal : "

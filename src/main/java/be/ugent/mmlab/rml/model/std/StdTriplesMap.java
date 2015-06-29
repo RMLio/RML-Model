@@ -1,23 +1,6 @@
-/* 
- * Copyright 2011 Antidot opensource@antidot.net
- * https://github.com/antidot/db2triples
- * 
- * DB2Triples is free software; you can redistribute it and/or 
- * modify it under the terms of the GNU General Public License as 
- * published by the Free Software Foundation; either version 2 of 
- * the License, or (at your option) any later version.
- * 
- * DB2Triples is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 /***************************************************************************
  *
- * R2RML Model : Standard TriplesMap Class
+ * RML Model : Triples Map
  *
  * A triples map specifies a rule for translating each
  * row of a logical table to zero or more RDF triples.
@@ -27,7 +10,7 @@ package be.ugent.mmlab.rml.model.std;
 
 import be.ugent.mmlab.rml.model.LogicalSource;
 import be.ugent.mmlab.rml.model.PredicateObjectMap;
-import be.ugent.mmlab.rml.model.SubjectMap;
+import be.ugent.mmlab.rml.model.RDFTerm.SubjectMap;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -54,7 +37,7 @@ public final class StdTriplesMap implements TriplesMap {
      */
     public StdTriplesMap(LogicalSource logicalSource,
 			Set<StdPredicateObjectMap> predicateObjectMaps,
-			StdSubjectMap subjectMap, String name) { //throws InvalidR2RMLStructureException {
+			SubjectMap subjectMap, String name) {
 		setSubjectMap(subjectMap);
 		setLogicalSource(logicalSource);
 		setPredicateObjectMap(predicateObjectMaps);
@@ -62,7 +45,7 @@ public final class StdTriplesMap implements TriplesMap {
 	}
 
     @Override
-	public void setLogicalSource(LogicalSource logicalSource) {
+    public void setLogicalSource(LogicalSource logicalSource) {
 		this.logicalSource = logicalSource;
 	}
 
@@ -104,13 +87,13 @@ public final class StdTriplesMap implements TriplesMap {
 	}
 
         @Override
-	public void setSubjectMap(SubjectMap subjectMap) { //throws InvalidR2RMLStructureException {
+	public void setSubjectMap(SubjectMap subjectMap) {
 		this.subjectMap = subjectMap;
 
 	}
 
         @Override
-	public void addPredicateObjectMap(PredicateObjectMap predicateObjectMap) {
+	public void setPredicateObjectMap(PredicateObjectMap predicateObjectMap) {
 		if (predicateObjectMap != null)
 			predicateObjectMaps.add(predicateObjectMap);
 	}
