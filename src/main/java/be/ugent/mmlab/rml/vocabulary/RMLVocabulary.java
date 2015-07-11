@@ -1,8 +1,5 @@
 package be.ugent.mmlab.rml.vocabulary;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * *************************************************************************
  *
@@ -15,18 +12,10 @@ import org.slf4j.LoggerFactory;
  ***************************************************************************
  */
 public class RMLVocabulary {
-    
-    // Log
-    private static final Logger log = LoggerFactory.getLogger(RMLVocabulary.class);
 
     // In this document, examples assume the following namespace 
     // prefix bindings unless otherwise stated:
-    public static String RML_NAMESPACE = "http://semweb.mmlab.be/ns/rml#";
-    public static String RDF_NAMESPACE = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-    public static String RDFS_NAMESPACE = "http://www.w3.org/2000/01/rdf-schema#";
-    public static String XSD_NAMESPACE = "http://www.w3.org/2001/XMLSchema#";
-
-    
+    public static String RML_NAMESPACE = "http://semweb.mmlab.be/ns/rml#";  
 
     public enum RMLTerm implements Term{
 
@@ -53,6 +42,5 @@ public class RMLVocabulary {
         public String toString() {
             return displayName;
         }
-        
     }
 }
