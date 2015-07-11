@@ -1,6 +1,9 @@
-/***************************************************************************
+package be.ugent.mmlab.rml.model.RDFTerm;
+
+/**
+ *************************************************************************
  *
- * RML Model : GraphtMap Interface
+ * RML - Model : GraphtMap Interface
  *
  * Any subject map or predicate-object map may have one
  * or more associated graph maps. Graph maps are 
@@ -9,10 +12,8 @@
  * account any graph maps associated with the subject map
  * or predicate-object map.
  *
- ****************************************************************************/
-package be.ugent.mmlab.rml.model.RDFTerm;
-
-
+ ***************************************************************************
+ */
 public interface GraphMap extends TermMap {
 
 }

@@ -1,15 +1,3 @@
-/***************************************************************************
- *
- * RML Model : Standard PredicateObjectMap Class
- *
- * A predicate-object map is a function
- * that creates predicate-object pairs from logical 
- * table rows. It is used in conjunction with a subject
- * map to generate RDF triples in a triples map.
- * 
- * @author andimou
- * 
- ****************************************************************************/
 package be.ugent.mmlab.rml.model.std;
 
 import be.ugent.mmlab.rml.model.RDFTerm.GraphMap;
@@ -20,13 +8,27 @@ import be.ugent.mmlab.rml.model.RDFTerm.ReferencingObjectMap;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import java.util.HashSet;
 import java.util.Set;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ *************************************************************************
+ *
+ * RML - Model : Predicate Object Map Implementation
+ *
+ * A predicate-object map 
+ * generates Predicate-Object pairs from Logical Sources.
+ * It is used in conjunction with a subject
+ * map to generate RDF triples in a Triples Map.
+ * 
+ * @author andimou
+ * 
+ ***************************************************************************
+ */
 public class StdPredicateObjectMap implements PredicateObjectMap {
     
     // Log
-    private static final Logger log = LogManager.getLogger(StdPredicateObjectMap.class);
+    private static final Logger log = LoggerFactory.getLogger(StdPredicateObjectMap.class);
 
 	private Set<ObjectMap> objectMaps;
 	private Set<ReferencingObjectMap> refObjectMaps;

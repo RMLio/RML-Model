@@ -1,24 +1,22 @@
-/**
- * RML - Model
- * 
- * This class holds an expression that refers to a certain value.
- * It has lost most of its use, maybe replace it?
- *
- * @author mielvandersande, andimou
- */
-
 package be.ugent.mmlab.rml.model.std;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * RML - Model : Template Map Implementation
+ * 
+ * This class holds an expression that refers to a certain value.
+ *
+ * @author mielvandersande, andimou
+ */
 public class StdTemplateMap {
 
     // Log
-    private static final Logger log = LogManager.getLogger(StdTemplateMap.class);
+    private static final Logger log = LoggerFactory.getLogger(StdTemplateMap.class);
     private String template = null;
 
     public StdTemplateMap(String template) {

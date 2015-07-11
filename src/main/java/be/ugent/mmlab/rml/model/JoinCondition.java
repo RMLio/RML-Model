@@ -1,14 +1,14 @@
+package be.ugent.mmlab.rml.model;
+
 /**
  *****************************************************************************
  *
- * RML Model : Join Condition Interface
+ * RML - Model : Join Condition Interface
  * 
  * @author andimou
  *
  *****************************************************************************
  */
-package be.ugent.mmlab.rml.model;
-
 public interface JoinCondition {
 
     /**

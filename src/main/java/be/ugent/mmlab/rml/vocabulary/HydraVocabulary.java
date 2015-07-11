@@ -1,14 +1,22 @@
 package be.ugent.mmlab.rml.vocabulary;
 
-import org.apache.log4j.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
+ * *************************************************************************
+ * 
+ * RML - Model : Hydra Vocabulary
+ * 
+ * namespace: hydra IRI: http://www.w3.org/ns/hydra/core#
  *
  * @author andimou
+ * 
+ * *************************************************************************
  */
 public class HydraVocabulary {
     // Log
-    private static final org.apache.log4j.Logger log = LogManager.getLogger(HydraVocabulary.class);
+    private static final Logger log = LoggerFactory.getLogger(HydraVocabulary.class);
     
     public static String HYDRA_NAMESPACE = "http://www.w3.org/ns/hydra/core#";
     

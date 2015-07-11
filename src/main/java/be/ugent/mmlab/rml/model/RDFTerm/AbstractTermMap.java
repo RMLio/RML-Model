@@ -1,14 +1,3 @@
-/**
- * *************************************************************************
- *
- * RML Model : Abstract Term Map
- *
- * Partial implementation of a term map.
- *
- * @author mielvandersande, andimou
- *
- ***************************************************************************
- */
 package be.ugent.mmlab.rml.model.RDFTerm;
 
 import be.ugent.mmlab.rml.model.TriplesMap;
@@ -19,16 +8,27 @@ import be.ugent.mmlab.rml.model.termMap.TemplateMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openrdf.model.Literal;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 
+/**
+ * *************************************************************************
+ *
+ * RML - Model : Abstract Term Map
+ *
+ * Partial implementation of a term map.
+ *
+ * @author mielvandersande, andimou
+ *
+ ***************************************************************************
+ */
 public abstract class AbstractTermMap implements TermMap {
 
         // Log
-        private static final Logger log = LogManager.getLogger(AbstractTermMap.class);
+        private static final Logger log = LoggerFactory.getLogger(AbstractTermMap.class);
         
         private URI dataType; 
         private TermType termType;

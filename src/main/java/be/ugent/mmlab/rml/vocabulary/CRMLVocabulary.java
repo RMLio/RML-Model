@@ -1,15 +1,23 @@
 package be.ugent.mmlab.rml.vocabulary;
 
-import org.apache.log4j.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
+ * *************************************************************************
+ * 
+ * RML - Model : cRML Vocabulary
+ * 
+ * namespace:crml namespace: http://semweb.mmlab.be/ns/rml/condition#
  *
  * @author andimou
+  * 
+ * *************************************************************************
  */
 public class CRMLVocabulary {
     
     // Log
-    private static final org.apache.log4j.Logger log = LogManager.getLogger(CRMLVocabulary.class);
+    private static final Logger log = LoggerFactory.getLogger(CRMLVocabulary.class);
 
     // In this document, examples assume the following namespace 
     // prefix bindings unless otherwise stated:

@@ -1,22 +1,23 @@
+package be.ugent.mmlab.rml.vocabulary;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * *************************************************************************
  *
- * RML, R2RML & QL Vocabulary
+ * RML - Model : RML Vocabulary
  *
- * The R2RML vocabulary is the set of IRIs defined in this specification that
- * start with the rr: namespace IRI: http://www.w3.org/ns/r2rml#
+ * namespace: rml IRI: http://semweb.mmlab.be/rml#
+ * 
+ * @author andimou
  *
  ***************************************************************************
  */
-package be.ugent.mmlab.rml.vocabulary;
-
-import org.apache.log4j.LogManager;
-
 public class RMLVocabulary {
     
     // Log
-    private static final org.apache.log4j.Logger log = LogManager.getLogger(RMLVocabulary.class);
+    private static final Logger log = LoggerFactory.getLogger(RMLVocabulary.class);
 
     // In this document, examples assume the following namespace 
     // prefix bindings unless otherwise stated:
@@ -54,64 +55,4 @@ public class RMLVocabulary {
         }
         
     }
-
-   
-    /*public enum R2RMLTerm implements Term{
-        // CLASSES
-
-        GRAPH_MAP_CLASS("GraphMap"),
-        JOIN_CLASS("Join"),
-        LOGICAL_TABLE_CLASS("LogicalTable"),
-        OBJECT_MAP_CLASS("ObjectMap"),
-        PREDICATE_MAP_CLASS("PredicateMap"),
-        PREDICATE_OBJECT_MAP_CLASS("PredicateObjectMap"),
-        REF_OBJECT_MAP_CLASS("RefObjectMap"),
-        SUBJECT_MAP_CLASS("SubjectMap"),
-        TRIPLES_MAP_CLASS("TriplesMap"),
-        // PROPERTIES
-        CLASS("class"),
-        CHILD("child"),
-        COLUMN("column"),
-        DATATYPE("datatype"),
-        CONSTANT("constant"),
-        GRAPH("graph"),
-        GRAPH_MAP("graphMap"),
-        GRAPH_COLUMN("graphColumn"),
-        GRAPH_TEMPLATE("graphTemplate"),
-        INVERSE_EXPRESSION("inverseExpression"),
-        JOIN_CONDITION("joinCondition"),
-        LANGUAGE("language"),
-        LOGICAL_TABLE("logicalTable"),
-        OBJECT("object"),
-        OBJECT_MAP("objectMap"),
-        PARENT("parent"),
-        PARENT_TRIPLES_MAP("parentTriplesMap"),
-        PREDICATE("predicate"),
-        PREDICATE_MAP("predicateMap"),
-        PREDICATE_OBJECT_MAP("predicateObjectMap"),
-        SQL_QUERY("sqlQuery"),
-        SQL_VERSION("sqlVersion"),
-        SUBJECT("subject"),
-        SUBJECT_MAP("subjectMap"),
-        TABLE_NAME("tableName"),
-        TEMPLATE("template"),
-        TERM_TYPE("termType"),
-        // SPECIAL
-        DEFAULT_GRAPH("defaultGraph"),
-        IRI("IRI"),
-        BLANK_NODE("BlankNode"),
-        LITERAL("Literal"),
-        //FROM ANOTHER ONTOLOGY
-        TYPE("type");
-        private String displayName;
-
-        private R2RMLTerm(String displayName) {
-            this.displayName = displayName;
-        }
-
-        public String toString() {
-            return displayName;
-        }
-        
-    }*/
 }

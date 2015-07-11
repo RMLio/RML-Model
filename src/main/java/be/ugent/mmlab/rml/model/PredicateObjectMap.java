@@ -1,3 +1,11 @@
+package be.ugent.mmlab.rml.model;
+
+import be.ugent.mmlab.rml.model.RDFTerm.GraphMap;
+import be.ugent.mmlab.rml.model.RDFTerm.ObjectMap;
+import be.ugent.mmlab.rml.model.RDFTerm.PredicateMap;
+import be.ugent.mmlab.rml.model.RDFTerm.ReferencingObjectMap;
+import java.util.Set;
+
 /**
  * *************************************************************************
  *
@@ -8,14 +16,6 @@
  *
  ***************************************************************************
  */
-package be.ugent.mmlab.rml.model;
-
-import be.ugent.mmlab.rml.model.RDFTerm.GraphMap;
-import be.ugent.mmlab.rml.model.RDFTerm.ObjectMap;
-import be.ugent.mmlab.rml.model.RDFTerm.PredicateMap;
-import be.ugent.mmlab.rml.model.RDFTerm.ReferencingObjectMap;
-import java.util.Set;
-
 public interface PredicateObjectMap {
 
     /**

@@ -3,20 +3,22 @@ package be.ugent.mmlab.rml.model.std;
 import be.ugent.mmlab.rml.model.InputSource;
 import be.ugent.mmlab.rml.model.LogicalSource;
 import be.ugent.mmlab.rml.vocabulary.QLVocabulary.QLTerm;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.openrdf.model.Literal;
+import org.openrdf.model.URI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
- *  Concrete implementation of a Logical Source
+ *  RML - Model : Logical Source Implementation
  * 
  * @author mielvandersande, andimou
  * 
  */
-public final class StdLogicalSource implements LogicalSource {
+public class StdLogicalSource implements LogicalSource {
 
     //Log
-    private static final Logger log = LogManager.getLogger(StdLogicalSource.class);
+    private static final Logger log = LoggerFactory.getLogger(StdLogicalSource.class);
     
     private String iterator;
     private QLTerm referenceFormulation = QLTerm.SQL_CLASS;
@@ -117,6 +119,18 @@ public final class StdLogicalSource implements LogicalSource {
     @Override
     public void setInputSource(InputSource inputSource) {
         this.inputSource = inputSource;
+    }
+    
+    @Override
+    public String getInputSourceType(InputSource inputSource) {
+        log.info("Input source " + inputSource.getClass().getSimpleName());
+        if (inputSource.getClass().getSimpleName().equals("String")) {
+            return Literal.class.getSimpleName();
+        } //object input
+        else {
+            log.info("Input source " + inputSource.getClass().getSimpleName());
+            return URI.class.getSimpleName();
+        }
     }
 
     /**

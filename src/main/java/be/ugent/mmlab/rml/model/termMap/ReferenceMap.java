@@ -1,18 +1,8 @@
-/**
- * *************************************************************************
- *
- * RML - Model : Reference Valued Term Map Interface
- *
- *
- * @author andimou
- *
- ***************************************************************************
- */
 
 package be.ugent.mmlab.rml.model.termMap;
 
 /**
- * RML - Model
+ * RML - Model : Reference Map
  * 
  * This interface offers a method for replacing a template with the expression it holds
  *

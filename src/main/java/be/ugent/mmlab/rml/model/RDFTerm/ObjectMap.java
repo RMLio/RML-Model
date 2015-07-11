@@ -1,3 +1,8 @@
+package be.ugent.mmlab.rml.model.RDFTerm;
+
+import be.ugent.mmlab.rml.model.PredicateObjectMap;
+import be.ugent.mmlab.rml.model.TriplesMap;
+
 /**
  * *************************************************************************
  *
@@ -8,11 +13,6 @@
  *
  ***************************************************************************
  */
-package be.ugent.mmlab.rml.model.RDFTerm;
-
-import be.ugent.mmlab.rml.model.PredicateObjectMap;
-import be.ugent.mmlab.rml.model.TriplesMap;
-
 public interface ObjectMap extends TermMap {
 
     /**

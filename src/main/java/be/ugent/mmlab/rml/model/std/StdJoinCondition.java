@@ -1,23 +1,25 @@
-/***************************************************************************
+package be.ugent.mmlab.rml.model.std;
+
+import be.ugent.mmlab.rml.model.JoinCondition;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ *************************************************************************
  *
- * RML Model : Join Condition
+ * RML - Model : Join Condition Implementation
  *
  * A join condition is a resource that has 
  * exactly two properties: 
  * 	- rr:child, whose value is known as the join condition child reference
  * 	- rr:parent, whose value is known as the join condition parent reference
  * 
- ****************************************************************************/
-package be.ugent.mmlab.rml.model.std;
-
-import be.ugent.mmlab.rml.model.JoinCondition;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
+ ***************************************************************************
+ */
 public class StdJoinCondition implements JoinCondition {
 
     // Log
-    private static final Logger log = LogManager.getLogger(StdJoinCondition.class);
+    private static final Logger log = LoggerFactory.getLogger(StdJoinCondition.class);
     private String child;
     private String parent;
 

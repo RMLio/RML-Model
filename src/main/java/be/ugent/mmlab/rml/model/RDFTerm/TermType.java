@@ -1,6 +1,11 @@
-/***************************************************************************
+package be.ugent.mmlab.rml.model.RDFTerm;
+
+import be.ugent.mmlab.rml.vocabulary.R2RMLVocabulary;
+
+/**
+ *************************************************************************
  *
- * RML Model : TermType
+ * RML - Model : TermType
  *
  * The term type of a reference-valued term map or 
  * template-valued term map determines the kind 
@@ -8,11 +13,8 @@
  * 
  * @author andimou
  *
- ****************************************************************************/
-package be.ugent.mmlab.rml.model.RDFTerm;
-
-import be.ugent.mmlab.rml.vocabulary.R2RMLVocabulary;
-
+ ***************************************************************************
+ */
 public enum TermType {
 
 	IRI(R2RMLVocabulary.R2RMLTerm.IRI.toString()), 

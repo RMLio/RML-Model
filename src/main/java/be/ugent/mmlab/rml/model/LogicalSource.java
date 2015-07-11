@@ -1,3 +1,7 @@
+package be.ugent.mmlab.rml.model;
+
+import be.ugent.mmlab.rml.vocabulary.QLVocabulary;
+
 /**
  * *************************************************************************
  *
@@ -8,11 +12,6 @@
  *
  ***************************************************************************
  */
-
-package be.ugent.mmlab.rml.model;
-
-import be.ugent.mmlab.rml.vocabulary.QLVocabulary;
-
 public interface LogicalSource {
 
     /**
@@ -78,5 +77,12 @@ public interface LogicalSource {
      * 
      */
     public void setReferenceFormulation(QLVocabulary.QLTerm referenceFormulation);
+    
+    /**
+     *
+     * @param inputSource
+     * @return
+     */
+    public String getInputSourceType(InputSource inputSource);
     
 }

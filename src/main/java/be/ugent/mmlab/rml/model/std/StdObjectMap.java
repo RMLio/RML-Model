@@ -1,13 +1,3 @@
-/***************************************************************************
- *
- * RML Model : ObjectMap
- *
- * An Object Map is a specific Term Map used for 
- * representing RDF object. 
- * 
- * @author mielvandersande, andimou
- * 
- ****************************************************************************/
 package be.ugent.mmlab.rml.model.std;
 
 import be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap;
@@ -18,17 +8,26 @@ import be.ugent.mmlab.rml.model.RDFTerm.TermType;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import java.util.HashSet;
-
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 
+/**
+ *************************************************************************
+ *
+ * RML - Model : ObjectMap Implementation
+ *
+ * An Object Map is a specific Term Map used for generating an RDF object. 
+ * 
+ * @author mielvandersande, andimou
+ * 
+ ***************************************************************************
+ */
 public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap {
     
     // Log
-    private static final Logger log = LogManager.getLogger(StdObjectMap.class);
+    private static final Logger log = LoggerFactory.getLogger(StdObjectMap.class);
 
 	private PredicateObjectMap predicateObjectMap;
 

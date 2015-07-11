@@ -1,12 +1,3 @@
-/***************************************************************************
- *
- * RML Model : TermMap Interface
- *
- * A Term Map generates an RDF term from a logical source expression. 
- * 
- * @author andimou, mielvandersande
- * 
- ****************************************************************************/
 package be.ugent.mmlab.rml.model.RDFTerm;
 
 import be.ugent.mmlab.rml.model.TriplesMap;
@@ -16,6 +7,17 @@ import be.ugent.mmlab.rml.model.termMap.TemplateMap;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 
+/**
+ *************************************************************************
+ *
+ * RML - Model : TermMap Interface
+ *
+ * A Term Map generates an RDF term from a logical source expression. 
+ * 
+ * @author andimou, mielvandersande
+ * 
+ ***************************************************************************
+ */
 public interface TermMap {
 
     /**

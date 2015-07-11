@@ -1,11 +1,3 @@
-/***************************************************************************
- *
- * RML Model : Triples Map
- *
- * A triples map specifies a rule for translating each
- * row of a logical table to zero or more RDF triples.
- * 
- ****************************************************************************/
 package be.ugent.mmlab.rml.model.std;
 
 import be.ugent.mmlab.rml.model.LogicalSource;
@@ -14,14 +6,23 @@ import be.ugent.mmlab.rml.model.RDFTerm.SubjectMap;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import java.util.HashSet;
 import java.util.Set;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-
+/**
+ *************************************************************************
+ *
+ * RML - Model : Triples Map
+ *
+ * A Triples Map specifies a rule for generating zero or more RDF triples
+ * from each iteration over the Logical Source.
+ * 
+ ***************************************************************************
+ */
 public final class StdTriplesMap implements TriplesMap {
     
     // Log
-    private static final Logger log = LogManager.getLogger(StdTriplesMap.class);
+    private static final Logger log = LoggerFactory.getLogger(StdTriplesMap.class);
 
 	private Set<PredicateObjectMap> predicateObjectMaps;
 	private SubjectMap subjectMap;

@@ -1,15 +1,23 @@
 package be.ugent.mmlab.rml.vocabulary;
 
-import org.apache.log4j.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
+ * *************************************************************************
+ * 
+ * RML - Model : QL Vocabulary
+ * 
+ * namespace:ql IRI: http://semweb.mmlab.be/ns/ql#
  *
  * @author andimou
+* 
+ * *************************************************************************
  */
 public class QLVocabulary {
     
     // Log
-    private static final org.apache.log4j.Logger log = LogManager.getLogger(QLVocabulary.class);
+    private static final Logger log = LoggerFactory.getLogger(QLVocabulary.class);
 
     // In this document, examples assume the following namespace 
     // prefix bindings unless otherwise stated:

@@ -1,3 +1,10 @@
+package be.ugent.mmlab.rml.model.RDFTerm;
+
+import be.ugent.mmlab.rml.model.JoinCondition;
+import be.ugent.mmlab.rml.model.PredicateObjectMap;
+import be.ugent.mmlab.rml.model.TriplesMap;
+import java.util.Set;
+
 /**
  * *************************************************************************
  *
@@ -8,14 +15,6 @@
  *
  ***************************************************************************
  */
-package be.ugent.mmlab.rml.model.RDFTerm;
-
-import be.ugent.mmlab.rml.model.JoinCondition;
-import be.ugent.mmlab.rml.model.PredicateObjectMap;
-import be.ugent.mmlab.rml.model.TriplesMap;
-import java.util.Set;
-
-
 public interface ReferencingObjectMap {
 	
 	

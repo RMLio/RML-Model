@@ -1,13 +1,3 @@
-/***************************************************************************
- *
- * RML Model : Standard PredicateMap Class
- *
- * A predicate map is a specific term map used for 
- * representing RDF predicate. 
- * 
- * @author mielvandersande, andimou
- * 
- ****************************************************************************/
 package be.ugent.mmlab.rml.model.std;
 
 import be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap;
@@ -18,18 +8,27 @@ import be.ugent.mmlab.rml.model.RDFTerm.TermType;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import java.util.HashSet;
-
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 
+/**
+ *************************************************************************
+ *
+ * RML - Model : Predicate Map Implementation
+ *
+ * A predicate map is a specific term map used for generating RDF predicates. 
+ * 
+ * @author mielvandersande, andimou
+ * 
+ ***************************************************************************
+ */
 public class StdPredicateMap extends AbstractTermMap implements TermMap,
         PredicateMap {
     
     // Log
-    private static final Logger log = LogManager.getLogger(StdPredicateMap.class);
+    private static final Logger log = LoggerFactory.getLogger(StdPredicateMap.class);
 
     private PredicateObjectMap predicateObjectMap;
 

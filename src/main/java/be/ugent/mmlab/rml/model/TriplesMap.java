@@ -1,19 +1,20 @@
-/***************************************************************************
+package be.ugent.mmlab.rml.model;
+
+import be.ugent.mmlab.rml.model.RDFTerm.SubjectMap;
+import java.util.Set;
+
+/**
+ *************************************************************************
  *
- * RML Model : TriplesMap Interface
+ * RML - Model : TriplesMap Interface
  *
  * A Triples Map summarizes the Mapping Definitions for translating each
  * iteration of a Logical Source to zero or more RDF triples.
  * 
  * @author mielvandersande, andimou
  *
- ****************************************************************************/
-package be.ugent.mmlab.rml.model;
-
-import be.ugent.mmlab.rml.model.RDFTerm.SubjectMap;
-import java.util.Set;
-
-
+ **************************************************************************
+ */
 public interface TriplesMap {
 
     /**
