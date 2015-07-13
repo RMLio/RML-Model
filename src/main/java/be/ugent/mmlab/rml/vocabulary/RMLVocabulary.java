@@ -12,9 +12,6 @@ package be.ugent.mmlab.rml.vocabulary;
  ***************************************************************************
  */
 public class RMLVocabulary {
-
-    // In this document, examples assume the following namespace 
-    // prefix bindings unless otherwise stated:
     public static String RML_NAMESPACE = "http://semweb.mmlab.be/ns/rml#";  
 
     public enum RMLTerm implements Term{

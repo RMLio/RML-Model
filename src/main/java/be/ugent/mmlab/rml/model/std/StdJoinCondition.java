@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 /**
  *************************************************************************
  *
- * RML - Model : Join Condition Implementation
+ * RML - Model : Join Condition Implementation.
  *
  * A join condition is a resource that has 
  * exactly two properties: 

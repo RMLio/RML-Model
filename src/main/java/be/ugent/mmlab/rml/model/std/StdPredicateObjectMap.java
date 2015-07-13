@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
  *
  * RML - Model : Predicate Object Map Implementation
  *
- * A predicate-object map 
+ * A Predicate-Object Map 
  * generates Predicate-Object pairs from Logical Sources.
  * It is used in conjunction with a subject
  * map to generate RDF triples in a Triples Map.

@@ -1,8 +1,5 @@
 package be.ugent.mmlab.rml.vocabulary;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * *************************************************************************
  * 
@@ -15,12 +12,6 @@ import org.slf4j.LoggerFactory;
  * *************************************************************************
  */
 public class QLVocabulary {
-    
-    // Log
-    private static final Logger log = LoggerFactory.getLogger(QLVocabulary.class);
-
-    // In this document, examples assume the following namespace 
-    // prefix bindings unless otherwise stated:
     public static String QL_NAMESPACE = "http://semweb.mmlab.be/ns/ql#";
     
     public enum QLTerm implements Term{

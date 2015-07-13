@@ -19,8 +19,8 @@ import java.util.Set;
 public interface PredicateObjectMap {
 
     /**
-     * A predicate-object map is represented by a resource that references one
-     * or more predicate maps.
+     * A Predicate-Object Map is represented by a resource that references one
+     * or more Predicate Maps.
      */
     public Set<PredicateMap> getPredicateMaps();
 
@@ -31,9 +31,8 @@ public interface PredicateObjectMap {
     public void setPredicateMaps(Set<PredicateMap> predicateMaps);
 
     /**
-     * A predicate-object map is represented by a resource that references one
-     * or more object map or one referencing object map. If this method returns
-     * NULL therefore getReferencingObjectMap method will not.
+     * A Predicate-Object Map is represented by a resource that references one
+     * or more Object Map or Referencing Object Map. 
      */
     public Set<ObjectMap> getObjectMaps();
 
@@ -44,9 +43,8 @@ public interface PredicateObjectMap {
     public void setObjectMaps(Set<ObjectMap> objectMaps);
 
     /**
-     * A predicate-object map is represented by a resource that references
-     * exactly one object map or one referencing object map. If this method
-     * returns NULL therefore getObjectMap method will not.
+     * A Predicate-Object Map is represented by a resource that references
+     * exactly one Object Map or one Referencing Object Map. 
      */
     public Set<ReferencingObjectMap> getReferencingObjectMaps();
 
@@ -57,9 +55,7 @@ public interface PredicateObjectMap {
     public void setReferencingObjectMap(Set<ReferencingObjectMap> referencingOjectMap);
 
     /**
-     * Indicates if a ReferencingObjectMap is associated with this
-     * PredicateObjectMap. If true, it is a ReferencingObjectMap, a "simple"
-     * ObjectMap otherwise.
+     * Indicates if a PredicateObjectMap is associated with ReferencingObjectMap. 
      */
     public boolean hasReferencingObjectMaps();
 
@@ -75,7 +71,7 @@ public interface PredicateObjectMap {
     public void setOwnTriplesMap(TriplesMap ownTriplesMap);
 
     /**
-     * Any predicate-object map may have one or more associated graph maps.
+     * Any Predicate-Object Map may have one or more associated Graph Maps.
      */
     public Set<GraphMap> getGraphMaps();
 

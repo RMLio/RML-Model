@@ -6,7 +6,7 @@ import be.ugent.mmlab.rml.model.TriplesMap;
 /**
  * *************************************************************************
  *
- * RML - Model : ObjectMap
+ * RML - Model : Object Map
  *
  *
  * @author andimou
@@ -16,7 +16,7 @@ import be.ugent.mmlab.rml.model.TriplesMap;
 public interface ObjectMap extends TermMap {
 
     /**
-     * A object map knows in own Predicate Object container.
+     * An Object Map knows belongs to one Predicate Object Map.
      */
     public PredicateObjectMap getPredicateObjectMap();
 
@@ -30,6 +30,7 @@ public interface ObjectMap extends TermMap {
      *
      * @param ownTriplesMap
      */
+    @Override
     public void setOwnTriplesMap(TriplesMap ownTriplesMap);
     
     @Override

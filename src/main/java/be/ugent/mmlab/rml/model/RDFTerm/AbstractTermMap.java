@@ -4,10 +4,8 @@ import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.model.std.StdObjectMap;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import be.ugent.mmlab.rml.model.termMap.TemplateMap;
-
 import java.util.HashSet;
 import java.util.Set;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.openrdf.model.Literal;
@@ -19,7 +17,7 @@ import org.openrdf.model.Value;
  *
  * RML - Model : Abstract Term Map
  *
- * Partial implementation of a term map.
+ * Partial implementation of a Term Map.
  *
  * @author mielvandersande, andimou
  *
@@ -35,7 +33,6 @@ public abstract class AbstractTermMap implements TermMap {
         private URI implicitDataType; 
         private String languageTag;
         private String stringTemplate;
-        private String inverseExpression;
         protected TriplesMap ownTriplesMap;
         
         private Value constantValue;
@@ -65,9 +62,8 @@ public abstract class AbstractTermMap implements TermMap {
          *
          */
         private void checkGlobalConsistency() {
-        // A term map must be exactly one term map type
-            if (getTermMapType() == null) // In db2triples and contrary to the R2RML norm, we accepts
-            // auto-assignments of blank nodes.
+        // A term map must have exactly one Term Map type
+            if (getTermMapType() == null) 
             {
                 if (getTermType() != TermType.BLANK_NODE) {
                     log.error("Invalid [R2]RML Structure "
@@ -87,37 +83,7 @@ public abstract class AbstractTermMap implements TermMap {
                         + "[AbstractTermMap:setInversionExpression] An inverseExpression "
                         + "can not be associated with a constant-value term map.");
             }
-            // This property is optional
-            if (inverseExpression != null) {
-                checkInverseExpression(inverseExpression);
-            }
-            this.inverseExpression = inverseExpression;
         }
-
-        private void checkInverseExpression(String inverseExpression) {
-            // An inverse expression must satisfy a lot of conditions
-            /*if (!R2RMLToolkit.checkInverseExpression(inverseExpression)) {
-                log.error("InvalidR2RMLSyntaxException "
-                        + "[AbstractTermMap:checkInverseExpression] Not a valid inverse "
-                        + "expression : " + stringTemplate);
-            }*/
-
-        }
-
-        /*private void setReferenceValue(ReferenceValuedTermMap referenceValue) {
-            // The value of the rml:reference property MUST be a valid reference for this queryLanguage.
-            //		if (columnValue != null)
-            //			checkColumnValue(columnValue);
-            this.referenceValue = referenceValue;
-        }*/
-
-//	private void checkColumnValue(String columnValue)
-//			throws InvalidR2RMLSyntaxException {
-//		if (!SQLDataValidator.isValidSQLIdentifier(columnValue))
-//			throw new InvalidR2RMLSyntaxException(
-//					"[AbstractTermMap:checkColumnValue] Not a valid column "
-//							+ "value : " + termType);
-//	}
         
      /**
      *
@@ -126,7 +92,7 @@ public abstract class AbstractTermMap implements TermMap {
      */
     protected void setTermType(URI termType, URI dataType) {
         if (termType == null) {
-            // If the term map does not have a rr:termType property :
+            // If the Term Map does not have a rr:termType property :
             // rr:Literal by default, if it is an object map and at
             // least one of the following conditions is true
             if ((this instanceof StdObjectMap)
@@ -186,8 +152,7 @@ public abstract class AbstractTermMap implements TermMap {
 
         /**
          * A string template is a format string that can be used to build
-         * strings from multiple components. It can reference column names by
-         * enclosing them in curly braces.
+         * strings from multiple components. 
          *
          */
         private void checkStringTemplate(String stringTemplate) {
@@ -301,11 +266,6 @@ public abstract class AbstractTermMap implements TermMap {
                         .getLexicalTransformation(XSDType.toXSDType(implicitDataType.stringValue()));
             }
         }*/
-
-        @Override
-        public String getInverseExpression() {
-            return inverseExpression;
-        }
 
         @Override
         public String getLanguageTag() {

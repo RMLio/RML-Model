@@ -6,7 +6,7 @@ import be.ugent.mmlab.rml.model.TriplesMap;
 /**
  * *************************************************************************
  *
- * RML - Model : PredicateMap
+ * RML - Model : Predicate Map
  *
  *
  * @author andimou
@@ -16,7 +16,7 @@ import be.ugent.mmlab.rml.model.TriplesMap;
 public interface PredicateMap extends TermMap {
 
     /**
-     * A Predicate Map knows in own Predicate Object container.
+     * A Predicate Map belongs to a Predicate Object Map.
      */
     public PredicateObjectMap getPredicateObjectMap();
 

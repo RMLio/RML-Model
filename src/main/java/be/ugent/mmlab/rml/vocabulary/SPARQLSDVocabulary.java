@@ -15,9 +15,6 @@ import org.slf4j.LoggerFactory;
  * *************************************************************************
  */
 public class SPARQLSDVocabulary {
-    // Log
-
-    private static final Logger log = LoggerFactory.getLogger(SPARQLSDVocabulary.class);
     public static String SPARQLSD_NAMESPACE = "http://www.w3.org/ns/sparql-service-description#";
 
     public enum SparqlSdTerm implements Term {

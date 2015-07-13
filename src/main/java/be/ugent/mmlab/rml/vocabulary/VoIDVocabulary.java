@@ -14,8 +14,6 @@ package be.ugent.mmlab.rml.vocabulary;
 public class VoIDVocabulary {
     public static String VOID_NAMESPACE = "http://rdfs.org/ns/void#";
 
-    
-
     public enum VoIDTerm implements Term{
 
         // VoID CLASSES

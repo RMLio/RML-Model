@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * *************************************************************************
  *
- * RML - Model : ReferencingObjectMap Interface
+ * RML - Model : Referencing Object Map Interface
  *
  *
  * @author andimou
@@ -19,24 +19,24 @@ public interface ReferencingObjectMap {
 	
 	
 	/**
-	 * A referencing object map has exactly one rr:parentTriplesMap property.
+	 * A Referencing Object Map has exactly one rr:parentTriplesMap property.
 	 */
 	public TriplesMap getParentTriplesMap();
 	
 	/**
-	 * A referencing object map may have one or more rr:joinCondition 
+	 * A Referencing Object Map may have one or more rr:joinCondition 
 	 * properties, whose values MUST be join conditions.
 	 */
 	public Set<JoinCondition> getJoinConditions();
 	
 	/**
 	 * The effective reference of the logical source containing the 
-	 * referencing object map.
+	 * Referencing Object Map.
 	 */
 	public String getChildReference();
 	
 	/**
-	 * The effective reference of the logical source of its parent triples map.
+	 * The effective reference of the logical source of its Parent Triples Map.
 	 */
 	public String getParentReference();
 
@@ -47,7 +47,7 @@ public interface ReferencingObjectMap {
         public TriplesMap getOwnTriplesMap();
 
         /**
-        * A object map knows in own Predicate Object container.
+        * A Referencing Object Map belongs to a Predicate Object Map.
         */
         public PredicateObjectMap getPredicateObjectMap();
 
