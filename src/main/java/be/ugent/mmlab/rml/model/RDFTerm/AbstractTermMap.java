@@ -197,6 +197,7 @@ public abstract class AbstractTermMap implements TermMap {
         *
         * @param constantValue
         */
+        @Override
         public void setConstantValue(Value constantValue) {
         // Check if constant value is valid
             if (constantValue != null) {
