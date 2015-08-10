@@ -12,7 +12,7 @@ package be.ugent.mmlab.rml.vocabulary;
  * *************************************************************************
  */
 public class DcatVocabulary {
-    public static String HYDRA_NAMESPACE = "http://www.w3.org/ns/dcat#";
+    public static String DCAT_NAMESPACE = "http://www.w3.org/ns/dcat#";
     
     public enum DcatTerm implements Term{
 
