@@ -14,14 +14,16 @@ package be.ugent.mmlab.rml.vocabulary;
 public class HydraVocabulary {
     public static String HYDRA_NAMESPACE = "http://www.w3.org/ns/hydra/core#";
     
-    public enum HydraTerm implements Term{
+
+    public static enum HydraTerm implements Term{
 
         // Hydra CLASSES
         API_DOCUMENTATION_CLASS("APIDocumentation"),
+        IRITEMPLATE_CLASS("IriTemplate"),
         // Hydra PROPERTIES
         TEMPLATE("template");
         
-        private String displayName;
+        private final String displayName;
 
         private HydraTerm(String displayName) {
             this.displayName = displayName;
