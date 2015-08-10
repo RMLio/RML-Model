@@ -1,8 +1,5 @@
 package be.ugent.mmlab.rml.vocabulary;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * *************************************************************************
  * 
@@ -19,9 +16,9 @@ public class SPARQLSDVocabulary {
 
     public enum SparqlSdTerm implements Term {
 
-        // RML CLASSES
+        // SPARQL-SD CLASSES
         SERVICE_CLASS("Service"),
-        // RPROPERTIES
+        // SPARQL-SD PROPERTIES
         SPARQL_QUERY_TEMPLATE("sparqlQueryTemplate");
         private String displayName;
 

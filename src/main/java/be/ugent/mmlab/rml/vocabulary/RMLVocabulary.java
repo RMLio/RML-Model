@@ -18,7 +18,7 @@ public class RMLVocabulary {
 
         // RML CLASSES
         LOGICAL_SOURCE_CLASS("LogicalSource"),
-        // RPROPERTIES
+        // RML PROPERTIES
         REFERENCE_FORMULATION("referenceFormulation"),
         LOGICAL_SOURCE("logicalSource"),
         REFERENCE("reference"),

@@ -3,27 +3,28 @@ package be.ugent.mmlab.rml.vocabulary;
 /**
  * *************************************************************************
  * 
- * RML - Model : Hydra Vocabulary
+ * RML - Model : DCAT Vocabulary
  * 
- * namespace: hydra IRI: http://www.w3.org/ns/hydra/core#
+ * namespace: DCAT IRI: http://www.w3.org/ns/dcat#
  *
  * @author andimou
  * 
  * *************************************************************************
  */
-public class HydraVocabulary {
-    public static String HYDRA_NAMESPACE = "http://www.w3.org/ns/hydra/core#";
+public class DcatVocabulary {
+    public static String HYDRA_NAMESPACE = "http://www.w3.org/ns/dcat#";
     
-    public enum HydraTerm implements Term{
+    public enum DcatTerm implements Term{
 
-        // Hydra CLASSES
-        API_DOCUMENTATION_CLASS("APIDocumentation"),
-        // Hydra PROPERTIES
-        TEMPLATE("template");
+        // DCAT CLASSES
+        DISTRIBUTIION_CLASS("Distribution"),
+        // DCAT PROPERTIES
+        DOWNLOADURL("downloadURL"),
+        ACCESSURL("accessURL");
         
         private String displayName;
 
-        private HydraTerm(String displayName) {
+        private DcatTerm(String displayName) {
             this.displayName = displayName;
         }
 

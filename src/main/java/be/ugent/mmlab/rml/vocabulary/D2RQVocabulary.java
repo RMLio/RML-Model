@@ -16,9 +16,9 @@ public class D2RQVocabulary {
     
     public enum D2RQTerm implements Term{
 
-        // RML CLASSES
+        // D2RQL CLASSES
         DATABASE_CLASS("Database"),
-        // RPROPERTIES
+        // D2RQL PROPERTIES
         JDBCDSN("jdbcDSN"),
         JDBCDRIVER("jdbcDriver"),
         USERNAME("username"),
