@@ -11,7 +11,7 @@ import java.util.Map;
  * @author andimou
  */
 public class StdApiSource extends StdSource implements ApiSource {
-    private List<Map<String,String>> mapTemplates;
+    private List<Map<String,Boolean>> mapTemplates;
     
     /**
      *
@@ -37,20 +37,20 @@ public class StdApiSource extends StdSource implements ApiSource {
      * @param mapTemplates
      */
     public StdApiSource(String name, String template, 
-            List<Map<String,String>> mapTemplates){
+            List<Map<String,Boolean>> mapTemplates){
         super(name, template);
         setMappingTemplates(mapTemplates);
     }
     
-    public List<Map<String,String>> getMappingTemplates(){
+    public List<Map<String,Boolean>> getMappingTemplates(){
         return this.mapTemplates;
     }
     
-    private void setMappingTemplates (List<Map<String,String>> mapTemplates) {
+    private void setMappingTemplates (List<Map<String,Boolean>> mapTemplates) {
         this.mapTemplates = mapTemplates;
     }
     
-    private void setMappingTemplate(Map<String,String> mapTemplate){
+    private void setMappingTemplate(Map<String,Boolean> mapTemplate){
         this.mapTemplates.add(mapTemplate);
     }
     
