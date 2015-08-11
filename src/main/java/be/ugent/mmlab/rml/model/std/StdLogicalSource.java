@@ -1,6 +1,6 @@
 package be.ugent.mmlab.rml.model.std;
 
-import be.ugent.mmlab.rml.model.InputSource;
+import be.ugent.mmlab.rml.model.Source;
 import be.ugent.mmlab.rml.model.LogicalSource;
 import be.ugent.mmlab.rml.vocabularies.QLVocabulary.QLTerm;
 import org.openrdf.model.Literal;
@@ -22,8 +22,7 @@ public class StdLogicalSource implements LogicalSource {
     
     private String iterator;
     private QLTerm referenceFormulation = QLTerm.SQL_CLASS;
-    private String source;
-    private InputSource inputSource;
+    private Source source;
 
     /**
      *
@@ -35,24 +34,9 @@ public class StdLogicalSource implements LogicalSource {
      * and the source is described by a Resource.
      * 
      */
-    public StdLogicalSource(InputSource inputSource, QLTerm referenceFormulation) {
+    public StdLogicalSource(Source inputSource, QLTerm referenceFormulation) {
         setReferenceFormulation(referenceFormulation);
-        setInputSource(inputSource);
-    }
-    
-    /**
-     * 
-     * Constructor for tabular-structured data 
-     * where the Iteration is known
-     * and the source is described by a Literal.
-     *
-     * @param source
-     * @param referenceFormulation
-     * 
-     */
-    public StdLogicalSource(String source, QLTerm referenceFormulation) {
-        setReferenceFormulation(referenceFormulation);
-        setSource(source);
+        setSource(inputSource);
     }
 
     /**
@@ -62,22 +46,9 @@ public class StdLogicalSource implements LogicalSource {
      * @param referenceFormulation
      * 
      */
-    public StdLogicalSource(String iterator, InputSource inputSource, QLTerm referenceFormulation) {
+    public StdLogicalSource(String iterator, Source inputSource, QLTerm referenceFormulation) {
         setIterator(iterator);
-        setInputSource(inputSource);
-        setReferenceFormulation(referenceFormulation);
-    }
-    
-    /**
-     *
-     * @param iterator
-     * @param source
-     * @param referenceFormulation
-     * 
-     */
-    public StdLogicalSource(String iterator, String source, QLTerm referenceFormulation) {
-        setIterator(iterator);
-        setSource(source);
+        setSource(inputSource);
         setReferenceFormulation(referenceFormulation);
     }
 
@@ -102,33 +73,23 @@ public class StdLogicalSource implements LogicalSource {
     }
 
     @Override
-    public String getSource() {
+    public Source getSource() {
         return source;
     }
 
     @Override
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    @Override
-    public InputSource getInputSource() {
-        return inputSource;
-    }
-
-    @Override
-    public void setInputSource(InputSource inputSource) {
-        this.inputSource = inputSource;
+    public void setSource(Source inputSource) {
+        this.source = inputSource;
     }
     
     @Override
-    public String getInputSourceType(InputSource inputSource) {
-        log.info("Input source " + inputSource.getClass().getSimpleName());
-        if (inputSource.getClass().getSimpleName().equals("String")) {
+    public String getSourceType(Source source) {
+        log.info("Input source " + source.getClass().getSimpleName());
+        if (source.getClass().getSimpleName().equals("String")) {
             return Literal.class.getSimpleName();
         } //object input
         else {
-            log.info("Input source " + inputSource.getClass().getSimpleName());
+            log.info("Input source " + source.getClass().getSimpleName());
             return URI.class.getSimpleName();
         }
     }
@@ -147,7 +108,7 @@ public class StdLogicalSource implements LogicalSource {
                     + "]";
         } else {
             return "[StdLogicalSource : Iterator = " + iterator
-                    + "; Input Source " + inputSource
+                    + "; Input Source " + source
                     + "; Reference Formulation = " + referenceFormulation
                     + "]";
         }

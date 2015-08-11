@@ -30,21 +30,6 @@ public interface LogicalSource {
      * @param iterator
      */
     public void setIterator(String iterator);
-
-    /**
-     * 
-     * Every Logical Source refers to a source. 
-     * 
-     * @return String
-     *
-     */
-    public String getSource();
-    
-    /**
-     *
-     * @param source
-     */
-    public void setSource(String source);
     
     /**
      * 
@@ -53,13 +38,13 @@ public interface LogicalSource {
      *
      * @return InputSource
      */
-    public InputSource getInputSource();
+    public Source getSource();
     
     /**
      *
      * @param inputSource
      */
-    public void setInputSource(InputSource inputSource);
+    public void setSource(Source source);
 
     /**
      * 
@@ -83,6 +68,6 @@ public interface LogicalSource {
      * @param inputSource
      * @return
      */
-    public String getInputSourceType(InputSource inputSource);
+    public String getSourceType(Source source);
     
 }
