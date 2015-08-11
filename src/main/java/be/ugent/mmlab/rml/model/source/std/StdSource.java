@@ -1,4 +1,4 @@
-package be.ugent.mmlab.rml.model.source;
+package be.ugent.mmlab.rml.model.source.std;
 
 import be.ugent.mmlab.rml.model.Source;
 import be.ugent.mmlab.rml.model.TriplesMap;
@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * RML - Data Retrieval : StdInputSource
+ * RML - Model : Std Source
  *
  * @author andimou
  */
@@ -17,7 +17,7 @@ public class StdSource implements Source{
     private static final Logger log = LoggerFactory.getLogger(StdSource.class);
     
     private String name;
-    private String source;
+    protected String template;
     private Set<TriplesMap> triplesMaps;
 
     /**
@@ -33,9 +33,9 @@ public class StdSource implements Source{
      * @param name
      * @param source
      */
-    public StdSource(String name, String source) {
-        setSource(source);
+    public StdSource(String name, String template) {
         setName(name);
+        setTemplate(template);
     }
 
     /**
@@ -56,14 +56,22 @@ public class StdSource implements Source{
         return this.name;
     }
     
-    @Override
-    public void setSource(String source) {
+    public final void setTemplate(String template){
+        this.template = template;
+    }
+    
+    public String getTemplate(){
+        return this.template;
+    }
+    
+    //@Override
+    /*public void setSource(String source) {
         if (source != null) {
             this.source = source;
         }
     }
     
-    @Override
+    //@Override
     public String getSource(){
         return this.source;
     }
@@ -72,7 +80,6 @@ public class StdSource implements Source{
      *
      * @param triplesMap
      */
-    @Override
     public void setTriplesMap(TriplesMap triplesMap) {
         if (triplesMap != null) {
             triplesMaps.add(triplesMap);
