@@ -11,7 +11,7 @@ package be.ugent.mmlab.rml.vocabularies;
  * 
  * *************************************************************************
  */
-public class DcatVocabulary {
+public class DCATVocabulary {
     public static String DCAT_NAMESPACE = "http://www.w3.org/ns/dcat#";
     
     public enum DcatTerm implements Term{
