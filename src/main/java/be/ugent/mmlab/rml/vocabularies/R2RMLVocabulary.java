@@ -24,7 +24,7 @@
  * the rr: namespace IRI: http://www.w3.org/ns/r2rml#
  * 
  ****************************************************************************/
-package be.ugent.mmlab.rml.vocabulary;
+package be.ugent.mmlab.rml.vocabularies;
 
 import java.util.ArrayList;
 import java.util.List;

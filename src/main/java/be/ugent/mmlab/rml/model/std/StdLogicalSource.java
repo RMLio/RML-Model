@@ -2,7 +2,7 @@ package be.ugent.mmlab.rml.model.std;
 
 import be.ugent.mmlab.rml.model.InputSource;
 import be.ugent.mmlab.rml.model.LogicalSource;
-import be.ugent.mmlab.rml.vocabulary.QLVocabulary.QLTerm;
+import be.ugent.mmlab.rml.vocabularies.QLVocabulary.QLTerm;
 import org.openrdf.model.Literal;
 import org.openrdf.model.URI;
 import org.slf4j.Logger;

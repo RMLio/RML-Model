@@ -1,4 +1,4 @@
-package be.ugent.mmlab.rml.vocabulary;
+package be.ugent.mmlab.rml.vocabularies;
 
 /**
  * *************************************************************************
