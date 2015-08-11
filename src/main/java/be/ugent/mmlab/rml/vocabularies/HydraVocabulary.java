@@ -21,7 +21,10 @@ public class HydraVocabulary {
         API_DOCUMENTATION_CLASS("APIDocumentation"),
         IRITEMPLATE_CLASS("IriTemplate"),
         // Hydra PROPERTIES
-        TEMPLATE("template");
+        TEMPLATE("template"),
+        MAPPING("mapping"),
+        VARIABLE("variable"),
+        REQUIRED("required");
         
         private final String displayName;
 
