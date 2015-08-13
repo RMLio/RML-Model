@@ -1,6 +1,6 @@
 package be.ugent.mmlab.rml.model;
 
-import be.ugent.mmlab.rml.vocabularies.QLVocabulary;
+import be.ugent.mmlab.rml.vocabularies.QLVocabulary.QLTerm;
 
 /**
  * *************************************************************************
@@ -54,14 +54,14 @@ public interface LogicalSource {
      * @return QLVocabulary.QLTerm
      * 
      */
-    public QLVocabulary.QLTerm getReferenceFormulation();
+    public QLTerm getReferenceFormulation();
     
     /**
      *
      * @param referenceFormulation
      * 
      */
-    public void setReferenceFormulation(QLVocabulary.QLTerm referenceFormulation);
+    public void setReferenceFormulation(QLTerm referenceFormulation);
     
     /**
      *

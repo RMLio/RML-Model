@@ -58,7 +58,7 @@ public class StdLogicalSource implements LogicalSource {
     }
 
     @Override
-    public void setIterator(String iterator) {
+    public final void setIterator(String iterator) {
         this.iterator = iterator;
     }
 
@@ -68,7 +68,7 @@ public class StdLogicalSource implements LogicalSource {
     }
 
     @Override
-    public void setReferenceFormulation(QLTerm referenceFormulation) {
+    public final void setReferenceFormulation(QLTerm referenceFormulation) {
         this.referenceFormulation = referenceFormulation;
     }
 
@@ -78,7 +78,7 @@ public class StdLogicalSource implements LogicalSource {
     }
 
     @Override
-    public void setSource(Source inputSource) {
+    public final void setSource(Source inputSource) {
         this.source = inputSource;
     }
     
