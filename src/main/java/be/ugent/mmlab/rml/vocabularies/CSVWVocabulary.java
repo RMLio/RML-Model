@@ -25,13 +25,14 @@ public class CSVWVocabulary {
         TABLEREFERENCE_CLASS("TableReference"),
         TRANSFORMATION_CLASS("Transformation"),
         
-        // VoID PROPERTIES
+        // CSVW PROPERTIES
         URL("url"),
         TABLESCHEMA("tableSchema"),
         COLUMNS("columns"),
         NAME("name"),
         TITLES("titles"),
         DATATYPE("datatype"), 
+        DELIMITER("delimiter"), 
         PRIMARYKEY("primaryKey"),
         ABOUTURL("aboutUrl"),
         DIALECT("dialect"),
