@@ -2,6 +2,7 @@ package be.ugent.mmlab.rml.model.std;
 
 import be.ugent.mmlab.rml.model.Source;
 import be.ugent.mmlab.rml.model.LogicalSource;
+import be.ugent.mmlab.rml.model.ReferenceFormulation;
 import be.ugent.mmlab.rml.vocabularies.QLVocabulary.QLTerm;
 import org.openrdf.model.Literal;
 import org.openrdf.model.URI;
@@ -23,6 +24,7 @@ public class StdLogicalSource implements LogicalSource {
     private String iterator;
     private QLTerm referenceFormulation = QLTerm.SQL_CLASS;
     private Source source;
+    private ReferenceFormulation dialect = null; //custom reference formulation
 
     /**
      *
@@ -51,6 +53,14 @@ public class StdLogicalSource implements LogicalSource {
         setSource(inputSource);
         setReferenceFormulation(referenceFormulation);
     }
+    
+    public StdLogicalSource(String iterator, Source inputSource, 
+            QLTerm referenceFormulation, ReferenceFormulation dialect) {
+        setIterator(iterator);
+        setSource(inputSource);
+        setReferenceFormulation(referenceFormulation);
+        setCustomReferenceFormulation(dialect);
+    }
 
     @Override
     public String getIterator() {
@@ -70,6 +80,16 @@ public class StdLogicalSource implements LogicalSource {
     @Override
     public final void setReferenceFormulation(QLTerm referenceFormulation) {
         this.referenceFormulation = referenceFormulation;
+    }
+    
+    @Override
+    public ReferenceFormulation getCustomReferenceFormulation() {
+        return dialect;
+    }
+
+    @Override
+    public final void setCustomReferenceFormulation(ReferenceFormulation dialect) {
+        this.dialect = dialect;
     }
 
     @Override

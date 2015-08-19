@@ -65,6 +65,19 @@ public interface LogicalSource {
     
     /**
      *
+     * @return
+     */
+    public ReferenceFormulation getCustomReferenceFormulation();
+    
+    /**
+     *
+     * @param referenceFormulation
+     * 
+     */
+    public void setCustomReferenceFormulation(ReferenceFormulation dialect);
+    
+    /**
+     *
      * @param inputSource
      * @return
      */
