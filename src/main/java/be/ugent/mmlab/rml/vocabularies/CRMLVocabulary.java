@@ -12,7 +12,7 @@ package be.ugent.mmlab.rml.vocabularies;
  * *************************************************************************
  */
 public class CRMLVocabulary {
-    public static String CRML_NAMESPACE = "http://semweb.mmlab.be/ns/rml/condition#";
+    public static String CRML_NAMESPACE = "http://semweb.mmlab.be/ns/crml#";
     
     public enum cRMLTerm implements Term{
 
