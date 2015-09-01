@@ -17,12 +17,12 @@ public class CRMLVocabulary {
     public enum cRMLTerm implements Term{
 
         // cRML CLASSES
-        BIND_CONDITION_CLASS("BindCondition"),
+        BINDING_CONDITION_CLASS("BindingCondition"),
         BOOLEAN_CONDITION_CLASS("BooleanCondition"),
         PROCESS_CONDITION_CLASS("ProcessCondition"),
         SPLIT_CONDITION_CLASS("SplitCondition"),
         // cRML RPROPERTIES
-        BIND_CONDITION("bindCondition"),
+        BINDING_CONDITION("bindingCondition"),
         BOOLEAN_CONDITION("booleanCondition"),
         PROCESS_CONDITION("processCondition"),
         SPLIT_CONDITION("splitCondition"),

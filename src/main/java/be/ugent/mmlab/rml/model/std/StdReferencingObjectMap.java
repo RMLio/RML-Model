@@ -27,6 +27,12 @@ public class StdReferencingObjectMap implements ReferencingObjectMap {
     private PredicateObjectMap predicateObjectMap;
     protected TriplesMap ownTriplesMap;
 
+    /**
+     *
+     * @param predicateObjectMap
+     * @param parentTriplesMap
+     * @param joinConditions
+     */
     public StdReferencingObjectMap(PredicateObjectMap predicateObjectMap,
             TriplesMap parentTriplesMap, Set<JoinCondition> joinConditions) {
         setPredicateObjectMap(predicateObjectMap);
@@ -35,7 +41,7 @@ public class StdReferencingObjectMap implements ReferencingObjectMap {
         setOwnTriplesMap(parentTriplesMap);
 
     }
-
+    
     @Override
     public void setJoinConditions(Set<JoinCondition> joinConditions) {
         this.joinConditions = new HashSet<JoinCondition>();
