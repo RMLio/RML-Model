@@ -18,7 +18,7 @@ public class HydraVocabulary {
     public static enum HydraTerm implements Term{
 
         // Hydra CLASSES
-        API_DOCUMENTATION_CLASS("APIDocumentation"),
+        API_DOCUMENTATION_CLASS("ApiDocumentation"),
         IRITEMPLATE_CLASS("IriTemplate"),
         // Hydra PROPERTIES
         TEMPLATE("template"),
