@@ -83,4 +83,16 @@ public interface LogicalSource {
      */
     public String getSourceType(Source source);
     
+    /**
+     *
+     * @return
+     */
+    public String getQuery();
+    
+    /**
+     *
+     * @param query
+     */
+    public void setQuery(String query);
+    
 }

@@ -25,6 +25,7 @@ public class StdLogicalSource implements LogicalSource {
     private QLTerm referenceFormulation = QLTerm.SQL_CLASS;
     private Source source;
     private ReferenceFormulation dialect = null; //custom reference formulation
+    private String query;
 
     /**
      *
@@ -61,6 +62,15 @@ public class StdLogicalSource implements LogicalSource {
         setReferenceFormulation(referenceFormulation);
         setCustomReferenceFormulation(dialect);
     }
+    
+    public StdLogicalSource(String iterator, Source inputSource, String query,
+            QLTerm referenceFormulation, ReferenceFormulation dialect) {
+        setIterator(iterator);
+        setSource(inputSource);
+        setQuery(query);
+        setReferenceFormulation(referenceFormulation);
+        setCustomReferenceFormulation(dialect);
+    }
 
     @Override
     public String getIterator() {
@@ -70,6 +80,16 @@ public class StdLogicalSource implements LogicalSource {
     @Override
     public final void setIterator(String iterator) {
         this.iterator = iterator;
+    }
+    
+    @Override
+    public String getQuery(){
+        return this.query;
+    }
+    
+    @Override
+    public final void setQuery(String query){
+        this.query = query;
     }
 
     @Override

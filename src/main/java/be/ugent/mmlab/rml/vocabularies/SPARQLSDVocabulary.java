@@ -19,11 +19,16 @@ public class SPARQLSDVocabulary {
 
         // SPARQL-SD CLASSES
         SERVICE_CLASS("Service"),
+        DATASET_CLASS("Dataset"),
+        GRAPH_CLASS("Graph"),
+        NAMED_GRAPH_CLASS("NamedGraph"),
         // SPARQL-SD PROPERTIES
         SPARQL_QUERY_TEMPLATE("sparqlQueryTemplate"),
         SUPPORTEDLANGUAGE("supportedLanguage"),
         RESULTFORMAT("resultFormat"),
         //SPARQL-SD INSTANCES
+        ENDPOINT("endpoint"),
+        GRAPH("graph"),
         SPARQL10QUERY("SPARQL10Query"), 
         SPARQL11QUERY("SPARQL11Query"), 
         SPARQL11UPDATE("SPARQL11Update"),

@@ -24,6 +24,7 @@ public class RMLVocabulary {
         REFERENCE("reference"),
         ITERATOR("iterator"),
         VERSION("version"),
+        QUERY("query"),
         SOURCE("source"), 
         PROCESS("process"),
         REPLACE("replace"),
