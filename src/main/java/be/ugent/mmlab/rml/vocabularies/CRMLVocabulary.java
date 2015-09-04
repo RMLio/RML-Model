@@ -22,12 +22,13 @@ public class CRMLVocabulary {
         PROCESS_CONDITION_CLASS("ProcessCondition"),
         SPLIT_CONDITION_CLASS("SplitCondition"),
         // cRML RPROPERTIES
-        BINDING_CONDITION("bindingCondition"),
+        BINDING_CONDITION("binding"),
         BOOLEAN_CONDITION("booleanCondition"),
         PROCESS_CONDITION("processCondition"),
         SPLIT_CONDITION("splitCondition"),
         CONDITION("condition"),
         VALUE("value"),
+        VARIABLE("variable"),
         REPLACE("replace");
         
         private String displayName;
