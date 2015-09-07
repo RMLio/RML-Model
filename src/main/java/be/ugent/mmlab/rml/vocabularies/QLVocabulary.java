@@ -20,6 +20,8 @@ public class QLVocabulary {
         SQL_CLASS("SQL"),
         JSONPATH_CLASS("JSONPath"),
         CSV_CLASS("CSV"),
+        XLS_CLASS("XLS"),
+        XLSX_CLASS("XLSX"),
         CSS3_CLASS("CSS3");
         
         private String displayName;
