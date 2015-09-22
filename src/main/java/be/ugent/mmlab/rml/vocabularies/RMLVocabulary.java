@@ -18,11 +18,13 @@ public class RMLVocabulary {
 
         // RML CLASSES
         LOGICAL_SOURCE_CLASS("LogicalSource"),
+        LANGUAGE_MAP_CLASS("LanguageMap"),
         // RML PROPERTIES
         REFERENCE_FORMULATION("referenceFormulation"),
         LOGICAL_SOURCE("logicalSource"),
         REFERENCE("reference"),
         ITERATOR("iterator"),
+        LANGUAGE_MAP("languageMap"),
         VERSION("version"),
         QUERY("query"),
         SOURCE("source"), 
