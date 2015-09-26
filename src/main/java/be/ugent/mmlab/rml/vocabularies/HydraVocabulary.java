@@ -20,11 +20,23 @@ public class HydraVocabulary {
         // Hydra CLASSES
         API_DOCUMENTATION_CLASS("ApiDocumentation"),
         IRITEMPLATE_CLASS("IriTemplate"),
+        PAGEDCOLLECTION_CLASS("PagedCollection"),
         // Hydra PROPERTIES
+        //IriTemplate properties
         TEMPLATE("template"),
         MAPPING("mapping"),
+        //IriTemplateMapping properties
         VARIABLE("variable"),
-        REQUIRED("required");
+        REQUIRED("required"),
+        //PagedCollection properties
+        MEMBER("member"),
+        ITEMSPERPAGE("itemsPerPage"),
+        FIRSTPAGE("firstPage"),
+        NEXTPAGE("nextPage"),
+        PREVIOUSPAGE("previousPage"),
+        LASTPAGE("lastPage"),
+        TOTALITEMS("totalItems"),
+        SEARCH("search");
         
         private final String displayName;
 
