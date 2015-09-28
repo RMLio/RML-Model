@@ -4,7 +4,7 @@ import be.ugent.mmlab.rml.model.Source;
 
 
 /**
- * RML - Data Retrieval Handler : SparqlSdInputSource
+ * RML - Data Model : SparqlSdInputSource Interface
  *
  * @author andimou
  */

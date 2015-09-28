@@ -61,10 +61,10 @@ public class StdGraphMap extends AbstractTermMap implements GraphMap {
     protected void checkConstantValue(Value constantValue) {
         // If the constant-valued term map is a graph map then its constant
         // value must be an IRI.
-        if (!StdIriRdfTerm.isValidURI(constantValue.stringValue())) {
-            log.error("[StdGraphMap:checkConstantValue] Not a valid URI : "
-                    + constantValue);
-        }
+        //TODO: Add proper URL check
+        /*if (!StdIriRdfTerm.isValidURI(constantValue.stringValue())) {
+            log.error("Not a valid URI : " + constantValue);
+        }*/
     }
 
 }

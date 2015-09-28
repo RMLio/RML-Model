@@ -81,11 +81,12 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
 	private void checkClassIRIs(Set<URI> classIRIs2) {
             // The values of the rr:class property must be IRIs.
             for (URI classIRI : classIRIs) {
-                if (!StdIriRdfTerm.isValidURI(classIRI.stringValue())) {
+                //TODO: Add proper URL chekc
+                /*if (!StdIriRdfTerm.isValidURI(classIRI.stringValue())) {
                     log.error(
                             "[AbstractTermMap:checkClassIRIs] Not a valid URI : "
                             + classIRI);
-                }
+                }*/
             }
         }
 
@@ -108,11 +109,12 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
 	protected void checkConstantValue(Value constantValue) {
             // If the constant-valued term map is a subject map then its constant
             // value must be an IRI.
-            if (!StdIriRdfTerm.isValidURI(constantValue.stringValue())) {
+            //TODO: Add proper URL check
+            /*if (!StdIriRdfTerm.isValidURI(constantValue.stringValue())) {
                 log.error("Data Error "
                         + "[StdSubjectMap:checkConstantValue] Not a valid URI : "
                         + constantValue);
-            }
+            }*/
         }
 
         @Override

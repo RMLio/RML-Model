@@ -4,7 +4,7 @@ import be.ugent.mmlab.rml.model.Source;
 
 
 /**
- * RML - Data Retrieval Handler : DbInputSource
+ * RML - Model : DbInputSource Interface
  *
  * @author andimou
  */

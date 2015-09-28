@@ -4,7 +4,7 @@ import be.ugent.mmlab.rml.model.source.*;
 
 
 /**
- * RML - Data Retrieval Handler : LocalFileSource
+ * RML - Model : LocalFileSource
  *
  * @author andimou
  */

@@ -6,7 +6,7 @@ import be.ugent.mmlab.rml.model.TriplesMap;
 /**
  * *************************************************************************
  *
- * RML - Model : Predicate Map
+ * RML - Model : Predicate Map Interface
  *
  *
  * @author andimou

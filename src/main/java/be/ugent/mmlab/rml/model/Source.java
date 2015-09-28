@@ -3,7 +3,7 @@ package be.ugent.mmlab.rml.model;
 /**
  * *************************************************************************
  *
- * RML - Model : InputSource
+ * RML - Model : InputSource Interface
  *
  *
  * @author andimou

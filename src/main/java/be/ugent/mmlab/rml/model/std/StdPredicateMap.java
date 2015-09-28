@@ -68,11 +68,10 @@ public class StdPredicateMap extends AbstractTermMap implements TermMap,
     protected void checkConstantValue(Value constantValue) {
         // If the constant-valued term map is a predicate map then its constant
         // value must be an IRI.
-        if (!StdIriRdfTerm.isValidURI(constantValue.stringValue())) {
-            log.error("Data Error "
-                    + "[StdPredicateMap:checkConstantValue] Not a valid URI : "
-                    + constantValue);
-        }
+        //TODO: Add proper URL check
+        /*if (!StdIriRdfTerm.isValidURI(constantValue.stringValue())) {
+            log.error("Data Error " + "Not a valid URI : " + constantValue);
+        }*/
     }
 
     @Override

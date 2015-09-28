@@ -6,7 +6,7 @@ import be.ugent.mmlab.rml.model.TriplesMap;
 /**
  * *************************************************************************
  *
- * RML - Model : Object Map
+ * RML - Model : Object Map Interface
  *
  *
  * @author andimou

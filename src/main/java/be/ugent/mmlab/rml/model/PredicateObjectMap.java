@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * *************************************************************************
  *
- * RML - Model : PredicateObjectMap
+ * RML - Model : PredicateObjectMap Interface
  *
  *
  * @author andimou

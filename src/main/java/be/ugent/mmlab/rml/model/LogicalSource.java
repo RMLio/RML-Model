@@ -5,7 +5,7 @@ import be.ugent.mmlab.rml.vocabularies.QLVocabulary.QLTerm;
 /**
  * *************************************************************************
  *
- * RML - Model : LogicalSource
+ * RML - Model : LogicalSource Interface
  *
  *
  * @author andimou

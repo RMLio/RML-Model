@@ -90,13 +90,14 @@ public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap 
 
         @Override
         protected void checkConstantValue(Value constantValue) {
-            if (!StdIriRdfTerm.isValidURI(constantValue.stringValue())
+            //TODO: Add proper URL check
+            /*if (!StdIriRdfTerm.isValidURI(constantValue.stringValue())
                     && !StdLiteralRdfTerm
                     .isValidLiteral(constantValue.stringValue())) {
                 log.error("Data Error "
-                        + "[StdObjectMap:checkConstantValue] Not a valid URI or literal : "
+                        + "Not a valid URI or literal : "
                         + constantValue);
-            }
+            }*/
         }
 
         @Override
