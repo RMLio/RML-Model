@@ -26,14 +26,12 @@ import org.openrdf.model.Value;
 public abstract class AbstractTermMap implements TermMap {
 
         // Log
-        private static final Logger log = 
-                LoggerFactory.getLogger(AbstractTermMap.class);
+        private static final Logger log = LoggerFactory.getLogger(AbstractTermMap.class);
         
         private URI dataType; 
         private TermType termType;
         private URI implicitDataType; 
         private String languageTag;
-        private LanguageMap languageMap;
         private String stringTemplate;
         protected TriplesMap ownTriplesMap;
         
@@ -42,7 +40,7 @@ public abstract class AbstractTermMap implements TermMap {
         private ReferenceMap referenceValue;
         
 
-       /* protected AbstractTermMap(Value constantValue, URI dataType,
+        protected AbstractTermMap(Value constantValue, URI dataType,
                 String languageTag, String stringTemplate, URI termType,
                 String inverseExpression, ReferenceMap referenceValue) {
 
@@ -50,22 +48,6 @@ public abstract class AbstractTermMap implements TermMap {
                 setReferenceMap(referenceValue);
                 setTemplateMap(templateValue);
                 setLanguageTag(languageTag);
-                setStringTemplate(stringTemplate);
-                setTermType(termType, dataType);
-                setDataType(dataType);
-                setInversionExpression(inverseExpression);
-                checkGlobalConsistency();
-                setOwnTriplesMap(ownTriplesMap);
-        }*/
-        
-        protected AbstractTermMap(Value constantValue, URI dataType,
-                LanguageMap languageMap, String stringTemplate, URI termType,
-                String inverseExpression, ReferenceMap referenceValue) {
-
-                setConstantValue(constantValue);
-                setReferenceMap(referenceValue);
-                setTemplateMap(templateValue);
-                setLanguageMap(languageMap);
                 setStringTemplate(stringTemplate);
                 setTermType(termType, dataType);
                 setDataType(dataType);
@@ -397,14 +379,6 @@ public abstract class AbstractTermMap implements TermMap {
     public void setReferenceMap(ReferenceMap reference) {
         referenceValue = reference;
     }
-    
-    /**
-     *
-     * @param languageMap
-     */
-    public void setLanguageMap(LanguageMap languageMap) {
-        this.languageMap = languageMap;
-    }
 
     @Override
     public TemplateMap getTemplateMap() {
@@ -414,11 +388,6 @@ public abstract class AbstractTermMap implements TermMap {
     @Override
     public void setTemplateMap(TemplateMap template) {
         templateValue = template;
-    }
-    
-    @Override
-    public LanguageMap getLanguageMap() {
-        return this.languageMap;
     }
 
 

@@ -130,17 +130,6 @@ public interface TermMap {
      * @param language
      */
     public void setLanguageTag(String language);
-    
-    /**
-     *
-     * @return
-     */
-    public LanguageMap getLanguageMap();
-    
-    /**
-     *
-     */
-    public void setLanguageMap(LanguageMap languageMap);
 
     /**
      * A typeable Term Map is a Term Map with a term type of rr:Literal that

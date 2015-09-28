@@ -3,7 +3,6 @@ package be.ugent.mmlab.rml.model.std;
 import be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap;
 import be.ugent.mmlab.rml.model.RDFTerm.ObjectMap;
 import be.ugent.mmlab.rml.model.PredicateObjectMap;
-import be.ugent.mmlab.rml.model.RDFTerm.LanguageMap;
 import be.ugent.mmlab.rml.model.RDFTerm.TermMap;
 import be.ugent.mmlab.rml.model.RDFTerm.TermType;
 import be.ugent.mmlab.rml.model.TriplesMap;
@@ -43,21 +42,11 @@ public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap 
         * @param inverseExpression
         * @param referenceValue
         */
-       /*public StdObjectMap(PredicateObjectMap predicateObjectMap,
+       public StdObjectMap(PredicateObjectMap predicateObjectMap,
 			Value constantValue, URI dataType, String languageTag,
 			String stringTemplate, URI termType, String inverseExpression,
 			ReferenceMap referenceValue)  {
 		super(constantValue, dataType, languageTag, stringTemplate, termType,
-				inverseExpression, referenceValue);
-		setPredicateObjectMap(predicateObjectMap);
-	}*/
-       
-       public StdObjectMap(PredicateObjectMap predicateObjectMap,
-			Value constantValue, URI dataType, 
-                        LanguageMap languageMap, String stringTemplate, 
-                        URI termType, String inverseExpression,
-			ReferenceMap referenceValue)  {
-		super(constantValue, dataType, languageMap, stringTemplate, termType,
 				inverseExpression, referenceValue);
 		setPredicateObjectMap(predicateObjectMap);
 	}
