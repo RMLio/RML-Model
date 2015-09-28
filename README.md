@@ -1,11 +1,11 @@
 RML Model
 ============
 
-RML Model description as an R2RML extension in Java based on [DB2Triples](https://github.com/antidot/db2triples/)
+RML Model description as an R2RML extension in Java based as part of the RML Mapper.
 
 Usage
 -----
-This is a library to be reused by the [RML Processor](http://github.com/mmlab/RMLProcessor)
+This is a library to be reused by the [RML Processor](http://github.com/RMLio/RML-Processor)
 
 More Information
 ----------------
@@ -14,7 +14,7 @@ More information about the solution can be found at http://rml.io
 
 This is developed by Multimedia Lab http://www.mmlab.be
 
-Copyright 2015, Multimedia Lab - Ghent University - iMinds
+Copyright 2014-2015, Multimedia Lab - Ghent University - iMinds
 
 
 Related Publication
