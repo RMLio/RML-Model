@@ -25,7 +25,7 @@ public class FileDataset extends StdRMLDataset {
 
     // Log
     private static final Logger log = 
-            LoggerFactory.getLogger(StdRMLDataset.class);
+            LoggerFactory.getLogger(FileDataset.class);
     
     private File target;
     private BufferedWriter fw;
@@ -117,9 +117,9 @@ public class FileDataset extends StdRMLDataset {
             writer.endRDF();
             fw.close();
         } catch (RDFHandlerException ex) {
-            log.error("RDF Handler Exception " + ex);
+            log.error("RDFHandlerException " + ex);
         } catch (IOException ex) {
-            log.error("IO Exception " + ex);
+            log.error("IOException " + ex);
         } 
     }
 

@@ -45,7 +45,7 @@ public class HydraVocabulary {
         }
 
         @Override
-        public final String toString() {
+        public String toString() {
             return displayName;
         }
         

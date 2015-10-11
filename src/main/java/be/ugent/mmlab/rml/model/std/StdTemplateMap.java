@@ -61,7 +61,6 @@ public class StdTemplateMap {
             String stringTemplate) {
         Set<String> result = new HashSet<String>();
         // Curly braces that do not enclose column names MUST be
-        // escaped by a backslash character (“\”).
         stringTemplate = stringTemplate.replaceAll("\\\\\\{", "");
         stringTemplate = stringTemplate.replaceAll("\\\\\\}", "");
         if (stringTemplate != null) {
