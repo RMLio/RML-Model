@@ -170,7 +170,7 @@ public class StdRMLDataset implements RMLDataset {
             BNode test = (BNode) value;
             return true;
         } catch (ClassCastException ex) {
-            log.error("Class Cast Exception " + ex);
+            //log.error("Class Cast Exception " + ex);
             return false;
         }
     }
