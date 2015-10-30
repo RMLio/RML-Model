@@ -42,13 +42,14 @@ public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap 
         * @param inverseExpression
         * @param referenceValue
         */
-       public StdObjectMap(PredicateObjectMap predicateObjectMap,
+       public StdObjectMap(TriplesMap triplesMap, PredicateObjectMap predicateObjectMap,
 			Value constantValue, URI dataType, String languageTag,
 			String stringTemplate, URI termType, String inverseExpression,
 			ReferenceMap referenceValue)  {
 		super(constantValue, dataType, languageTag, stringTemplate, termType,
 				inverseExpression, referenceValue);
 		setPredicateObjectMap(predicateObjectMap);
+                setOwnTriplesMap(triplesMap);
 	}
         
         /**

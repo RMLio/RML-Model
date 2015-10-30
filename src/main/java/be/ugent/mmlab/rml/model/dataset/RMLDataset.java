@@ -1,7 +1,9 @@
 package be.ugent.mmlab.rml.model.dataset;
 
 import java.io.OutputStream;
+import java.util.List;
 import org.openrdf.model.Resource;
+import org.openrdf.model.Statement;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 import org.openrdf.rio.RDFFormat;
@@ -24,4 +26,7 @@ public interface RMLDataset {
     public int getSize();
 
     public void add(Resource s, URI p, Value o, Resource... contexts);    
+    
+    public List<Statement> tuplePattern(Resource s, URI p, Value o,
+			Resource... contexts);
 }

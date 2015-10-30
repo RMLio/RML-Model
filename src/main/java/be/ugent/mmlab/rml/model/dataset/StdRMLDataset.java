@@ -143,7 +143,7 @@ public class StdRMLDataset implements RMLDataset {
     }
     
     //TODO: Spring it
-    protected List<Statement> tuplePattern(Resource s, URI p, Value o,
+    public List<Statement> tuplePattern(Resource s, URI p, Value o,
 			Resource... contexts) {
         try {
             RepositoryConnection con = repository.getConnection();

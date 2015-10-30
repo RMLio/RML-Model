@@ -41,7 +41,7 @@ public class StdPredicateMap extends AbstractTermMap implements TermMap,
      * @param referenceValue
      * @param termType
      */
-    public StdPredicateMap(PredicateObjectMap predicateObjectMap,
+    public StdPredicateMap(TriplesMap triplesMap, PredicateObjectMap predicateObjectMap,
             Value constantValue, String stringTemplate,
             String inverseExpression, ReferenceMap referenceValue, URI termType) {
         // No Literal term type
@@ -51,7 +51,7 @@ public class StdPredicateMap extends AbstractTermMap implements TermMap,
         super(constantValue, null, null, stringTemplate, termType,
                 inverseExpression, referenceValue);
         setPredicateObjectMap(predicateObjectMap);
-        setOwnTriplesMap(ownTriplesMap);
+        setOwnTriplesMap(triplesMap);
     }
 
     @Override
