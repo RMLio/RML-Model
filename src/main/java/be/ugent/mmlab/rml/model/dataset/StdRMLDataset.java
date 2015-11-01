@@ -54,6 +54,7 @@ public class StdRMLDataset implements RMLDataset {
     }
     
     //TODO: Spring it
+    @Override
     public void add(Resource s, URI p, Value o, Resource... contexts) {
         if (log.isDebugEnabled()) {
             log.debug("Add triple (" + s.stringValue()
@@ -143,6 +144,7 @@ public class StdRMLDataset implements RMLDataset {
     }
     
     //TODO: Spring it
+    @Override
     public List<Statement> tuplePattern(Resource s, URI p, Value o,
 			Resource... contexts) {
         try {
@@ -275,5 +277,5 @@ public class StdRMLDataset implements RMLDataset {
         return dataSet.getSize() == getSize();
     }
 
-}
+    }
 
