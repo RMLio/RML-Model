@@ -11,12 +11,17 @@ import org.openrdf.model.Value;
 import org.openrdf.model.ValueFactory;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.RepositoryException;
+import org.openrdf.repository.config.RepositoryConfig;
+import org.openrdf.repository.config.RepositoryConfigException;
+import org.openrdf.repository.manager.LocalRepositoryManager;
 import org.openrdf.repository.sail.SailRepository;
+import org.openrdf.repository.sail.config.SailRepositoryConfig;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFHandlerException;
 import org.openrdf.rio.RDFWriter;
 import org.openrdf.rio.Rio;
 import org.openrdf.sail.nativerdf.NativeStore;
+import org.openrdf.sail.nativerdf.config.NativeStoreConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,18 +57,26 @@ public class FileDataset extends StdRMLDataset {
         }
     }
     
-    public FileDataset(String target, String outputFormat) {
+    /**
+     *
+     * @param target
+     * @param outputFormat
+     * @param manager
+     * @param repositoryID
+     */
+    public FileDataset(String target, String outputFormat, 
+            LocalRepositoryManager manager, String repositoryID) {
 
         this.target = new File(target);
 
         try {
-            // Get the operating system temporary directory
-            String property = "java.io.tmpdir";
-            String tempDir = System.getProperty(property) + "/RML-Processor";
-            
-            //Store temp files at operating system's temporary directory
             String indexes = "spoc";
-            repository = new SailRepository(new NativeStore(new File(tempDir), indexes));
+            SailRepositoryConfig repositoryTypeSpec = 
+                    new SailRepositoryConfig(new NativeStoreConfig(indexes));
+            RepositoryConfig repConfig = 
+                    new RepositoryConfig(repositoryID, repositoryTypeSpec);
+            manager.addRepositoryConfig(repConfig);
+            repository = manager.getRepository(repositoryID);
             repository.initialize();
             
             //Set the final output
@@ -101,6 +114,8 @@ public class FileDataset extends StdRMLDataset {
             }
         } catch (RepositoryException ex) {
             log.error("Repository Exception " + ex);
+        } catch (RepositoryConfigException ex) {
+            log.error("Repository Config Exception " + ex);
         }
 
     }

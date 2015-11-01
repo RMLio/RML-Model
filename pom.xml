@@ -76,6 +76,11 @@
     <dependencies>
         <dependency>
             <groupId>org.openrdf.sesame</groupId>  
+            <artifactId>sesame-runtime</artifactId>  
+            <version>${sesame.version}</version> 
+        </dependency>
+        <dependency>
+            <groupId>org.openrdf.sesame</groupId>  
             <artifactId>sesame-repository-sail</artifactId>  
             <version>${sesame.version}</version> 
         </dependency>
@@ -91,7 +96,7 @@
             <version>${sesame.version}</version> 
         </dependency>
         <dependency>
-            <groupId>org.openrdf.sesame</groupId>
+            <groupId>org.openrdf.sesame</groupId>  
             <artifactId>sesame-sail-memory</artifactId>
             <version>${sesame.version}</version>
             <scope>compile</scope>        
