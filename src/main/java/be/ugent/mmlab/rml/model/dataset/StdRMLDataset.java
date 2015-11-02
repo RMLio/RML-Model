@@ -10,6 +10,7 @@ import org.openrdf.model.Statement;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 import org.openrdf.model.ValueFactory;
+import org.openrdf.model.vocabulary.RDF;
 import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.RepositoryException;
@@ -35,6 +36,7 @@ public class StdRMLDataset implements RMLDataset {
     
     protected Repository repository = null;
     protected Integer 
+            distinctClasses = 0, distinctProperties = 0,
             distinctSubjects = 0, distinctObjects = 0, 
             distinctEntities = 0, triples = 0;
     
@@ -316,6 +318,24 @@ public class StdRMLDataset implements RMLDataset {
         return triples;
     }
     
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int getNumberOfClasses() {
+        return distinctClasses;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int getNumberOfProperties() {
+        return distinctProperties;
+    }
+    
     protected boolean checkDistinctSubject(Resource s) {
         RepositoryConnection con = null;
         try {
@@ -357,18 +377,66 @@ public class StdRMLDataset implements RMLDataset {
         return false;
     }
     
-    protected void checkDistinctEntities(Resource s, Value o){
+    protected boolean checkDistinctClass(Value o) {
+        RepositoryConnection con = null;
+        try {
+            con = repository.getConnection();
+            RepositoryResult<Statement> results = 
+                    con.getStatements(null, RDF.TYPE, o, true);
+            if (!results.hasNext()) {
+                return true;
+            }
+        } catch (RepositoryException ex) {
+            log.error("Repository Exception " + ex);
+        } finally {
+            try {
+                con.close();
+            } catch (RepositoryException ex) {
+                log.error("Repository Exception " + ex);
+            }
+        }
+        return false;
+    }
+    
+    protected boolean checkDistinctProperty(URI p) {
+        RepositoryConnection con = null;
+        try {
+            con = repository.getConnection();
+            RepositoryResult<Statement> results = 
+                    con.getStatements(null, p, null, true);
+            if (!results.hasNext()) {
+                return true;
+            }
+        } catch (RepositoryException ex) {
+            log.error("Repository Exception " + ex);
+        } finally {
+            try {
+                con.close();
+            } catch (RepositoryException ex) {
+                log.error("Repository Exception " + ex);
+            }
+        }
+        return false;
+    }
+    
+    protected void checkDistinctEntities(Resource s, URI p, Value o){
         if(checkDistinctSubject(s)){
             ++distinctSubjects;
             if(checkDistinctObject(s))
                 ++distinctEntities;
         }
+        
         if(checkDistinctObject(o)){
             ++distinctObjects;
             if(!o.getClass().getSimpleName().equals("LiteralImpl") 
                     && checkDistinctSubject((Resource) o))
                 ++distinctEntities;
         }
+        
+        if(p.equals(RDF.TYPE) && checkDistinctClass(o))
+            ++distinctClasses;
+        if(checkDistinctProperty(p))
+            ++distinctProperties;
     }
 }
 

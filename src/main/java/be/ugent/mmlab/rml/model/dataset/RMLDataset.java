@@ -37,4 +37,8 @@ public interface RMLDataset {
     public int getNumberOfDistinctEntities();
     
     public int getNumberOfTriples();
+    
+    public int getNumberOfClasses();
+    
+    public int getNumberOfProperties();
 }

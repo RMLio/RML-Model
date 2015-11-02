@@ -65,7 +65,7 @@ public class FileDataset extends StdRMLDataset {
      */
     public FileDataset(String target, String outputFormat, 
             LocalRepositoryManager manager, String repositoryID) {
-
+        //Set the final output
         this.target = new File(target);
 
         try {
@@ -78,10 +78,7 @@ public class FileDataset extends StdRMLDataset {
             manager.addRepositoryConfig(repConfig);
             repository = manager.getRepository(repositoryID);
             repository.initialize();
-            
-            //Set the final output
-            this.target = new File(target);
-            
+
             //Clean up repo from previous use
             RepositoryConnection con = repository.getConnection();
             con.clear();
@@ -131,7 +128,7 @@ public class FileDataset extends StdRMLDataset {
                 ValueFactory myFactory = con.getValueFactory();
                 Statement st = myFactory.createStatement((Resource) s, p,
                         (Value) o);
-                checkDistinctEntities(s,o);
+                checkDistinctEntities(s, p, o);
                 con.add(st, contexts);
                 triples++;
                 con.commit();                

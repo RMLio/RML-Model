@@ -20,6 +20,7 @@ public class VoIDVocabulary {
         DATASET_CLASS("Dataset"),
         DATASETDESCRIPTION_CLASS("DatasetDescription"),
         // VoID PROPERTIES
+        CLASSES("classes"),
         DATADUMP("dataDump"),
         FEATURE("feature"),
         DISTINCTOBJECTS("distinctObjects"),
