@@ -131,9 +131,7 @@ public class FileDataset extends StdRMLDataset {
                 ValueFactory myFactory = con.getValueFactory();
                 Statement st = myFactory.createStatement((Resource) s, p,
                         (Value) o);
-                //Check if Subject does not exist in the dataset
-                checkDistinctSubject(s);
-                checkDistinctObject(o);
+                checkDistinctEntities(s,o);
                 con.add(st, contexts);
                 triples++;
                 con.commit();                

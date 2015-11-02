@@ -316,14 +316,14 @@ public class StdRMLDataset implements RMLDataset {
         return triples;
     }
     
-    protected void checkDistinctSubject(Resource s) {
+    protected boolean checkDistinctSubject(Resource s) {
         RepositoryConnection con = null;
         try {
             con = repository.getConnection();
             RepositoryResult<Statement> results = 
                     con.getStatements(s, null, null, true);
             if(!results.hasNext())
-                ++distinctSubjects;
+                return true;
         } catch (RepositoryException ex) {
             log.error("Repository Exception " + ex);
         } finally {
@@ -333,16 +333,17 @@ public class StdRMLDataset implements RMLDataset {
                 log.error("Repository Exception " + ex);
             }
         }
+        return false;
     }
 
-    protected void checkDistinctObject(Value o) {
+    protected boolean checkDistinctObject(Value o) {
         RepositoryConnection con = null;
         try {
             con = repository.getConnection();
             RepositoryResult<Statement> results = 
                     con.getStatements(null, null, o, true);
             if (!results.hasNext()) {
-                ++distinctObjects;
+                return true;
             }
         } catch (RepositoryException ex) {
             log.error("Repository Exception " + ex);
@@ -352,6 +353,21 @@ public class StdRMLDataset implements RMLDataset {
             } catch (RepositoryException ex) {
                 log.error("Repository Exception " + ex);
             }
+        }
+        return false;
+    }
+    
+    protected void checkDistinctEntities(Resource s, Value o){
+        if(checkDistinctSubject(s)){
+            ++distinctSubjects;
+            if(checkDistinctObject(s))
+                ++distinctEntities;
+        }
+        if(checkDistinctObject(o)){
+            ++distinctObjects;
+            if(!o.getClass().getSimpleName().equals("LiteralImpl") 
+                    && checkDistinctSubject((Resource) o))
+                ++distinctEntities;
         }
     }
 }
