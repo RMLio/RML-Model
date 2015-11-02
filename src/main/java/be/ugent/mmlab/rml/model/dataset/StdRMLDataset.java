@@ -1,6 +1,5 @@
 package be.ugent.mmlab.rml.model.dataset;
 
-import be.ugent.mmlab.rml.model.RDFTerm.TermMap;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -35,7 +34,9 @@ public class StdRMLDataset implements RMLDataset {
             LoggerFactory.getLogger(StdRMLDataset.class);
     
     protected Repository repository = null;
-    protected Integer distinctSubjects = 0, distinctObjects = 0;
+    protected Integer 
+            distinctSubjects = 0, distinctObjects = 0, 
+            distinctEntities = 0, triples = 0;
     
     public StdRMLDataset() {
         this(false);
@@ -279,21 +280,79 @@ public class StdRMLDataset implements RMLDataset {
         return dataSet.getSize() == getSize();
     }
    
+    /**
+     *
+     * @return
+     */
     @Override
-    public int getDistinctSubjects() {
+    public int getNumberOfDistinctSubjects() {
         return distinctSubjects;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
-    public int getDistinctObjects() {
+    public int getNumberOfDistinctObjects() {
         return distinctObjects;
     }
-
+    
+    /**
+     *
+     * @return
+     */
     @Override
-    public void checkDistinctObject(TermMap map, Value o) {
-        log.debug("Not supported yet."); 
-        //To change body of generated methods, choose Tools | Templates.
+    public int getNumberOfDistinctEntities() {
+        return distinctEntities;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public int getNumberOfTriples() {
+        return triples;
+    }
+    
+    protected void checkDistinctSubject(Resource s) {
+        RepositoryConnection con = null;
+        try {
+            con = repository.getConnection();
+            RepositoryResult<Statement> results = 
+                    con.getStatements(s, null, null, true);
+            if(!results.hasNext())
+                ++distinctSubjects;
+        } catch (RepositoryException ex) {
+            log.error("Repository Exception " + ex);
+        } finally {
+            try {
+                con.close();
+            } catch (RepositoryException ex) {
+                log.error("Repository Exception " + ex);
+            }
+        }
     }
 
+    protected void checkDistinctObject(Value o) {
+        RepositoryConnection con = null;
+        try {
+            con = repository.getConnection();
+            RepositoryResult<Statement> results = 
+                    con.getStatements(null, null, o, true);
+            if (!results.hasNext()) {
+                ++distinctObjects;
+            }
+        } catch (RepositoryException ex) {
+            log.error("Repository Exception " + ex);
+        } finally {
+            try {
+                con.close();
+            } catch (RepositoryException ex) {
+                log.error("Repository Exception " + ex);
+            }
+        }
     }
+}
 
