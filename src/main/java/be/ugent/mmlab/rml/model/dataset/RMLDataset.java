@@ -1,5 +1,6 @@
 package be.ugent.mmlab.rml.model.dataset;
 
+import be.ugent.mmlab.rml.model.RDFTerm.TermMap;
 import java.io.OutputStream;
 import java.util.List;
 import org.openrdf.model.Resource;
@@ -29,4 +30,10 @@ public interface RMLDataset {
     
     public List<Statement> tuplePattern(Resource s, URI p, Value o,
 			Resource... contexts);
+
+    public int getDistinctSubjects();
+    
+    public int getDistinctObjects();
+    
+    public void checkDistinctObject(TermMap map, Value o);
 }

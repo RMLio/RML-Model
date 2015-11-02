@@ -1,5 +1,6 @@
 package be.ugent.mmlab.rml.model.dataset;
 
+import be.ugent.mmlab.rml.model.RDFTerm.TermMap;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,6 +10,10 @@ import org.openrdf.model.Statement;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 import org.openrdf.model.ValueFactory;
+import org.openrdf.query.BooleanQuery;
+import org.openrdf.query.MalformedQueryException;
+import org.openrdf.query.QueryEvaluationException;
+import org.openrdf.query.QueryLanguage;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.RepositoryException;
 import org.openrdf.repository.config.RepositoryConfig;
@@ -131,9 +136,10 @@ public class FileDataset extends StdRMLDataset {
                 ValueFactory myFactory = con.getValueFactory();
                 Statement st = myFactory.createStatement((Resource) s, p,
                         (Value) o);
+                checkDistinctSubject(s);
                 con.add(st, contexts);
                 size++;
-                con.commit();
+                con.commit();                
             } catch (Exception ex) {
                 log.error("Exception " + ex);
             } finally {
@@ -143,7 +149,76 @@ public class FileDataset extends StdRMLDataset {
             log.error("Exception " + ex);
         }
     }
-   
+    
+    private void checkDistinctSubject(Resource s) {
+        RepositoryConnection con = null;
+        try {
+            con = repository.getConnection();
+            String query = "ASK { <" + s.stringValue() + "> ?p ?o }";
+            BooleanQuery booleanQuery =
+                    con.prepareBooleanQuery(QueryLanguage.SPARQL, query);
+
+            if (!booleanQuery.evaluate()) {
+                ++distinctSubjects;
+                log.debug("subject doesn't exist " + distinctSubjects);
+            }
+        } catch (RepositoryException ex) {
+            log.error("Repository Exception " + ex);
+        } catch (MalformedQueryException ex) {
+            log.error("Malformed Query Exception " + ex);
+        } catch (QueryEvaluationException ex) {
+            log.error("Query Evaluation Exception " + ex);
+        } finally {
+            try {
+                con.close();
+            } catch (RepositoryException ex) {
+                log.error("Repository Exception " + ex);
+            }
+        }
+    }
+    
+    @Override
+    public void checkDistinctObject(TermMap map, Value o) {
+        RepositoryConnection con = null;
+        String object = null;
+        try {
+            con = repository.getConnection();
+            log.debug("term type check object " 
+                    + map.getTermType().getDisplayName());
+            switch (map.getTermType().getDisplayName()) {
+                case "http://www.w3.org/ns/r2rml#IRI":
+                    object = "<" + o.stringValue() + ">" ;
+                    break;
+                case "http://www.w3.org/ns/r2rml#Literal":
+                    object = "\"" + o.stringValue() + "\"" ;
+                    break;
+                case "http://www.w3.org/ns/r2rml#BlankNode": 
+                    //TODO: Count blank node entities
+                    break;
+            }
+            String query = "ASK { ?s ?p " + object + " }";
+            log.debug("query for distinct object " + query);
+            BooleanQuery booleanQuery =
+                    con.prepareBooleanQuery(QueryLanguage.SPARQL, query);
+
+            if (!booleanQuery.evaluate()) {
+                ++distinctObjects;
+            }
+        } catch (RepositoryException ex) {
+            log.error("Repository Exception " + ex);
+        } catch (MalformedQueryException ex) {
+            log.error("Malformed Query Exception " + ex);
+        } catch (QueryEvaluationException ex) {
+            log.error("Query Evaluation Exception " + ex);
+        } finally {
+            try {
+                con.close();
+            } catch (RepositoryException ex) {
+                log.error("Repository Exception " + ex);
+            }
+        }
+    }
+    
     /**
      * Close current repository.
      *

@@ -1,5 +1,6 @@
 package be.ugent.mmlab.rml.model.dataset;
 
+import be.ugent.mmlab.rml.model.RDFTerm.TermMap;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class StdRMLDataset implements RMLDataset {
             LoggerFactory.getLogger(StdRMLDataset.class);
     
     protected Repository repository = null;
+    protected Integer distinctSubjects = 0, distinctObjects = 0;
     
     public StdRMLDataset() {
         this(false);
@@ -275,6 +277,22 @@ public class StdRMLDataset implements RMLDataset {
             log.debug("No same size : " + dataSet.getSize() + " != " + getSize());
         }
         return dataSet.getSize() == getSize();
+    }
+   
+    @Override
+    public int getDistinctSubjects() {
+        return distinctSubjects;
+    }
+
+    @Override
+    public int getDistinctObjects() {
+        return distinctObjects;
+    }
+
+    @Override
+    public void checkDistinctObject(TermMap map, Value o) {
+        log.debug("Not supported yet."); 
+        //To change body of generated methods, choose Tools | Templates.
     }
 
     }
