@@ -22,7 +22,7 @@ public class PROVVocabulary {
         STARTEDATTIME("startedAtTime"),
         USED("used"),
         WASINFORMEDBY("wasInformedBy"),
-        ENDEDATTIME("endedAtTime"),
+        ENDDATETIME("endedAtTime"),
         WASASSOCIATEDWITH("wasAssociatedWith"), 
         ACTEDONBEHALFOF("actedOnBehalfOf");
         

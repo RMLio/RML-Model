@@ -1,5 +1,6 @@
 package be.ugent.mmlab.rml.model.dataset;
 
+import be.ugent.mmlab.rml.model.TriplesMap;
 import java.io.OutputStream;
 import java.util.List;
 import org.openrdf.model.Resource;
@@ -27,6 +28,9 @@ public interface RMLDataset {
 
     public void add(Resource s, URI p, Value o, Resource... contexts);    
     
+    public void addReification(
+            Resource s, URI p, Value o, TriplesMap map, Resource... contexts);
+    
     public List<Statement> tuplePattern(Resource s, URI p, Value o,
 			Resource... contexts);
 
@@ -41,4 +45,13 @@ public interface RMLDataset {
     public int getNumberOfClasses();
     
     public int getNumberOfProperties();
+    
+    public RDFFormat getFormat();
+    
+    public void setDatasetMetadata(RMLDataset metadataDataset, 
+            String metadataLevel, String metadataFormat);
+    
+    public RMLDataset getMetadataDataset();
+    
+    public String getMetadataLevel();
 }

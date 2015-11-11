@@ -37,8 +37,7 @@ public class FileDataset extends StdRMLDataset {
             LoggerFactory.getLogger(FileDataset.class);
     
     private File target;
-    private RDFFormat format = RDFFormat.NTRIPLES;    ;
-
+        
     public FileDataset(String target) {
         try {
             this.target = new File(target);
@@ -64,7 +63,7 @@ public class FileDataset extends StdRMLDataset {
      * @param repositoryID
      */
     public FileDataset(String target, String outputFormat, 
-            LocalRepositoryManager manager, String repositoryID) {
+           LocalRepositoryManager manager, String repositoryID) {
         //Set the final output
         this.target = new File(target);
 
@@ -85,30 +84,8 @@ public class FileDataset extends StdRMLDataset {
             con.commit();
             con.close();
             
-            //TODO: Spring it!
-            switch (outputFormat) {
-                case "ntriples": 
-                    this.format = RDFFormat.NTRIPLES; 
-                    break;
-                case "n3": 
-                    this.format = RDFFormat.N3;
-                    break;
-                case "turtle": 
-                    this.format = RDFFormat.TURTLE;
-                    break;
-                case "nquads": 
-                    this.format = RDFFormat.NQUADS;
-                    break;
-                case "rdfxml": 
-                    this.format = RDFFormat.RDFXML;
-                    break;
-                case "rdfjson": 
-                    this.format = RDFFormat.RDFJSON;
-                    break;
-                case "jsonld": 
-                    this.format = RDFFormat.JSONLD;
-                    break;
-            }
+            this.format = selectFormat(outputFormat);
+            
         } catch (RepositoryException ex) {
             log.error("Repository Exception " + ex);
         } catch (RepositoryConfigException ex) {
@@ -128,9 +105,28 @@ public class FileDataset extends StdRMLDataset {
                 ValueFactory myFactory = con.getValueFactory();
                 Statement st = myFactory.createStatement((Resource) s, p,
                         (Value) o);
-                checkDistinctEntities(s, p, o);
-                con.add(st, contexts);
-                triples++;
+                
+                switch(this.metadataLevel){
+                    case "dataset" :
+                        checkDistinctEntities(s, p, o);
+                        con.add(st, contexts);
+                        triples++;
+                        break;
+                    case "triplesmap":
+                        checkDistinctEntities(s, p, o);
+                        con.add(st, contexts);
+                        triples++;
+                        break;
+                    case "triple":
+                        checkDistinctEntities(s, p, o);
+                        con.add(st, contexts);
+                        triples++;
+                        break;
+                    case "None":
+                        con.add(st, contexts);
+                        break;     
+                }
+               
                 con.commit();                
             } catch (Exception ex) {
                 log.error("Exception " + ex);
@@ -183,4 +179,36 @@ public class FileDataset extends StdRMLDataset {
             log.error("IO Exception " + ex);
         } 
     }
+    
+    private RDFFormat selectFormat(String outputFormat) {
+        RDFFormat rdfFormat ;
+        //TODO: Spring it!
+        switch (outputFormat) {
+            case "ntriples":
+                rdfFormat = RDFFormat.NTRIPLES;
+                break;
+            case "n3":
+                rdfFormat = RDFFormat.N3;
+                break;
+            case "turtle":
+                rdfFormat = RDFFormat.TURTLE;
+                break;
+            case "nquads":
+                rdfFormat = RDFFormat.NQUADS;
+                break;
+            case "rdfxml":
+                rdfFormat = RDFFormat.RDFXML;
+                break;
+            case "rdfjson":
+                rdfFormat = RDFFormat.RDFJSON;
+                break;
+            case "jsonld":
+                rdfFormat = RDFFormat.JSONLD;
+                break;
+            default:
+                rdfFormat = RDFFormat.TURTLE;
+        }
+        return rdfFormat;
+    }
+       
 }

@@ -1,15 +1,20 @@
 package be.ugent.mmlab.rml.model.dataset;
 
+import be.ugent.mmlab.rml.model.TriplesMap;
+import be.ugent.mmlab.rml.vocabularies.PROVVocabulary;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openrdf.model.BNode;
 import org.openrdf.model.Resource;
 import org.openrdf.model.Statement;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 import org.openrdf.model.ValueFactory;
+import org.openrdf.model.impl.BNodeImpl;
+import org.openrdf.model.impl.URIImpl;
 import org.openrdf.model.vocabulary.RDF;
 import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
@@ -39,6 +44,10 @@ public class StdRMLDataset implements RMLDataset {
             distinctClasses = 0, distinctProperties = 0,
             distinctSubjects = 0, distinctObjects = 0, 
             distinctEntities = 0, triples = 0;
+    protected RDFFormat format = RDFFormat.NTRIPLES;
+    protected String metadataLevel = "None";
+    protected String metadataFormat = null;
+    protected RMLDataset metadataDataset ;
     
     public StdRMLDataset() {
         this(false);
@@ -73,6 +82,53 @@ public class StdRMLDataset implements RMLDataset {
                         (Value) o);
                 con.add(st, contexts);
                 con.commit();
+            } catch (Exception ex) {
+                log.error("Exception " + ex);
+            } finally {
+                con.close();
+            }
+        } catch (Exception ex) {
+            log.error("Exception " + ex);
+        }
+    }
+    
+    @Override
+    public void addReification(
+            Resource s, URI p, Value o, TriplesMap map, Resource... contexts) {
+        log.debug("Add triple (" + s.stringValue()
+                + ", " + p.stringValue() + ", " + o.stringValue() + ").");
+        
+        try {
+            RepositoryConnection con = repository.getConnection();
+            try {
+                ValueFactory myFactory = con.getValueFactory();
+                Resource triple = new BNodeImpl(
+                        RandomStringUtils.randomAlphanumeric(10));
+                Statement st = myFactory.createStatement(triple, RDF.TYPE,
+                        RDF.STATEMENT);
+                con.add(st, contexts);
+                
+                //Add subject
+                st = myFactory.createStatement(triple, RDF.SUBJECT, (Value) s);
+                con.add(st, contexts);
+                
+                //Add predicate
+                st = myFactory.createStatement(triple, RDF.PREDICATE, p);
+                con.add(st, contexts);
+                
+                //Add object
+                st = myFactory.createStatement(triple, RDF.OBJECT, o);
+                con.add(st, contexts);
+                
+                //Add prov:wasGeneratedBy
+                //TODO:Make it point to the SM/POM after skolemization
+                st = myFactory.createStatement(triple, 
+                        new URIImpl(PROVVocabulary.PROV_NAMESPACE + 
+                        PROVVocabulary.PROVTerm.WASGENERATEDBY.toString()),
+                        new URIImpl(map.getName()));
+                con.add(st, contexts);
+                
+                con.commit();                
             } catch (Exception ex) {
                 log.error("Exception " + ex);
             } finally {
@@ -437,6 +493,45 @@ public class StdRMLDataset implements RMLDataset {
             ++distinctClasses;
         if(checkDistinctProperty(p))
             ++distinctProperties;
+    }
+    
+    @Override
+    public RDFFormat getFormat(){
+        return format;
+    }
+    
+    @Override
+    public void setDatasetMetadata(RMLDataset metadataDataset, 
+            String metadataLevel, String metadataFormat){
+        setMetadataLevel(metadataLevel);
+        setMetadataFormat(metadataFormat);
+        setMetadataDataset(metadataDataset);
+    }
+    
+    private void setMetadataLevel(String metadataLevel){
+        this.metadataLevel = metadataLevel;
+    }
+    
+    private void setMetadataFormat(String metadataFormat){
+        this.metadataFormat = metadataFormat;
+    }
+    
+    private void setMetadataDataset(RMLDataset metadataDataset){
+        this.metadataDataset = metadataDataset;
+    }
+    
+    @Override
+    public String getMetadataLevel(){
+        return metadataLevel;
+    }
+    
+    public String getMetadataFormat(){
+        return metadataFormat;
+    }
+    
+    @Override
+    public RMLDataset getMetadataDataset(){
+        return metadataDataset;
     }
 }
 
