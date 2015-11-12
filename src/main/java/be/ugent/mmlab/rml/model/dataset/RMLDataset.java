@@ -49,9 +49,11 @@ public interface RMLDataset {
     public RDFFormat getFormat();
     
     public void setDatasetMetadata(RMLDataset metadataDataset, 
-            String metadataLevel, String metadataFormat);
+            String metadataLevel, String metadataFormat, String metadataVocab);
     
     public RMLDataset getMetadataDataset();
     
     public String getMetadataLevel();
+    
+    public String[] getMetadataVocab();
 }

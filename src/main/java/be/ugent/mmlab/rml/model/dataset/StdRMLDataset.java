@@ -48,6 +48,7 @@ public class StdRMLDataset implements RMLDataset {
     protected String metadataLevel = "None";
     protected String metadataFormat = null;
     protected RMLDataset metadataDataset ;
+    protected String[] metadataVocab;
     
     public StdRMLDataset() {
         this(false);
@@ -95,6 +96,7 @@ public class StdRMLDataset implements RMLDataset {
     @Override
     public void addReification(
             Resource s, URI p, Value o, TriplesMap map, Resource... contexts) {
+        
         log.debug("Add triple (" + s.stringValue()
                 + ", " + p.stringValue() + ", " + o.stringValue() + ").");
         
@@ -502,10 +504,11 @@ public class StdRMLDataset implements RMLDataset {
     
     @Override
     public void setDatasetMetadata(RMLDataset metadataDataset, 
-            String metadataLevel, String metadataFormat){
+            String metadataLevel, String metadataFormat, String metadataVocab){
         setMetadataLevel(metadataLevel);
         setMetadataFormat(metadataFormat);
         setMetadataDataset(metadataDataset);
+        setMetadataVocab(metadataVocab);
     }
     
     private void setMetadataLevel(String metadataLevel){
@@ -520,6 +523,11 @@ public class StdRMLDataset implements RMLDataset {
         this.metadataDataset = metadataDataset;
     }
     
+    private void setMetadataVocab(String metadataVocab){
+        String[] vocabs = metadataVocab.split(",");
+        this.metadataVocab = vocabs;
+    }
+    
     @Override
     public String getMetadataLevel(){
         return metadataLevel;
@@ -532,6 +540,10 @@ public class StdRMLDataset implements RMLDataset {
     @Override
     public RMLDataset getMetadataDataset(){
         return metadataDataset;
+    }
+    
+    public String[] getMetadataVocab(){
+        return metadataVocab;
     }
 }
 
