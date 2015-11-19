@@ -66,8 +66,7 @@ public abstract class AbstractTermMap implements TermMap {
             if (getTermMapType() == null) 
             {
                 if (getTermType() != TermType.BLANK_NODE) {
-                    log.error("Invalid [R2]RML Structure "
-                            + "[AbstractTermMap:checkGlobalConsistency] A constant RDF Term,"
+                    log.error("A constant RDF Term,"
                             + " a column name or a string template must be specified.");
                 }
             }
@@ -96,17 +95,16 @@ public abstract class AbstractTermMap implements TermMap {
             // rr:Literal by default, if it is an object map and at
             // least one of the following conditions is true
             if ((this instanceof StdObjectMap)
-                    && (getReferenceMap() != null || dataType != null
-                    || getLanguageTag() != null || constantValue instanceof Literal)) {
+                    && (getReferenceMap() != null || 
+                        dataType != null || 
+                        getLanguageTag() != null || 
+                        constantValue instanceof Literal)) {
                 this.termType = TermType.LITERAL;
-                log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + ": "
-                        + "[AbstractTermMap:setTermType] No term type specified : use Literal by default.");
+                log.debug("No term type specified : use Literal by default.");
             } else {
                 // otherwise its term type is IRI
                 this.termType = TermType.IRI;
-                log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + ": "
-                        + "[AbstractTermMap:setTermType] No term type specified : use IRI by default."
-                        + getReferenceMap());
+                log.debug("No term type specified : use IRI by default.");
             }
 
         } else {
@@ -125,7 +123,7 @@ public abstract class AbstractTermMap implements TermMap {
             TermType tt = TermType.toTermType(termType.stringValue());
             if (tt == null) {
                 log.error("Invalid Syntax "
-                        + "[AbstractTermMap:checkTermType] Not a valid term type : "
+                        + "Not a valid term type : "
                         + termType);
             }
             // Check rules in function of term map nature (subject, predicate ...)
@@ -224,7 +222,7 @@ public abstract class AbstractTermMap implements TermMap {
         public void setDataType(URI dataType) {
             if (!isTypeable() && dataType != null) {
                 log.error("Invalid Structure "
-                        + "[AbstractTermMap:setDataType] A term map that is not "
+                        + "A term map that is not "
                         + "a typeable term map MUST NOT have an rr:datatype"
                         + " property.");
             }
@@ -302,8 +300,7 @@ public abstract class AbstractTermMap implements TermMap {
             default:
                 break;
         }
-        log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + ": "
-                + "[AbstractTermMap:getReferencedSelectors] References are now : "
+        log.debug("References are now : "
                 + references);
         return references;
     }
