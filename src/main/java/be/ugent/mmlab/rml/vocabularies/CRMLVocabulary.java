@@ -27,6 +27,7 @@ public class CRMLVocabulary {
         PROCESS_CONDITION("processCondition"),
         SPLIT_CONDITION("splitCondition"),
         CONDITION("condition"),
+        EXPRESSION("expression"),
         VALUE("value"),
         VARIABLE("variable"),
         REPLACE("replace");
