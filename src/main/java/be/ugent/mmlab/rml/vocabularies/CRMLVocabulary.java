@@ -24,6 +24,7 @@ public class CRMLVocabulary {
         // cRML RPROPERTIES
         BINDING_CONDITION("binding"),
         BOOLEAN_CONDITION("booleanCondition"),
+        NEGATION_CONDITION("negationCondition"),
         PROCESS_CONDITION("processCondition"),
         SPLIT_CONDITION("splitCondition"),
         CONDITION("condition"),
