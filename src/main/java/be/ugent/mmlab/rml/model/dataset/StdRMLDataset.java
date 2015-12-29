@@ -418,6 +418,7 @@ public class StdRMLDataset implements RMLDataset {
         RepositoryConnection con = null;
         try {
             con = repository.getConnection();
+            //TODO: Change the following to con.hasStatements
             RepositoryResult<Statement> results = 
                     con.getStatements(null, null, o, true);
             if (!results.hasNext()) {

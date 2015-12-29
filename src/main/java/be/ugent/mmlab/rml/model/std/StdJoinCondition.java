@@ -19,7 +19,8 @@ import org.slf4j.LoggerFactory;
 public class StdJoinCondition implements JoinCondition {
 
     // Log
-    private static final Logger log = LoggerFactory.getLogger(StdJoinCondition.class);
+    private static final Logger log = 
+            LoggerFactory.getLogger(StdJoinCondition.class);
     private String child;
     private String parent;
 
@@ -36,8 +37,7 @@ public class StdJoinCondition implements JoinCondition {
     @Override
     public void setParent(String parent) {
         if (parent == null) {
-            log.error(Thread.currentThread().getStackTrace()[1].getMethodName() + ": "
-                    + "A join condition must "
+            log.error("A join condition must "
                     + "have a parent reference.");
         }
         this.parent = parent;
@@ -46,8 +46,7 @@ public class StdJoinCondition implements JoinCondition {
     @Override
     public void setChild(String child) {
         if (child == null) {
-            log.error(Thread.currentThread().getStackTrace()[1].getMethodName() + ": "
-                    + "A join condition must "
+            log.error("A join condition must "
                     + "have a child reference.");
         }
         this.child = child;

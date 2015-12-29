@@ -108,17 +108,18 @@ public class FileDataset extends StdRMLDataset {
                 
                 switch(this.metadataLevel){
                     case "dataset" :
-                        checkDistinctEntities(s, p, o);
+                        //TODO: Configure enabling if it writes unique triples only
+                        //checkDistinctEntities(s, p, o);
                         con.add(st, contexts);
                         triples++;
                         break;
                     case "triplesmap":
-                        checkDistinctEntities(s, p, o);
+                        //checkDistinctEntities(s, p, o);
                         con.add(st, contexts);
                         triples++;
                         break;
                     case "triple":
-                        checkDistinctEntities(s, p, o);
+                        //checkDistinctEntities(s, p, o);
                         con.add(st, contexts);
                         triples++;
                         break;

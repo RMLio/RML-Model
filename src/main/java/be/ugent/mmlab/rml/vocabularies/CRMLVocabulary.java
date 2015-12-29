@@ -24,15 +24,19 @@ public class CRMLVocabulary {
         // cRML RPROPERTIES
         BINDING_CONDITION("binding"),
         BOOLEAN_CONDITION("booleanCondition"),
-        NEGATION_CONDITION("negationCondition"),
+        NEGATION_CONDITION("negationOf"),
         PROCESS_CONDITION("processCondition"),
         SPLIT_CONDITION("splitCondition"),
         CONDITION("condition"),
         EXPRESSION("expression"),
         VALUE("value"),
         VARIABLE("variable"),
-        REPLACE("replace");
+        REPLACE("replace"),
         
+        // cRML METRICS
+        JACCARD_CLASS("JaccardMetric"),
+        LEVENSTEIN_CLASS("LevensteinMetric"),
+        METRIC("metric");
         private String displayName;
 
         private cRMLTerm(String displayName) {
