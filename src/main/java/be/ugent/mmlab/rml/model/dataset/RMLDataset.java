@@ -26,34 +26,10 @@ public interface RMLDataset {
 
     public int getSize();
 
-    public void add(Resource s, URI p, Value o, Resource... contexts);    
-    
-    public void addReification(
-            Resource s, URI p, Value o, TriplesMap map, Resource... contexts);
+    public void add(Resource s, URI p, Value o, Resource... contexts);   
     
     public List<Statement> tuplePattern(Resource s, URI p, Value o,
 			Resource... contexts);
-
-    public int getNumberOfDistinctSubjects();
     
-    public int getNumberOfDistinctObjects();
-    
-    public int getNumberOfDistinctEntities();
-    
-    public int getNumberOfTriples();
-    
-    public int getNumberOfClasses();
-    
-    public int getNumberOfProperties();
-    
-    public RDFFormat getFormat();
-    
-    public void setDatasetMetadata(RMLDataset metadataDataset, 
-            String metadataLevel, String metadataFormat, String metadataVocab);
-    
-    public RMLDataset getMetadataDataset();
-    
-    public String getMetadataLevel();
-    
-    public String[] getMetadataVocab();
+    public RDFFormat selectFormat(String outputFormat);
 }

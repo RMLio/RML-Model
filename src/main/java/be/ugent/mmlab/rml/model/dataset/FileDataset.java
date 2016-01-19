@@ -16,7 +16,6 @@ import org.openrdf.repository.config.RepositoryConfigException;
 import org.openrdf.repository.manager.LocalRepositoryManager;
 import org.openrdf.repository.sail.SailRepository;
 import org.openrdf.repository.sail.config.SailRepositoryConfig;
-import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFHandlerException;
 import org.openrdf.rio.RDFWriter;
 import org.openrdf.rio.Rio;
@@ -105,28 +104,7 @@ public class FileDataset extends StdRMLDataset {
                 ValueFactory myFactory = con.getValueFactory();
                 Statement st = myFactory.createStatement((Resource) s, p,
                         (Value) o);
-                
-                switch(this.metadataLevel){
-                    case "dataset" :
-                        //TODO: Configure enabling if it writes unique triples only
-                        //checkDistinctEntities(s, p, o);
-                        con.add(st, contexts);
-                        triples++;
-                        break;
-                    case "triplesmap":
-                        //checkDistinctEntities(s, p, o);
-                        con.add(st, contexts);
-                        triples++;
-                        break;
-                    case "triple":
-                        //checkDistinctEntities(s, p, o);
-                        con.add(st, contexts);
-                        triples++;
-                        break;
-                    case "None":
-                        con.add(st, contexts);
-                        break;     
-                }
+                con.add(st, contexts);
                
                 con.commit();                
             } catch (Exception ex) {
@@ -179,37 +157,6 @@ public class FileDataset extends StdRMLDataset {
         } catch (IOException ex) {
             log.error("IO Exception " + ex);
         } 
-    }
-    
-    private RDFFormat selectFormat(String outputFormat) {
-        RDFFormat rdfFormat ;
-        //TODO: Spring it!
-        switch (outputFormat) {
-            case "ntriples":
-                rdfFormat = RDFFormat.NTRIPLES;
-                break;
-            case "n3":
-                rdfFormat = RDFFormat.N3;
-                break;
-            case "turtle":
-                rdfFormat = RDFFormat.TURTLE;
-                break;
-            case "nquads":
-                rdfFormat = RDFFormat.NQUADS;
-                break;
-            case "rdfxml":
-                rdfFormat = RDFFormat.RDFXML;
-                break;
-            case "rdfjson":
-                rdfFormat = RDFFormat.RDFJSON;
-                break;
-            case "jsonld":
-                rdfFormat = RDFFormat.JSONLD;
-                break;
-            default:
-                rdfFormat = RDFFormat.TURTLE;
-        }
-        return rdfFormat;
     }
        
 }
