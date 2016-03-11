@@ -33,7 +33,7 @@ public class FileDataset extends StdRMLDataset {
 
     // Log
     private static final Logger log = 
-            LoggerFactory.getLogger(FileDataset.class);
+            LoggerFactory.getLogger(FileDataset.class.getSimpleName());
     
     private File target;
         
@@ -75,7 +75,8 @@ public class FileDataset extends StdRMLDataset {
                     new RepositoryConfig(repositoryID, repositoryTypeSpec);
             manager.addRepositoryConfig(repConfig);
             repository = manager.getRepository(repositoryID);
-            repository.initialize();
+            if(!repository.isInitialized())
+                repository.initialize();
 
             //Clean up repo from previous use
             RepositoryConnection con = repository.getConnection();

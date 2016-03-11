@@ -1,5 +1,6 @@
 package be.ugent.mmlab.rml.model.dataset;
 
+import be.ugent.mmlab.rml.model.TriplesMap;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -310,5 +311,20 @@ public class StdRMLDataset implements RMLDataset {
         }
         return rdfFormat;
     }
+
+    @Override
+    public String getMetadataLevel() {
+        return "None";
+    }
+
+    @Override
+    public void addToRepository(TriplesMap map, Resource s, URI p, Value o, Resource... contexts) {
+        log.error("Not supported yet."); 
+    } 
+    
+    @Override
+    public Repository getRepository(){
+        return this.repository;
+    } 
 }
 

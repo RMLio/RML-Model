@@ -7,6 +7,8 @@ import org.openrdf.model.Resource;
 import org.openrdf.model.Statement;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
+import org.openrdf.repository.Repository;
+import org.openrdf.repository.manager.LocalRepositoryManager;
 import org.openrdf.rio.RDFFormat;
 
 /**
@@ -25,6 +27,13 @@ public interface RMLDataset {
     public boolean isEqualTo(RMLDataset assertMap);
 
     public int getSize();
+    
+    public String getMetadataLevel();
+    
+    public void addToRepository(TriplesMap map, 
+            Resource s, URI p, Value o, Resource... contexts);
+    
+    public Repository getRepository();
 
     public void add(Resource s, URI p, Value o, Resource... contexts);   
     
