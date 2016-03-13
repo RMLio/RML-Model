@@ -326,5 +326,5 @@ public class StdRMLDataset implements RMLDataset {
     public Repository getRepository(){
         return this.repository;
     } 
-}
+    }
 
