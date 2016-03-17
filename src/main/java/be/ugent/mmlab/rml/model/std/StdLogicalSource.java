@@ -19,7 +19,9 @@ import org.slf4j.LoggerFactory;
 public class StdLogicalSource implements LogicalSource {
 
     //Log
-    private static final Logger log = LoggerFactory.getLogger(StdLogicalSource.class);
+    private static final Logger log = 
+            LoggerFactory.getLogger(
+            StdLogicalSource.class.getSimpleName());
     
     private String iterator;
     private QLTerm referenceFormulation = QLTerm.SQL_CLASS;

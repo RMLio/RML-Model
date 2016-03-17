@@ -26,7 +26,9 @@ import org.openrdf.model.Value;
 public abstract class AbstractTermMap implements TermMap {
 
         // Log
-        private static final Logger log = LoggerFactory.getLogger(AbstractTermMap.class);
+        private static final Logger log = 
+                LoggerFactory.getLogger(
+                AbstractTermMap.class.getSimpleName());
         
         private URI dataType; 
         private TermType termType;
@@ -39,6 +41,8 @@ public abstract class AbstractTermMap implements TermMap {
         private TemplateMap templateValue;
         private ReferenceMap referenceValue;
         
+        private boolean validation = false;
+         private boolean completion = false;
 
         protected AbstractTermMap(Value constantValue, URI dataType,
                 String languageTag, String stringTemplate, URI termType,
@@ -385,6 +389,27 @@ public abstract class AbstractTermMap implements TermMap {
     @Override
     public void setTemplateMap(TemplateMap template) {
         templateValue = template;
+    }
+
+    @Override
+    public void setValidation() {
+        this.validation = true;
+    }
+
+    @Override
+    public boolean getValidation() {
+        return this.validation;
+    }
+    
+    
+    @Override
+    public void setCompletion(){
+        this.completion = true;
+    }
+    
+    @Override
+    public boolean getCompletion(){
+        return this.completion;
     }
 
 

@@ -171,5 +171,13 @@ public interface TermMap {
      * implicit datatype.
      */
     public boolean isOveridden();
+    
+    public void setCompletion();
+    
+    public boolean getCompletion();
+    
+    public void setValidation();
+    
+    public boolean getValidation();
 
 }

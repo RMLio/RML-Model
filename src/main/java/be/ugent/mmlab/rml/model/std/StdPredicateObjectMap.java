@@ -28,7 +28,9 @@ import org.slf4j.LoggerFactory;
 public class StdPredicateObjectMap implements PredicateObjectMap {
     
     // Log
-    private static final Logger log = LoggerFactory.getLogger(StdPredicateObjectMap.class);
+    private static final Logger log = 
+            LoggerFactory.getLogger(
+            StdPredicateObjectMap.class.getSimpleName());
 
 	private Set<ObjectMap> objectMaps;
 	private Set<ReferencingObjectMap> refObjectMaps;

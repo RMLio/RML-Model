@@ -15,11 +15,13 @@ public interface SparqlEndpointSource extends Source {
      *
      * @param template
      */
+    @Override
     public void setTemplate(String template);
     
     /**
      *
      * @return
      */
+    @Override
     public String getTemplate();
 }
