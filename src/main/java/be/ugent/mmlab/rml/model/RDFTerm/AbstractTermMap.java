@@ -42,7 +42,7 @@ public abstract class AbstractTermMap implements TermMap {
         private ReferenceMap referenceValue;
         
         private boolean validation = false;
-         private boolean completion = false;
+        private boolean completion = false;
 
         protected AbstractTermMap(Value constantValue, URI dataType,
                 String languageTag, String stringTemplate, URI termType,
@@ -223,6 +223,7 @@ public abstract class AbstractTermMap implements TermMap {
         *
         * @param dataType
         */
+        @Override
         public void setDataType(URI dataType) {
             if (!isTypeable() && dataType != null) {
                 log.error("Invalid Structure "
@@ -242,6 +243,7 @@ public abstract class AbstractTermMap implements TermMap {
         *
         * @param ownTriplesMap
         */
+        @Override
         public void setOwnTriplesMap(TriplesMap ownTriplesMap) {
             this.ownTriplesMap = ownTriplesMap;
         }
