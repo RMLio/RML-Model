@@ -36,6 +36,7 @@ public class StdRMLDataset implements RMLDataset {
     
     protected Repository repository = null;
     protected RDFFormat format = RDFFormat.NTRIPLES;
+    protected List metadataVocab = new ArrayList();
     
     public StdRMLDataset() {
         this(false);
@@ -325,6 +326,11 @@ public class StdRMLDataset implements RMLDataset {
     @Override
     public Repository getRepository() {
         return this.repository;
+    }
+    
+    @Override
+    public List getMetadataVocab(){
+        return metadataVocab;
     }
 }
 
