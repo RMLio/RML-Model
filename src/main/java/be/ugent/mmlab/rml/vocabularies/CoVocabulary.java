@@ -12,7 +12,7 @@ public class CoVocabulary {
     public enum COTerm implements Term{
 
         // CO CLASSES
-        VALIDATION_CLASS("Validation"),
+        VERIFICATION_CLASS("Verification"),
         COMPLETION_CLASS("Completion"), 
         
         REQUIRES("requires");
