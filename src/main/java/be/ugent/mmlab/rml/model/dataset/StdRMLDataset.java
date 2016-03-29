@@ -323,8 +323,8 @@ public class StdRMLDataset implements RMLDataset {
     } 
     
     @Override
-    public Repository getRepository(){
+    public Repository getRepository() {
         return this.repository;
-    } 
     }
+}
 
