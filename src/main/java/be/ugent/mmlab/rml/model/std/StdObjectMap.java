@@ -27,7 +27,8 @@ import org.openrdf.model.Value;
 public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap {
     
     // Log
-    private static final Logger log = LoggerFactory.getLogger(StdObjectMap.class);
+    private static final Logger log = 
+            LoggerFactory.getLogger(StdObjectMap.class.getSimpleName());
 
 	private PredicateObjectMap predicateObjectMap;
 

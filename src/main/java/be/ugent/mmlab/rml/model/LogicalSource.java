@@ -32,6 +32,18 @@ public interface LogicalSource {
     public void setIterator(String iterator);
     
     /**
+     *
+     * @return
+     */
+    public String getTableName();
+    
+    /**
+     *
+     * @param table
+     */
+    public void setTableName(String table);
+    
+    /**
      * 
      * Every Logical Source has an Input Source
      * where the data reside.

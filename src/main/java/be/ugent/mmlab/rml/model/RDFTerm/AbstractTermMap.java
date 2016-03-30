@@ -26,7 +26,9 @@ import org.openrdf.model.Value;
 public abstract class AbstractTermMap implements TermMap {
 
         // Log
-        private static final Logger log = LoggerFactory.getLogger(AbstractTermMap.class);
+        private static final Logger log = 
+                LoggerFactory.getLogger(
+                AbstractTermMap.class.getSimpleName());
         
         private URI dataType; 
         private TermType termType;

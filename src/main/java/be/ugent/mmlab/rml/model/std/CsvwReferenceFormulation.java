@@ -16,7 +16,8 @@ public class CsvwReferenceFormulation implements ReferenceFormulation {
     
     // Log
     private static final Logger log = 
-            LoggerFactory.getLogger(CsvwReferenceFormulation.class);
+            LoggerFactory.getLogger(
+            CsvwReferenceFormulation.class.getSimpleName());
     
     public CsvwReferenceFormulation(){}
     

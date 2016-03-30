@@ -16,7 +16,8 @@ import org.slf4j.LoggerFactory;
 public class StdTemplateMap {
 
     // Log
-    private static final Logger log = LoggerFactory.getLogger(StdTemplateMap.class);
+    private static final Logger log = 
+            LoggerFactory.getLogger(StdTemplateMap.class.getSimpleName());
     private String template = null;
 
     public StdTemplateMap(String template) {

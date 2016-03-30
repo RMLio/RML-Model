@@ -22,7 +22,8 @@ import org.slf4j.LoggerFactory;
 public final class StdTriplesMap implements TriplesMap {
     
     // Log
-    private static final Logger log = LoggerFactory.getLogger(StdTriplesMap.class);
+    private static final Logger log = 
+            LoggerFactory.getLogger(StdTriplesMap.class.getSimpleName());
 
 	private Set<PredicateObjectMap> predicateObjectMaps;
 	private SubjectMap subjectMap;

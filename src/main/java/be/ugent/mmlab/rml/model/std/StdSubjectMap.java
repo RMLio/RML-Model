@@ -31,7 +31,8 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
 	protected Set<URI> classIRIs;
 	protected HashSet<GraphMap> graphMaps;
         // Log
-        private static final Logger log = LoggerFactory.getLogger(StdObjectMap.class);
+        private static final Logger log = 
+                LoggerFactory.getLogger(StdObjectMap.class.getSimpleName());
 
 	public StdSubjectMap(TriplesMap ownTriplesMap, Value constantValue,
 			String stringTemplate, URI termType, String inverseExpression,

@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 public class StdRMLDataset implements RMLDataset {
     // Log
     private static final Logger log = 
-            LoggerFactory.getLogger(StdRMLDataset.class);
+            LoggerFactory.getLogger(StdRMLDataset.class.getSimpleName());
     
     protected Repository repository = null;
     protected RDFFormat format = RDFFormat.NTRIPLES;

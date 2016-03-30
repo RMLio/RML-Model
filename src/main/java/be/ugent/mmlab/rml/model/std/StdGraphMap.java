@@ -22,7 +22,8 @@ import org.openrdf.model.Value;
 public class StdGraphMap extends AbstractTermMap implements GraphMap {
     
     // Log
-    private static final Logger log = LoggerFactory.getLogger(StdGraphMap.class);
+    private static final Logger log = 
+            LoggerFactory.getLogger(StdGraphMap.class.getSimpleName());
 
     /**
      *

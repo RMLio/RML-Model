@@ -25,7 +25,8 @@ public class NaiveFileDataset extends StdRMLDataset {
 
     // Log
     private static final Logger log = 
-            LoggerFactory.getLogger(NaiveFileDataset.class);
+            LoggerFactory.getLogger(
+            NaiveFileDataset.class.getSimpleName());
     
     //private FileOutputStream output;
     private File target;
