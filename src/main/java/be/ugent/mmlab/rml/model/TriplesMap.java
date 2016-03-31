@@ -71,6 +71,12 @@ public interface TriplesMap {
      * The Triples Map name.
      */
     public String getName();
+    
+    /**
+     *
+     * @return
+     */
+    public String getShortName();
 
     /**
      *

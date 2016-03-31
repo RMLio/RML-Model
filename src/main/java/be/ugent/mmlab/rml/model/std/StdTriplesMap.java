@@ -104,6 +104,11 @@ public final class StdTriplesMap implements TriplesMap {
 	public String getName() {
 		return this.name;
 	}
+        
+        public String getShortName(){
+            String[] name = getName().split("#");
+            return name[1];
+        }
 
         @Override
 	public void setName(String name) {
