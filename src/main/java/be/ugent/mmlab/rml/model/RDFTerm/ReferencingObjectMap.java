@@ -74,5 +74,11 @@ public interface ReferencingObjectMap {
         * @param ownTriplesMap
         */
        public void setOwnTriplesMap(TriplesMap ownTriplesMap);
+       
+       /**
+        *
+        * @return
+        */
+       public Set<ReferencingObjectMap> getFallbackReferencingObjectMaps();
 	
 }

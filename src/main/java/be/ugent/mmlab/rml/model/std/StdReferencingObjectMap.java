@@ -26,6 +26,7 @@ public class StdReferencingObjectMap implements ReferencingObjectMap {
     private HashSet<JoinCondition> joinConditions;
     private PredicateObjectMap predicateObjectMap;
     protected TriplesMap ownTriplesMap;
+    protected Set<ReferencingObjectMap> fallbackReferencingObjectMaps;
 
     /**
      *
@@ -39,6 +40,17 @@ public class StdReferencingObjectMap implements ReferencingObjectMap {
         setParentTriplesMap(parentTriplesMap);
         setJoinConditions(joinConditions);
         setOwnTriplesMap(parentTriplesMap);
+
+    }
+    
+    public StdReferencingObjectMap(PredicateObjectMap predicateObjectMap,
+            TriplesMap parentTriplesMap, Set<JoinCondition> joinConditions,
+            Set<ReferencingObjectMap> fallbackReferencingObjectMaps) {
+        setPredicateObjectMap(predicateObjectMap);
+        setParentTriplesMap(parentTriplesMap);
+        setJoinConditions(joinConditions);
+        setOwnTriplesMap(parentTriplesMap);
+        setFallbackReferencingObjectMaps(fallbackReferencingObjectMaps);
 
     }
     
@@ -99,5 +111,15 @@ public class StdReferencingObjectMap implements ReferencingObjectMap {
     @Override
     public void setParentTriplesMap(TriplesMap triplesMap) {
         this.parentTriplesMap = triplesMap;
+    }
+    
+    protected void setFallbackReferencingObjectMaps(
+            Set<ReferencingObjectMap> fallbackReferencingObjectMaps){
+        this.fallbackReferencingObjectMaps = fallbackReferencingObjectMaps;
+    }
+    
+    @Override
+    public Set<ReferencingObjectMap> getFallbackReferencingObjectMaps(){
+        return this.fallbackReferencingObjectMaps;
     }
 }
