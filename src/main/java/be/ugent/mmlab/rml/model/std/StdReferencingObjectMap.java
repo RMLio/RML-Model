@@ -2,8 +2,10 @@ package be.ugent.mmlab.rml.model.std;
 
 import be.ugent.mmlab.rml.model.JoinCondition;
 import be.ugent.mmlab.rml.model.PredicateObjectMap;
+import be.ugent.mmlab.rml.model.RDFTerm.GraphMap;
 import be.ugent.mmlab.rml.model.RDFTerm.ReferencingObjectMap;
 import be.ugent.mmlab.rml.model.TriplesMap;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,6 +29,7 @@ public class StdReferencingObjectMap implements ReferencingObjectMap {
     private PredicateObjectMap predicateObjectMap;
     protected TriplesMap ownTriplesMap;
     protected Set<ReferencingObjectMap> fallbackReferencingObjectMaps;
+    private GraphMap graphMap;
 
     /**
      *
@@ -35,23 +38,23 @@ public class StdReferencingObjectMap implements ReferencingObjectMap {
      * @param joinConditions
      */
     public StdReferencingObjectMap(PredicateObjectMap predicateObjectMap,
-            TriplesMap parentTriplesMap, Set<JoinCondition> joinConditions) {
+            TriplesMap parentTriplesMap, Set<JoinCondition> joinConditions, GraphMap graphMap) {
         setPredicateObjectMap(predicateObjectMap);
         setParentTriplesMap(parentTriplesMap);
         setJoinConditions(joinConditions);
         setOwnTriplesMap(parentTriplesMap);
-
+        setGraphMap(graphMap);
     }
     
     public StdReferencingObjectMap(PredicateObjectMap predicateObjectMap,
-            TriplesMap parentTriplesMap, Set<JoinCondition> joinConditions,
-            Set<ReferencingObjectMap> fallbackReferencingObjectMaps) {
+                                   TriplesMap parentTriplesMap, Set<JoinCondition> joinConditions,
+                                   Set<ReferencingObjectMap> fallbackReferencingObjectMaps, GraphMap graphMap) {
         setPredicateObjectMap(predicateObjectMap);
         setParentTriplesMap(parentTriplesMap);
         setJoinConditions(joinConditions);
         setOwnTriplesMap(parentTriplesMap);
         setFallbackReferencingObjectMaps(fallbackReferencingObjectMaps);
-
+        setGraphMap(graphMap);
     }
     
     @Override
@@ -121,5 +124,13 @@ public class StdReferencingObjectMap implements ReferencingObjectMap {
     @Override
     public Set<ReferencingObjectMap> getFallbackReferencingObjectMaps(){
         return this.fallbackReferencingObjectMaps;
+    }
+
+    public GraphMap getGraphMap(){
+        return this.graphMap;
+    }
+
+    public void setGraphMap (GraphMap graphMap){
+        this.graphMap = graphMap;
     }
 }

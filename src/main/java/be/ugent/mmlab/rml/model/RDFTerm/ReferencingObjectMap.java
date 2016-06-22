@@ -80,5 +80,9 @@ public interface ReferencingObjectMap {
         * @return
         */
        public Set<ReferencingObjectMap> getFallbackReferencingObjectMaps();
+
+		public GraphMap getGraphMap ();
+
+		public void setGraphMap(GraphMap graphMap);
 	
 }

@@ -36,13 +36,14 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
 
 	public StdSubjectMap(TriplesMap ownTriplesMap, Value constantValue,
 			String stringTemplate, URI termType, String inverseExpression,
-			ReferenceMap referenceValue, Set<URI> classIRIs, Set<GraphMap> graphMaps) {
+			ReferenceMap referenceValue, Set<URI> classIRIs, GraphMap graphMap) {
 		// No Literal term type
 		// ==> No datatype
 		// ==> No specified language tag
 		super(constantValue, null, null, stringTemplate, termType,
-				inverseExpression, referenceValue);
+				inverseExpression, referenceValue, graphMap);
 		setClassIRIs(classIRIs);
+		//TODO: Remove the following setting GraphMaps
 		setGraphMaps(graphMaps);
 		setOwnTriplesMap(ownTriplesMap);
 	}
@@ -52,9 +53,7 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
             // Update triples map if not contains this subject map
             if (ownTriplesMap != null && ownTriplesMap.getSubjectMap() != null) {
                 if (ownTriplesMap.getSubjectMap() != this) {
-                    log.error(
-                            "[StdSubjectMap:setSubjectMap] "
-                            + "The own triples map "
+                    log.error("The own triples map "
                             + "already contains another Subject Map !");
                 } else {
                     ownTriplesMap.setSubjectMap(this);
@@ -101,7 +100,7 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
             // If the term map is a subject map: rr:IRI or rr:BlankNode
             if ((tt != TermType.IRI) && (tt != TermType.BLANK_NODE)) {
                 log.error("Invalid Structure "
-                        + "[StdSubjectMap:checkSpecificTermType] If the term map is a "
+                        + "If the term map is a "
                         + "subject map: only rr:IRI or rr:BlankNode is required");
             }
         }

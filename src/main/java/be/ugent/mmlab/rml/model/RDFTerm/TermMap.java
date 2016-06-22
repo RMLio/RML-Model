@@ -95,7 +95,7 @@ public interface TermMap {
     
     /**
      *
-     * @param refrence
+     * @param template
      */
     public void setTemplateMap(TemplateMap template);
 
@@ -171,5 +171,9 @@ public interface TermMap {
      * implicit datatype.
      */
     public boolean isOveridden();
+
+    public void setGraphMap(GraphMap graphMap);
+
+    public GraphMap getGraphMap();
 
 }

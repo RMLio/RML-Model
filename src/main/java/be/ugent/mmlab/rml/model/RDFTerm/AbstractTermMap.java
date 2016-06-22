@@ -36,15 +36,18 @@ public abstract class AbstractTermMap implements TermMap {
         private String languageTag;
         private String stringTemplate;
         protected TriplesMap ownTriplesMap;
-        
+        private GraphMap graphMap;
         private Value constantValue;
         private TemplateMap templateValue;
         private ReferenceMap referenceValue;
-        
 
-        protected AbstractTermMap(Value constantValue, URI dataType,
-                String languageTag, String stringTemplate, URI termType,
-                String inverseExpression, ReferenceMap referenceValue) {
+    public static Logger getLog() {
+        return log;
+    }
+
+    protected AbstractTermMap(Value constantValue, URI dataType,
+                              String languageTag, String stringTemplate, URI termType,
+                              String inverseExpression, ReferenceMap referenceValue, GraphMap graphMap) {
 
                 setConstantValue(constantValue);
                 setReferenceMap(referenceValue);
@@ -56,6 +59,7 @@ public abstract class AbstractTermMap implements TermMap {
                 setInversionExpression(inverseExpression);
                 checkGlobalConsistency();
                 setOwnTriplesMap(ownTriplesMap);
+                setGraphMap(graphMap);
         }
 
         /**
@@ -387,6 +391,16 @@ public abstract class AbstractTermMap implements TermMap {
     @Override
     public void setTemplateMap(TemplateMap template) {
         templateValue = template;
+    }
+
+    @Override
+    public GraphMap getGraphMap() {
+        return graphMap;
+    }
+
+    @Override
+    public void setGraphMap(GraphMap graphMap) {
+        this.graphMap = graphMap;
     }
 
 
