@@ -398,7 +398,6 @@ public abstract class AbstractTermMap implements TermMap {
     }
 
     @Override
-<<<<<<< HEAD
     public void setValidation() {
         this.validation = true;
     }
@@ -415,9 +414,10 @@ public abstract class AbstractTermMap implements TermMap {
     }
     
     @Override
-    public boolean getCompletion(){
+    public boolean getCompletion() {
         return this.completion;
-=======
+    }
+
     public GraphMap getGraphMap() {
         return graphMap;
     }
@@ -425,7 +425,6 @@ public abstract class AbstractTermMap implements TermMap {
     @Override
     public void setGraphMap(GraphMap graphMap) {
         this.graphMap = graphMap;
->>>>>>> development
     }
 
 
