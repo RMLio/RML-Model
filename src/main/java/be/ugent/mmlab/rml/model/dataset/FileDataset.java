@@ -33,7 +33,8 @@ public class FileDataset extends StdRMLDataset {
 
     // Log
     private static final Logger log = 
-            LoggerFactory.getLogger(FileDataset.class.getSimpleName());
+            LoggerFactory.getLogger(
+            FileDataset.class.getSimpleName());
     
     private File target;
         

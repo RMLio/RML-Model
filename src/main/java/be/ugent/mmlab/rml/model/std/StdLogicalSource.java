@@ -23,11 +23,10 @@ public class StdLogicalSource implements LogicalSource {
             LoggerFactory.getLogger(
             StdLogicalSource.class.getSimpleName());
     
-    private String iterator;
+    private String iterator, query, table;
     private QLTerm referenceFormulation = QLTerm.SQL_CLASS;
     private Source source;
     private ReferenceFormulation dialect = null; //custom reference formulation
-    private String query;
 
     /**
      *
@@ -73,6 +72,16 @@ public class StdLogicalSource implements LogicalSource {
         setReferenceFormulation(referenceFormulation);
         setCustomReferenceFormulation(dialect);
     }
+    
+    public StdLogicalSource(String iterator, Source inputSource, String query,
+            String table, QLTerm referenceFormulation, ReferenceFormulation dialect) {
+        setIterator(iterator);
+        setSource(inputSource);
+        setQuery(query);
+        setReferenceFormulation(referenceFormulation);
+        setCustomReferenceFormulation(dialect);
+        setTableName(table);
+    }
 
     @Override
     public String getIterator() {
@@ -92,6 +101,16 @@ public class StdLogicalSource implements LogicalSource {
     @Override
     public final void setQuery(String query){
         this.query = query;
+    }
+    
+    @Override
+    public String getTableName(){
+        return this.table;
+    }
+    
+    @Override
+    public final void setTableName(String table) {
+        this.table = table;
     }
 
     @Override

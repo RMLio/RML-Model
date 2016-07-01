@@ -49,7 +49,8 @@ public class StdPredicateObjectMap implements PredicateObjectMap {
 	}
 	
 	public StdPredicateObjectMap(Set<PredicateMap> predicateMaps,
-			Set<ObjectMap> objectMaps, Set<ReferencingObjectMap> referencingObjectMaps) {
+                Set<ObjectMap> objectMaps, 
+                Set<ReferencingObjectMap> referencingObjectMaps) {
 		this(predicateMaps, objectMaps);
 		setReferencingObjectMap(referencingObjectMaps);
 	}

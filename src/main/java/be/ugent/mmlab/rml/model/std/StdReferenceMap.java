@@ -22,7 +22,7 @@ public final class StdReferenceMap implements ReferenceMap {
     private static final Logger log = 
             LoggerFactory.getLogger(
             StdReferenceMap.class.getSimpleName());
-      
+
     //private String reference = null;
     
     @Override
