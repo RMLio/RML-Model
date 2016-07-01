@@ -95,7 +95,7 @@ public interface TermMap {
     
     /**
      *
-     * @param refrence
+     * @param template
      */
     public void setTemplateMap(TemplateMap template);
 
@@ -179,5 +179,9 @@ public interface TermMap {
     public void setValidation();
     
     public boolean getValidation();
+
+    public void setGraphMap(GraphMap graphMap);
+
+    public GraphMap getGraphMap();
 
 }

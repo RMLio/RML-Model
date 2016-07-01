@@ -1,10 +1,7 @@
 package be.ugent.mmlab.rml.model.std;
 
-import be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap;
-import be.ugent.mmlab.rml.model.RDFTerm.PredicateMap;
+import be.ugent.mmlab.rml.model.RDFTerm.*;
 import be.ugent.mmlab.rml.model.PredicateObjectMap;
-import be.ugent.mmlab.rml.model.RDFTerm.TermMap;
-import be.ugent.mmlab.rml.model.RDFTerm.TermType;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import java.util.HashSet;
@@ -45,13 +42,13 @@ public class StdPredicateMap extends AbstractTermMap implements TermMap,
      */
     public StdPredicateMap(TriplesMap triplesMap, PredicateObjectMap predicateObjectMap,
             Value constantValue, String stringTemplate,
-            String inverseExpression, ReferenceMap referenceValue, URI termType) {
+            String inverseExpression, ReferenceMap referenceValue, URI termType, GraphMap graphMap) {
         // No Literal term type
         // ==> No datatype
         // ==> No specified language tag
         // No class IRI
         super(constantValue, null, null, stringTemplate, termType,
-                inverseExpression, referenceValue);
+                inverseExpression, referenceValue, graphMap);
         setPredicateObjectMap(predicateObjectMap);
         setOwnTriplesMap(triplesMap);
     }

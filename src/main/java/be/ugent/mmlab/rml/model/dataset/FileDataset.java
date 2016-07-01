@@ -138,7 +138,7 @@ public class FileDataset extends StdRMLDataset {
             //Prepare file output stream
             FileOutputStream output = 
                     new FileOutputStream(this.target);
-            
+
             writer = Rio.createWriter(this.format, output);
             con.export(writer);
             con.commit();

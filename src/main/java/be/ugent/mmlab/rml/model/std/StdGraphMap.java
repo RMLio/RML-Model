@@ -42,7 +42,7 @@ public class StdGraphMap extends AbstractTermMap implements GraphMap {
         // ==> No specified language tag
         // Only termType possible : IRI => by default
         super(constantValue, null, null, stringTemplate,
-                termType, inverseExpression, referenceValue);
+                termType, inverseExpression, referenceValue,null);
 
     }
 
@@ -54,7 +54,7 @@ public class StdGraphMap extends AbstractTermMap implements GraphMap {
     protected void checkSpecificTermType(TermType tt) {
         // If the term map is a predicate map: rr:IRI
         if (tt != TermType.IRI) {
-            log.error("[StdGraphMap:checkSpecificTermType] If the term map is a "
+            log.error("If the term map is a "
                     + "graph map: only rr:IRI  is required");
         }
     }

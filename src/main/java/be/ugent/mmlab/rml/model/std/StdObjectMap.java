@@ -1,10 +1,7 @@
 package be.ugent.mmlab.rml.model.std;
 
-import be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap;
-import be.ugent.mmlab.rml.model.RDFTerm.ObjectMap;
+import be.ugent.mmlab.rml.model.RDFTerm.*;
 import be.ugent.mmlab.rml.model.PredicateObjectMap;
-import be.ugent.mmlab.rml.model.RDFTerm.TermMap;
-import be.ugent.mmlab.rml.model.RDFTerm.TermType;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import java.util.HashSet;
@@ -45,28 +42,17 @@ public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap 
         * @param referenceValue
         */
        public StdObjectMap(TriplesMap triplesMap, PredicateObjectMap predicateObjectMap,
-			Value constantValue, URI dataType, String languageTag,
-			String stringTemplate, URI termType, String inverseExpression,
-			ReferenceMap referenceValue)  {
+						   Value constantValue, URI dataType, String languageTag,
+						   String stringTemplate, URI termType, String inverseExpression,
+						   ReferenceMap referenceValue, GraphMap graphMap)  {
 		super(constantValue, dataType, languageTag, stringTemplate, termType,
-				inverseExpression, referenceValue);
+				inverseExpression, referenceValue, graphMap);
 		setPredicateObjectMap(predicateObjectMap);
                 setOwnTriplesMap(triplesMap);
 	}
         
         /**
         *
-        * @param predicateObjectMap
-        * @param constantValue
-        * @param dataType
-        * @param languageTag
-        * @param stringTemplate
-        * @param termType
-        * @param inverseExpression
-        * @param referenceValue
-        * @param split
-        * @param process
-        * @param replace
         */
        /*public StdObjectMap(PredicateObjectMap predicateObjectMap,
 			Value constantValue, URI dataType, String languageTag,
