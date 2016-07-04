@@ -83,4 +83,6 @@ public interface TriplesMap {
      * @param name
      */
     public void setName(String name);
+
+
 }
