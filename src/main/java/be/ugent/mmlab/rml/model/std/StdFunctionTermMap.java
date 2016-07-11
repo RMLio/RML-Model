@@ -74,7 +74,7 @@ public class StdFunctionTermMap extends AbstractTermMap implements FunctionTermM
         this.parameterRefs = parameterRefs;
     }
 
-    public Map<String,String> getParamterRefs(){
+    public Map<String,String> getParameterRefs(){
         return this.parameterRefs;
     }
 }
