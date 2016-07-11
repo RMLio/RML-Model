@@ -35,7 +35,6 @@ public interface TermMap {
         // A template-valued Term Map is a Term Map that is represented by a
         // resource that has exactly one rr:template property
         TEMPLATE_VALUED,
-        // auto-assignments of blank nodes.
         NO_VALUE_FOR_BNODE
     }
 

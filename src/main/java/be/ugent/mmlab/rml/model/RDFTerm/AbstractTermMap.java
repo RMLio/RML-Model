@@ -1,6 +1,7 @@
 package be.ugent.mmlab.rml.model.RDFTerm;
 
 import be.ugent.mmlab.rml.model.TriplesMap;
+import be.ugent.mmlab.rml.model.std.StdFunctionTermMap;
 import be.ugent.mmlab.rml.model.std.StdObjectMap;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import be.ugent.mmlab.rml.model.termMap.TemplateMap;
@@ -109,6 +110,12 @@ public abstract class AbstractTermMap implements TermMap {
                         constantValue instanceof Literal)) {
                 this.termType = TermType.LITERAL;
                 log.debug("No term type specified : use Literal by default.");
+            } else
+            if((this instanceof StdObjectMap)
+                    && (getReferenceMap() == null)
+                    && (constantValue == null)
+                    && (stringTemplate == null)){
+                this.termType = TermType.LITERAL;
             } else {
                 // otherwise its term type is IRI
                 this.termType = TermType.IRI;
