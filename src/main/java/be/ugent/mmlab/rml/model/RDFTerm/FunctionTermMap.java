@@ -4,6 +4,7 @@ import be.ugent.mmlab.rml.model.PredicateObjectMap;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import org.openrdf.model.URI;
 
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -23,4 +24,8 @@ public interface FunctionTermMap extends TermMap {
     public void setFunctionTriplesMap(TriplesMap functionTriplesMap);
 
     public TriplesMap getFunctionTriplesMap();
+
+    public void setParameterRefs(Map<String,String> parameterRefs);
+
+    public Map<String,String> getParameterRefs();
 }
