@@ -82,4 +82,16 @@ public interface PredicateObjectMap {
      * @param graphmaps
      */
     public void setGraphMaps(Set<GraphMap> graphmaps);
+
+    /**
+     * Get dcterms:type from predicate object map
+     */
+    public String getDCTermsType();
+
+    /**
+     * Set dcterms:type in a predicate object map
+     * @param dcTermsType
+     */
+    public void setDCTermsType(String dcTermsType);
+
 }

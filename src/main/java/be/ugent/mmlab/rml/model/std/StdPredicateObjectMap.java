@@ -35,6 +35,7 @@ public class StdPredicateObjectMap implements PredicateObjectMap {
 	private Set<PredicateMap> predicateMaps;
 	protected TriplesMap ownTriplesMap;
 	private HashSet<GraphMap> graphMaps;
+	private String dctermsType;
 
 	private StdPredicateObjectMap(Set<PredicateMap> predicateMaps) {
 		setPredicateMaps(predicateMaps);
@@ -161,6 +162,16 @@ public class StdPredicateObjectMap implements PredicateObjectMap {
 	public void setGraphMaps(Set<GraphMap> graphMaps) {
             if(graphMaps != null && graphMaps.size() > 0)
                 this.graphMaps = new HashSet<GraphMap>(graphMaps);
+	}
+
+	@Override
+	public String getDCTermsType() {
+		return dctermsType;
+	}
+
+	@Override
+	public void setDCTermsType(String dcTermsType) {
+		this.dctermsType = dcTermsType;
 	}
 
 

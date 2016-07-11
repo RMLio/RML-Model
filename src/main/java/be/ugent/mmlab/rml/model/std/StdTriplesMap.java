@@ -30,6 +30,7 @@ public final class StdTriplesMap implements TriplesMap {
 	private SubjectMap subjectMap;
 	private LogicalSource logicalSource;
 	private String name;
+	private String dctermsType;
 
 	/**
      *
@@ -116,6 +117,18 @@ public final class StdTriplesMap implements TriplesMap {
 		if (name != null)
 			this.name = name;
 		
+	}
+
+	@Override
+	public String getDCTermsType() {
+		return dctermsType;
+	}
+
+	@Override
+	public void setDCTermsType(String dcTermsType) {
+		if(dcTermsType != null) {
+			this.dctermsType = dcTermsType;
+		}
 	}
 
 }

@@ -83,4 +83,18 @@ public interface TriplesMap {
      * @param name
      */
     public void setName(String name);
+
+
+    /**
+     * Get dcterms:type from predicate object map
+     */
+    public String getDCTermsType();
+
+    /**
+     * Set dcterms:type in a predicate object map
+     * @param dcTermsType
+     */
+    public void setDCTermsType(String dcTermsType);
+
+
 }
