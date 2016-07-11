@@ -7,6 +7,7 @@ import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import org.openrdf.model.URI;
 import org.openrdf.model.Value;
 
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -17,12 +18,14 @@ public class StdFunctionTermMap extends AbstractTermMap implements FunctionTermM
     private TriplesMap functionTriplesMap;
     private Set<URI> parameters;
     private PredicateObjectMap preObjMap = null;
+    private Map<String,String> parameterRefs = null;
 
     public StdFunctionTermMap(TriplesMap triplesMap, PredicateObjectMap predicateObjectMap,
                               Value constantValue, URI dataType, String languageTag,
                               String stringTemplate, URI termType, String inverseExpression,
                               ReferenceMap referenceValue, GraphMap graphMap,
-                              Value value, TriplesMap functionTriplesMap, URI functionURI, Set<URI> parameters){
+                              Value value, TriplesMap functionTriplesMap, URI functionURI,
+                              Set<URI> parameters, Map<String,String> parametersRefs){
         super(constantValue, dataType, languageTag, stringTemplate, termType, inverseExpression, referenceValue, graphMap);
         setPredicateObjectMap(predicateObjectMap);
 
@@ -30,6 +33,7 @@ public class StdFunctionTermMap extends AbstractTermMap implements FunctionTermM
         setFunctionTriplesMap(functionTriplesMap);
         setFunction(functionURI);
         setParameters(parameters);
+        setParameterRefs(parametersRefs);
     }
 
     public void setFunctionTriplesMap(TriplesMap functionTriplesMap){
@@ -66,4 +70,11 @@ public class StdFunctionTermMap extends AbstractTermMap implements FunctionTermM
     @Override
     protected void checkConstantValue(Value constantValue) { }
 
+    public void setParameterRefs(Map<String,String> parameterRefs) {
+        this.parameterRefs = parameterRefs;
+    }
+
+    public Map<String,String> getParamterRefs(){
+        return this.parameterRefs;
+    }
 }
