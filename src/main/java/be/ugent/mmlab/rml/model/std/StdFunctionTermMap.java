@@ -20,11 +20,10 @@ public class StdFunctionTermMap extends AbstractTermMap implements FunctionTermM
     private PredicateObjectMap preObjMap = null;
     private Map<String,String> parameterRefs = null;
 
-    public StdFunctionTermMap(TriplesMap triplesMap, PredicateObjectMap predicateObjectMap,
-                              Value constantValue, URI dataType, String languageTag,
+    public StdFunctionTermMap(Value constantValue, URI dataType, String languageTag,
                               String stringTemplate, URI termType, String inverseExpression,
-                              ReferenceMap referenceValue, GraphMap graphMap,
-                              Value value, TriplesMap functionTriplesMap, URI functionURI,
+                              ReferenceMap referenceValue, PredicateObjectMap predicateObjectMap, GraphMap graphMap,
+                              TriplesMap functionTriplesMap, URI functionURI,
                               Set<URI> parameters, Map<String,String> parametersRefs){
         super(constantValue, dataType, languageTag, stringTemplate, termType, inverseExpression, referenceValue, graphMap);
         setPredicateObjectMap(predicateObjectMap);
