@@ -1,7 +1,7 @@
 package be.ugent.mmlab.rml.model.RDFTerm;
 
 import java.util.Set;
-import org.openrdf.model.URI;
+import org.eclipse.rdf4j.model.URI;
 
 /**
  *************************************************************************

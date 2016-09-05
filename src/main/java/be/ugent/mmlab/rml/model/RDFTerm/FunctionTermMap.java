@@ -2,7 +2,7 @@ package be.ugent.mmlab.rml.model.RDFTerm;
 
 import be.ugent.mmlab.rml.model.PredicateObjectMap;
 import be.ugent.mmlab.rml.model.TriplesMap;
-import org.openrdf.model.URI;
+import org.eclipse.rdf4j.model.URI;
 
 import java.util.Map;
 import java.util.Set;
