@@ -6,7 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import org.eclipse.rdf4j.model.Resource;
 import org.eclipse.rdf4j.model.Statement;
-import org.eclipse.rdf4j.model.URI;
+import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Value;
 import org.eclipse.rdf4j.model.ValueFactory;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
@@ -96,7 +96,7 @@ public class FileDataset extends StdRMLDataset {
     }
     
     @Override
-    public void add(Resource s, URI p, Value o, Resource... contexts) {
+    public void add(Resource s, IRI p, Value o, Resource... contexts) {
         log.debug("Add triple (" + s.stringValue()
                 + ", " + p.stringValue() + ", " + o.stringValue() + ").");
         

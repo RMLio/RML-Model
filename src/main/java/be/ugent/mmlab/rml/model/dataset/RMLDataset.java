@@ -5,7 +5,7 @@ import java.io.OutputStream;
 import java.util.List;
 import org.eclipse.rdf4j.model.Resource;
 import org.eclipse.rdf4j.model.Statement;
-import org.eclipse.rdf4j.model.URI;
+import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Value;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.rio.RDFFormat;
@@ -32,13 +32,13 @@ public interface RMLDataset {
     public List getMetadataVocab();
     
     public void addToRepository(TriplesMap map, 
-            Resource s, URI p, Value o, Resource... contexts);
+            Resource s, IRI p, Value o, Resource... contexts);
     
     public Repository getRepository();
 
-    public void add(Resource s, URI p, Value o, Resource... contexts);   
+    public void add(Resource s, IRI p, Value o, Resource... contexts);
     
-    public List<Statement> tuplePattern(Resource s, URI p, Value o,
+    public List<Statement> tuplePattern(Resource s, IRI p, Value o,
 			Resource... contexts);
     
     public RDFFormat selectFormat(String outputFormat);

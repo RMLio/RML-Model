@@ -7,7 +7,7 @@ import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import java.util.HashSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.eclipse.rdf4j.model.URI;
+import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Value;
 
 /**
@@ -42,7 +42,7 @@ public class StdPredicateMap extends AbstractTermMap implements TermMap,
      */
     public StdPredicateMap(TriplesMap triplesMap, PredicateObjectMap predicateObjectMap,
             Value constantValue, String stringTemplate,
-            String inverseExpression, ReferenceMap referenceValue, URI termType, GraphMap graphMap) {
+            String inverseExpression, ReferenceMap referenceValue, IRI termType, GraphMap graphMap) {
         // No Literal term type
         // ==> No datatype
         // ==> No specified language tag

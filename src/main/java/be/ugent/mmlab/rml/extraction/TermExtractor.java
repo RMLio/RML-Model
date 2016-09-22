@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.eclipse.rdf4j.model.Resource;
 import org.eclipse.rdf4j.model.Statement;
-import org.eclipse.rdf4j.model.URI;
+import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Value;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
@@ -67,7 +67,7 @@ public class TermExtractor {
     }
     
     static public Value extractValueFromTermMap(
-            Repository repository, Resource termType, URI uri, TriplesMap triplesMap) {
+            Repository repository, Resource termType, IRI uri, TriplesMap triplesMap) {
         RepositoryResult<Statement> statements ;
         Value value = null;
         try {
@@ -96,7 +96,7 @@ public class TermExtractor {
         Set<Value> values = new HashSet<Value>();
         try {
             RepositoryConnection connection = repository.getConnection();
-            URI p = RMLTermExtractor.getTermURI(repository, term);
+            IRI p = RMLTermExtractor.getTermURI(repository, term);
             statements = connection.getStatements(termType, p, null, true);
             
             while (statements.hasNext()) {
@@ -135,17 +135,17 @@ public class TermExtractor {
         return result;
     }   
     
-    public static Set<URI> extractURIsFromTermMap(
+    public static Set<IRI> extractURIsFromTermMap(
             Repository repository, Resource termType, R2RMLVocabulary.R2RMLTerm term){
-        Set<URI> uris = new HashSet<URI>();
+        Set<IRI> uris = new HashSet<IRI>();
         RepositoryResult<Statement> statements;
         try {
             RepositoryConnection connection = repository.getConnection();    
-            URI p = RMLTermExtractor.getTermURI(repository, term);
+            IRI p = RMLTermExtractor.getTermURI(repository, term);
             statements = connection.getStatements(termType, p, null, true);
             
             while (statements.hasNext()) {
-                URI uri = (URI) statements.next().getObject();
+                IRI uri = (IRI) statements.next().getObject();
                 log.debug(term + " : " + uri.stringValue());
                 uris.add(uri);
             }

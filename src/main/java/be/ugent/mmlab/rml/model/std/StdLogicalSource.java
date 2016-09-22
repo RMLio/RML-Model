@@ -5,7 +5,7 @@ import be.ugent.mmlab.rml.model.LogicalSource;
 import be.ugent.mmlab.rml.model.ReferenceFormulation;
 import be.ugent.mmlab.rml.vocabularies.QLVocabulary.QLTerm;
 import org.eclipse.rdf4j.model.Literal;
-import org.eclipse.rdf4j.model.URI;
+import org.eclipse.rdf4j.model.IRI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -151,7 +151,7 @@ public class StdLogicalSource implements LogicalSource {
         } //object input
         else {
             log.info("Input source " + source.getClass().getSimpleName());
-            return URI.class.getSimpleName();
+            return IRI.class.getSimpleName();
         }
     }
 

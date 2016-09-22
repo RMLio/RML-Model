@@ -4,11 +4,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.eclipse.rdf4j.model.Resource;
-import org.eclipse.rdf4j.model.Statement;
-import org.eclipse.rdf4j.model.URI;
-import org.eclipse.rdf4j.model.Value;
-import org.eclipse.rdf4j.model.impl.StatementImpl;
+
+import org.eclipse.rdf4j.model.*;
+import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.eclipse.rdf4j.rio.RDFHandlerException;
 import org.eclipse.rdf4j.rio.RDFWriter;
@@ -95,13 +93,13 @@ public class NaiveFileDataset extends StdRMLDataset {
     
     
     @Override
-    public void add(Resource s, URI p, Value o, Resource... contexts) {
+    public void add(Resource s, IRI p, Value o, Resource... contexts) {
         if (log.isDebugEnabled()) {
             log.debug("Add triple (" + s.stringValue()
                     + ", " + p.stringValue() + ", " + o.stringValue() + ").");
         }
-        
-        Statement st = new StatementImpl(s, p, o);
+        ValueFactory vf = SimpleValueFactory.getInstance();
+        Statement st = vf.createStatement(s, p, o);
         try {
             writer.handleStatement(st);
             size++;

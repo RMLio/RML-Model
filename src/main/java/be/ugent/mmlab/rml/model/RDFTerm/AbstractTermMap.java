@@ -10,7 +10,7 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.eclipse.rdf4j.model.Literal;
-import org.eclipse.rdf4j.model.URI;
+import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Value;
 
 /**
@@ -31,9 +31,9 @@ public abstract class AbstractTermMap implements TermMap {
                 LoggerFactory.getLogger(
                 AbstractTermMap.class.getSimpleName());
         
-        private URI dataType; 
+        private IRI dataType;
         private TermType termType;
-        private URI implicitDataType; 
+        private IRI implicitDataType;
         private String languageTag;
         private String stringTemplate;
         protected TriplesMap ownTriplesMap;
@@ -48,8 +48,8 @@ public abstract class AbstractTermMap implements TermMap {
         return log;
     }
 
-    protected AbstractTermMap(Value constantValue, URI dataType,
-                              String languageTag, String stringTemplate, URI termType,
+    protected AbstractTermMap(Value constantValue, IRI dataType,
+                              String languageTag, String stringTemplate, IRI termType,
                               String inverseExpression, ReferenceMap referenceValue, GraphMap graphMap) {
 
                 setConstantValue(constantValue);
@@ -98,7 +98,7 @@ public abstract class AbstractTermMap implements TermMap {
      * @param termType
      * @param dataType
      */
-    protected void setTermType(URI termType, URI dataType) {
+    protected void setTermType(IRI termType, IRI dataType) {
         if (termType == null) {
             // If the Term Map does not have a rr:termType property :
             // rr:Literal by default, if it is an object map and at
@@ -127,7 +127,7 @@ public abstract class AbstractTermMap implements TermMap {
         }
     }
 
-        private TermType checkTermType(URI termType) {
+        private TermType checkTermType(IRI termType) {
         // Its value MUST be an IRI
             /*if (!RDFDataValidator.isValidURI(termType.stringValue())) {
                 log.error("Data Error"
@@ -223,7 +223,7 @@ public abstract class AbstractTermMap implements TermMap {
          * Check if datatype is correctly defined.
          *
          */
-        public void checkDataType(URI dataType) {
+        public void checkDataType(IRI dataType) {
                 // Its value MUST be an IRI
                 //MVS: class below prevents datatypes other than XSD
                 //if (!RDFDataValidator.isValidDatatype(dataType.stringValue())) {
@@ -235,7 +235,7 @@ public abstract class AbstractTermMap implements TermMap {
         * @param dataType
         */
         @Override
-        public void setDataType(URI dataType) {
+        public void setDataType(IRI dataType) {
             if (!isTypeable() && dataType != null) {
                 log.error("Invalid Structure "
                         + "A term map that is not "
@@ -265,12 +265,12 @@ public abstract class AbstractTermMap implements TermMap {
         }
 
         @Override
-        public URI getDataType() {
+        public IRI getDataType() {
             return dataType;
         }
 
         @Override
-        public URI getImplicitDataType() {
+        public IRI getImplicitDataType() {
             return implicitDataType;
         }
 
@@ -371,7 +371,7 @@ public abstract class AbstractTermMap implements TermMap {
         * @param implicitDataType
         */
         @Override
-        public void setImplicitDataType(URI implicitDataType) {
+        public void setImplicitDataType(IRI implicitDataType) {
             this.implicitDataType = implicitDataType;
         }
         

@@ -4,7 +4,7 @@ import be.ugent.mmlab.rml.model.RDFTerm.*;
 import be.ugent.mmlab.rml.model.PredicateObjectMap;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
-import org.eclipse.rdf4j.model.URI;
+import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Value;
 
 import java.util.Map;
@@ -14,17 +14,17 @@ import java.util.Set;
  * Created by andimou on 7/8/16.
  */
 public class StdFunctionTermMap extends AbstractTermMap implements FunctionTermMap, ObjectMap, TermMap {
-    private URI functionURI ;
+    private IRI functionURI ;
     private TriplesMap functionTriplesMap;
-    private Set<URI> parameters;
+    private Set<IRI> parameters;
     private PredicateObjectMap preObjMap = null;
     private Map<String,String> parameterRefs = null;
 
-    public StdFunctionTermMap(Value constantValue, URI dataType, String languageTag,
-                              String stringTemplate, URI termType, String inverseExpression,
+    public StdFunctionTermMap(Value constantValue, IRI dataType, String languageTag,
+                              String stringTemplate, IRI termType, String inverseExpression,
                               ReferenceMap referenceValue, PredicateObjectMap predicateObjectMap, GraphMap graphMap,
-                              TriplesMap functionTriplesMap, URI functionURI,
-                              Set<URI> parameters, Map<String,String> parametersRefs){
+                              TriplesMap functionTriplesMap, IRI functionURI,
+                              Set<IRI> parameters, Map<String,String> parametersRefs){
         super(constantValue, dataType, languageTag, stringTemplate, termType, inverseExpression, referenceValue, graphMap);
         setPredicateObjectMap(predicateObjectMap);
 
@@ -43,19 +43,19 @@ public class StdFunctionTermMap extends AbstractTermMap implements FunctionTermM
         return this.functionTriplesMap;
     }
 
-    public void setFunction(URI functionValue){
+    public void setFunction(IRI functionValue){
         this.functionURI = functionValue ;
     }
 
-    public URI getFunction(){
+    public IRI getFunction(){
         return functionURI;
     }
 
-    public void setParameters(Set<URI> parameters){
+    public void setParameters(Set<IRI> parameters){
         this.parameters = parameters;
     }
 
-    public Set<URI> getParameters(){
+    public Set<IRI> getParameters(){
         return this.parameters;
     }
 

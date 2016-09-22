@@ -4,7 +4,7 @@ import be.ugent.mmlab.rml.vocabularies.R2RMLVocabulary;
 import be.ugent.mmlab.rml.vocabularies.RMLVocabulary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.eclipse.rdf4j.model.URI;
+import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.ValueFactory;
 import org.eclipse.rdf4j.repository.Repository;
 import org.eclipse.rdf4j.repository.RepositoryConnection;
@@ -26,10 +26,10 @@ public class RMLTermExtractor {
     static final Logger log = LoggerFactory.getLogger(
             RMLTermExtractor.class.getSimpleName());
 
-    public static URI getTermURI(Repository repository, Enum term) {
+    public static IRI getTermURI(Repository repository, Enum term) {
         String namespace = R2RMLVocabulary.R2RML_NAMESPACE;
         ValueFactory vf ;
-        URI uri = null;
+        IRI uri = null;
         try {
             RepositoryConnection connection = repository.getConnection();
             vf = connection.getValueFactory();
@@ -40,7 +40,7 @@ public class RMLTermExtractor {
             } else if (!(term instanceof R2RMLVocabulary.R2RMLTerm)) {
                 log.error(term + " is not valid.");
             }
-            uri = vf.createURI(namespace + term);
+            uri = vf.createIRI(namespace + term);
 
             connection.close();
         } catch (RepositoryException ex) {

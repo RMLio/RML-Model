@@ -7,7 +7,7 @@ import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import java.util.HashSet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.eclipse.rdf4j.model.URI;
+import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Value;
 
 /**
@@ -42,8 +42,8 @@ public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap 
         * @param referenceValue
         */
        public StdObjectMap(TriplesMap triplesMap, PredicateObjectMap predicateObjectMap,
-						   Value constantValue, URI dataType, String languageTag,
-						   String stringTemplate, URI termType, String inverseExpression,
+						   Value constantValue, IRI dataType, String languageTag,
+						   String stringTemplate, IRI termType, String inverseExpression,
 						   ReferenceMap referenceValue, GraphMap graphMap)  {
 		super(constantValue, dataType, languageTag, stringTemplate, termType,
 				inverseExpression, referenceValue, graphMap);

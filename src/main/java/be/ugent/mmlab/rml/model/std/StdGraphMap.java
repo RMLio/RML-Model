@@ -6,7 +6,7 @@ import be.ugent.mmlab.rml.model.RDFTerm.TermType;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.eclipse.rdf4j.model.URI;
+import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.model.Value;
 
 /***************************************************************************
@@ -36,7 +36,7 @@ public class StdGraphMap extends AbstractTermMap implements GraphMap {
      */
     public StdGraphMap(Value constantValue,
             String stringTemplate, String inverseExpression,
-            ReferenceMap referenceValue, URI termType) {
+            ReferenceMap referenceValue, IRI termType) {
         // No Literal term type
         // ==> No datatype
         // ==> No specified language tag
