@@ -2,7 +2,6 @@ package be.ugent.mmlab.rml.model.dataset;
 
 import be.ugent.mmlab.rml.model.TriplesMap;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -148,10 +147,29 @@ public class StdRMLDataset implements RMLDataset {
             con.export(writer);
             con.commit();
             con.close();
+            File file = new File(System.getProperty("user.dir")+"/repositories");
+            deleteDirectory(file);
             repository.shutDown();
         } catch (RepositoryException ex) {
             log.error("Repository Exception " + ex);
         }
+    }
+
+    public static boolean deleteDirectory(File directory) {
+        if(directory.exists()){
+            File[] files = directory.listFiles();
+            if(null!=files){
+                for(int i=0; i<files.length; i++) {
+                    if(files[i].isDirectory()) {
+                        deleteDirectory(files[i]);
+                    }
+                    else {
+                        files[i].delete();
+                    }
+                }
+            }
+        }
+        return(directory.delete());
     }
     
     //TODO: Spring it

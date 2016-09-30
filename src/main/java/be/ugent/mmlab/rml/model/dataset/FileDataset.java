@@ -144,12 +144,10 @@ public class FileDataset extends StdRMLDataset {
             con.commit();
             con.close();
             repository.shutDown();
-            
-            String property = "java.io.tmpdir";
-            String tempDir = System.getProperty(property) + "/RML-Processor";
-            File file = new File(tempDir);
-            file.delete();
 
+            File repositories = new File(this.target.getParent() + "/repositories");
+            deleteDirectory(repositories);
+            
         } catch (RepositoryException ex) {
             log.error("Repository Exception " + ex);
         } catch (FileNotFoundException ex) {
