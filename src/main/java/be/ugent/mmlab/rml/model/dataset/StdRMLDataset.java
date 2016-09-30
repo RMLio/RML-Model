@@ -1,6 +1,8 @@
 package be.ugent.mmlab.rml.model.dataset;
 
 import be.ugent.mmlab.rml.model.TriplesMap;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -141,6 +143,11 @@ public class StdRMLDataset implements RMLDataset {
     public void closeRepository() {
         try {
             log.debug("Closing memory repository..");
+            RepositoryConnection con = repository.getConnection();
+            RDFWriter writer = Rio.createWriter(this.format, System.out);
+            con.export(writer);
+            con.commit();
+            con.close();
             repository.shutDown();
         } catch (RepositoryException ex) {
             log.error("Repository Exception " + ex);
