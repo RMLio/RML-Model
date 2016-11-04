@@ -22,6 +22,7 @@ public class QLVocabulary {
         CSV_CLASS("CSV"),
         XLS_CLASS("XLS"),
         XLSX_CLASS("XLSX"),
+        DBPEDIA_CLASS("wikitext"),
         CSS3_CLASS("CSS3");
         
         private String displayName;
