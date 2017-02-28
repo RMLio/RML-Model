@@ -10,8 +10,8 @@ import java.util.HashSet;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.openrdf.model.URI;
-import org.openrdf.model.Value;
+import org.eclipse.rdf4j.model.IRI;
+import org.eclipse.rdf4j.model.Value;
 
 /**
  *************************************************************************
@@ -28,15 +28,16 @@ import org.openrdf.model.Value;
  */
 public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
 
-	protected Set<URI> classIRIs;
+	protected Set<IRI> classIRIs;
 	protected HashSet<GraphMap> graphMaps;
         // Log
         private static final Logger log = 
-                LoggerFactory.getLogger(StdObjectMap.class.getSimpleName());
+                LoggerFactory.getLogger(
+                StdObjectMap.class.getSimpleName());
 
 	public StdSubjectMap(TriplesMap ownTriplesMap, Value constantValue,
-			String stringTemplate, URI termType, String inverseExpression,
-			ReferenceMap referenceValue, Set<URI> classIRIs, GraphMap graphMap) {
+			String stringTemplate, IRI termType, String inverseExpression,
+			ReferenceMap referenceValue, Set<IRI> classIRIs, GraphMap graphMap) {
 		// No Literal term type
 		// ==> No datatype
 		// ==> No specified language tag
@@ -70,17 +71,17 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
 	}
 
         @Override
-	public void setClassIRIs(Set<URI> classIRIs2) {
-		this.classIRIs = new HashSet<URI>();
+	public void setClassIRIs(Set<IRI> classIRIs2) {
+		this.classIRIs = new HashSet<IRI>();
 		if (classIRIs2 != null) {
 			checkClassIRIs(classIRIs);
 			classIRIs.addAll(classIRIs2);
 		}
 	}
 
-	private void checkClassIRIs(Set<URI> classIRIs2) {
+	private void checkClassIRIs(Set<IRI> classIRIs2) {
             // The values of the rr:class property must be IRIs.
-            for (URI classIRI : classIRIs) {
+            for (IRI classIRI : classIRIs) {
                 //TODO: Add proper URL chekc
                 /*if (!StdIriRdfTerm.isValidURI(classIRI.stringValue())) {
                     log.error(
@@ -91,7 +92,7 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
         }
 
         @Override
-	public Set<URI> getClassIRIs() {
+	public Set<IRI> getClassIRIs() {
 		return classIRIs;
 	}
 
@@ -131,7 +132,7 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
 	public String toString() {
 		String result = super.toString() 
                         + " [StdSubjectMap : classIRIs = [";
-		for (URI uri : classIRIs)
+		for (IRI uri : classIRIs)
 			result += uri.getLocalName() + ",";
 		result += "], graphMaps = [";
 		for (GraphMap graphMap : graphMaps)

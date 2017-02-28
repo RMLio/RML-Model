@@ -1,26 +1,27 @@
 package be.ugent.mmlab.rml.model.dataset;
 
 import be.ugent.mmlab.rml.model.TriplesMap;
+
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import org.openrdf.model.BNode;
-import org.openrdf.model.Resource;
-import org.openrdf.model.Statement;
-import org.openrdf.model.URI;
-import org.openrdf.model.Value;
-import org.openrdf.model.ValueFactory;
-import org.openrdf.repository.Repository;
-import org.openrdf.repository.RepositoryConnection;
-import org.openrdf.repository.RepositoryException;
-import org.openrdf.repository.RepositoryResult;
-import org.openrdf.repository.sail.SailRepository;
-import org.openrdf.rio.RDFFormat;
-import org.openrdf.rio.RDFWriter;
-import org.openrdf.rio.Rio;
-import org.openrdf.sail.inferencer.fc.ForwardChainingRDFSInferencer;
-import org.openrdf.sail.memory.MemoryStore;
+import org.eclipse.rdf4j.model.BNode;
+import org.eclipse.rdf4j.model.Resource;
+import org.eclipse.rdf4j.model.Statement;
+import org.eclipse.rdf4j.model.IRI;
+import org.eclipse.rdf4j.model.Value;
+import org.eclipse.rdf4j.model.ValueFactory;
+import org.eclipse.rdf4j.repository.Repository;
+import org.eclipse.rdf4j.repository.RepositoryConnection;
+import org.eclipse.rdf4j.repository.RepositoryException;
+import org.eclipse.rdf4j.repository.RepositoryResult;
+import org.eclipse.rdf4j.repository.sail.SailRepository;
+import org.eclipse.rdf4j.rio.RDFFormat;
+import org.eclipse.rdf4j.rio.RDFWriter;
+import org.eclipse.rdf4j.rio.Rio;
+import org.eclipse.rdf4j.sail.inferencer.fc.ForwardChainingRDFSInferencer;
+import org.eclipse.rdf4j.sail.memory.MemoryStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,7 +59,7 @@ public class StdRMLDataset implements RMLDataset {
     
     //TODO: Spring it
     @Override
-    public void add(Resource s, URI p, Value o, Resource... contexts) {
+    public void add(Resource s, IRI p, Value o, Resource... contexts) {
         if (log.isDebugEnabled()) {
             log.debug("Add triple (" + s.stringValue()
                     + ", " + p.stringValue() + ", " + o.stringValue() + ").");
@@ -141,15 +142,39 @@ public class StdRMLDataset implements RMLDataset {
     public void closeRepository() {
         try {
             log.debug("Closing memory repository..");
+            RepositoryConnection con = repository.getConnection();
+            RDFWriter writer = Rio.createWriter(this.format, System.out);
+            con.export(writer);
+            con.commit();
+            con.close();
+            File file = new File(System.getProperty("user.dir")+"/repositories");
+            deleteDirectory(file);
             repository.shutDown();
         } catch (RepositoryException ex) {
             log.error("Repository Exception " + ex);
         }
     }
+
+    public static boolean deleteDirectory(File directory) {
+        if(directory.exists()){
+            File[] files = directory.listFiles();
+            if(null!=files){
+                for(int i=0; i<files.length; i++) {
+                    if(files[i].isDirectory()) {
+                        deleteDirectory(files[i]);
+                    }
+                    else {
+                        files[i].delete();
+                    }
+                }
+            }
+        }
+        return(directory.delete());
+    }
     
     //TODO: Spring it
     @Override
-    public List<Statement> tuplePattern(Resource s, URI p, Value o,
+    public List<Statement> tuplePattern(Resource s, IRI p, Value o,
 			Resource... contexts) {
         try {
             RepositoryConnection con = repository.getConnection();
@@ -319,14 +344,15 @@ public class StdRMLDataset implements RMLDataset {
     }
 
     @Override
-    public void addToRepository(TriplesMap map, Resource s, URI p, Value o, Resource... contexts) {
+    public void addToRepository(TriplesMap map, Resource s, IRI p, Value o, Resource... contexts) {
         log.error("Not supported yet."); 
     } 
     
     @Override
-    public Repository getRepository(){
+    public Repository getRepository() {
         return this.repository;
-    } 
+
+    }
     
     @Override
     public List getMetadataVocab(){

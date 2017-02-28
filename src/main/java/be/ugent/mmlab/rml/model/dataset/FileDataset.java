@@ -4,23 +4,23 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import org.openrdf.model.Resource;
-import org.openrdf.model.Statement;
-import org.openrdf.model.URI;
-import org.openrdf.model.Value;
-import org.openrdf.model.ValueFactory;
-import org.openrdf.repository.RepositoryConnection;
-import org.openrdf.repository.RepositoryException;
-import org.openrdf.repository.config.RepositoryConfig;
-import org.openrdf.repository.config.RepositoryConfigException;
-import org.openrdf.repository.manager.LocalRepositoryManager;
-import org.openrdf.repository.sail.SailRepository;
-import org.openrdf.repository.sail.config.SailRepositoryConfig;
-import org.openrdf.rio.RDFHandlerException;
-import org.openrdf.rio.RDFWriter;
-import org.openrdf.rio.Rio;
-import org.openrdf.sail.nativerdf.NativeStore;
-import org.openrdf.sail.nativerdf.config.NativeStoreConfig;
+import org.eclipse.rdf4j.model.Resource;
+import org.eclipse.rdf4j.model.Statement;
+import org.eclipse.rdf4j.model.IRI;
+import org.eclipse.rdf4j.model.Value;
+import org.eclipse.rdf4j.model.ValueFactory;
+import org.eclipse.rdf4j.repository.RepositoryConnection;
+import org.eclipse.rdf4j.repository.RepositoryException;
+import org.eclipse.rdf4j.repository.config.RepositoryConfig;
+import org.eclipse.rdf4j.repository.config.RepositoryConfigException;
+import org.eclipse.rdf4j.repository.manager.LocalRepositoryManager;
+import org.eclipse.rdf4j.repository.sail.SailRepository;
+import org.eclipse.rdf4j.repository.sail.config.SailRepositoryConfig;
+import org.eclipse.rdf4j.rio.RDFHandlerException;
+import org.eclipse.rdf4j.rio.RDFWriter;
+import org.eclipse.rdf4j.rio.Rio;
+import org.eclipse.rdf4j.sail.nativerdf.NativeStore;
+import org.eclipse.rdf4j.sail.nativerdf.config.NativeStoreConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -96,7 +96,7 @@ public class FileDataset extends StdRMLDataset {
     }
     
     @Override
-    public void add(Resource s, URI p, Value o, Resource... contexts) {
+    public void add(Resource s, IRI p, Value o, Resource... contexts) {
         log.debug("Add triple (" + s.stringValue()
                 + ", " + p.stringValue() + ", " + o.stringValue() + ").");
         
@@ -144,12 +144,10 @@ public class FileDataset extends StdRMLDataset {
             con.commit();
             con.close();
             repository.shutDown();
-            
-            String property = "java.io.tmpdir";
-            String tempDir = System.getProperty(property) + "/RML-Processor";
-            File file = new File(tempDir);
-            file.delete();
 
+            File repositories = new File(this.target.getParent() + "/repositories");
+            deleteDirectory(repositories);
+            
         } catch (RepositoryException ex) {
             log.error("Repository Exception " + ex);
         } catch (FileNotFoundException ex) {
