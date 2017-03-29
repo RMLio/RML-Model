@@ -85,6 +85,7 @@ public class R2RMLVocabulary {
 		IRI("IRI"),
 		BLANK_NODE("BlankNode"),
 		LITERAL("Literal"),
+		SQL_2008("SQL2008"),
 		
 		//FROM ANOTHER ONTOLOGY
 		TYPE("type");

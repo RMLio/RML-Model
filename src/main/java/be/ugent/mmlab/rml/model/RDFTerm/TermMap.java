@@ -3,8 +3,8 @@ package be.ugent.mmlab.rml.model.RDFTerm;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import be.ugent.mmlab.rml.model.termMap.TemplateMap;
-import org.openrdf.model.URI;
-import org.openrdf.model.Value;
+import org.eclipse.rdf4j.model.IRI;
+import org.eclipse.rdf4j.model.Value;
 
 /**
  *************************************************************************
@@ -35,7 +35,6 @@ public interface TermMap {
         // A template-valued Term Map is a Term Map that is represented by a
         // resource that has exactly one rr:template property
         TEMPLATE_VALUED,
-        // auto-assignments of blank nodes.
         NO_VALUE_FOR_BNODE
     }
 
@@ -141,13 +140,13 @@ public interface TermMap {
      * Typeable Term Maps may generate typed literals. 
      * The datatype of these literals can be explicitly specified using rr:datatype.
      */
-    public URI getDataType();
+    public IRI getDataType();
     
     /**
      *
      * @param uri
      */
-    public void setDataType(URI uri);
+    public void setDataType(IRI uri);
 
     /**
      * A typeable Term Map has an implicit datatype. 
@@ -157,13 +156,13 @@ public interface TermMap {
      * Otherwise, the Term Map must be a template-valued term map 
      * and its implicit datatype must be empty.
      */
-    public URI getImplicitDataType();
+    public IRI getImplicitDataType();
     
     /**
      *
      * @param uri
      */
-    public void setImplicitDataType(URI uri);
+    public void setImplicitDataType(IRI uri);
 
     /**
      * A datatype override is in effect on a typeable term map if it has a
@@ -171,6 +170,14 @@ public interface TermMap {
      * implicit datatype.
      */
     public boolean isOveridden();
+    
+    public void setCompletion();
+    
+    public boolean getCompletion();
+    
+    public void setValidation();
+    
+    public boolean getValidation();
 
     public void setGraphMap(GraphMap graphMap);
 

@@ -20,7 +20,8 @@ public class StdJoinCondition implements JoinCondition {
 
     // Log
     private static final Logger log = 
-            LoggerFactory.getLogger(StdJoinCondition.class.getSimpleName());
+            LoggerFactory.getLogger(
+            StdJoinCondition.class.getSimpleName());
     private String child;
     private String parent;
 

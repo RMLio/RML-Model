@@ -1,10 +1,7 @@
 package be.ugent.mmlab.rml.model.std;
 
-import be.ugent.mmlab.rml.model.RDFTerm.GraphMap;
-import be.ugent.mmlab.rml.model.RDFTerm.ObjectMap;
-import be.ugent.mmlab.rml.model.RDFTerm.PredicateMap;
+import be.ugent.mmlab.rml.model.RDFTerm.*;
 import be.ugent.mmlab.rml.model.PredicateObjectMap;
-import be.ugent.mmlab.rml.model.RDFTerm.ReferencingObjectMap;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,13 +26,16 @@ public class StdPredicateObjectMap implements PredicateObjectMap {
     
     // Log
     private static final Logger log = 
-            LoggerFactory.getLogger(StdPredicateObjectMap.class.getSimpleName());
+            LoggerFactory.getLogger(
+            StdPredicateObjectMap.class.getSimpleName());
 
 	private Set<ObjectMap> objectMaps;
 	private Set<ReferencingObjectMap> refObjectMaps;
+    private Set <FunctionTermMap> functionTermMaps;
 	private Set<PredicateMap> predicateMaps;
 	protected TriplesMap ownTriplesMap;
 	private HashSet<GraphMap> graphMaps;
+	private String dctermsType;
 
 	private StdPredicateObjectMap(Set<PredicateMap> predicateMaps) {
 		setPredicateMaps(predicateMaps);
@@ -53,6 +53,15 @@ public class StdPredicateObjectMap implements PredicateObjectMap {
             this(predicateMaps, objectMaps);
             setReferencingObjectMap(referencingObjectMaps);
         }
+
+    public StdPredicateObjectMap(Set<PredicateMap> predicateMaps,
+                                 Set<ObjectMap> objectMaps,
+                                 Set<ReferencingObjectMap> referencingObjectMaps,
+                                 Set<FunctionTermMap> functionTermMaps) {
+        this(predicateMaps, objectMaps);
+        setReferencingObjectMap(referencingObjectMaps);
+        setFunctionTermMap(functionTermMaps);
+    }
         
         @Override
 	public void setReferencingObjectMap(Set<ReferencingObjectMap> refObjectMaps) {
@@ -66,6 +75,23 @@ public class StdPredicateObjectMap implements PredicateObjectMap {
 			this.refObjectMaps = refObjectMaps;
             }
         }
+
+    @Override
+    public Set<FunctionTermMap> getFunctionTermMaps() {
+        return this.functionTermMaps;
+    }
+
+    public void setFunctionTermMap(Set<FunctionTermMap> functionTermMaps){
+        if (functionTermMaps == null)
+            this.functionTermMaps = new HashSet<FunctionTermMap>();
+        else {
+            for (FunctionTermMap functionTermMap : functionTermMaps) {
+                if (functionTermMap != null)
+                    functionTermMap.setPredicateObjectMap(this);
+            }
+            this.functionTermMaps = functionTermMaps;
+        }
+    }
 
         @Override
 	public Set<ObjectMap> getObjectMaps() {
@@ -136,6 +162,16 @@ public class StdPredicateObjectMap implements PredicateObjectMap {
 	public void setGraphMaps(Set<GraphMap> graphMaps) {
             if(graphMaps != null && graphMaps.size() > 0)
                 this.graphMaps = new HashSet<GraphMap>(graphMaps);
+	}
+
+	@Override
+	public String getDCTermsType() {
+		return dctermsType;
+	}
+
+	@Override
+	public void setDCTermsType(String dcTermsType) {
+		this.dctermsType = dcTermsType;
 	}
 
 

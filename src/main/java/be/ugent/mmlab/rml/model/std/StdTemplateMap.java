@@ -17,7 +17,8 @@ public class StdTemplateMap {
 
     // Log
     private static final Logger log = 
-            LoggerFactory.getLogger(StdTemplateMap.class.getSimpleName());
+            LoggerFactory.getLogger(
+            StdTemplateMap.class.getSimpleName());
     private String template = null;
 
     public StdTemplateMap(String template) {
@@ -75,9 +76,7 @@ public class StdTemplateMap {
                 }
                 keepNext = element.equals("{");
                 if (element.equals("}") && element != null) {
-                    log.debug(
-                            Thread.currentThread().getStackTrace()[1].getMethodName() + ": " 
-                            + "Extracted variable "
+                    log.debug("Extracted variable "
                             + next + " from string template " + stringTemplate);
                     result.add(next);
                     next = null;
