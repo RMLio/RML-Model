@@ -1,9 +1,6 @@
 package be.ugent.mmlab.rml.model.std;
 
-import be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap;
-import be.ugent.mmlab.rml.model.RDFTerm.GraphMap;
-import be.ugent.mmlab.rml.model.RDFTerm.SubjectMap;
-import be.ugent.mmlab.rml.model.RDFTerm.TermType;
+import be.ugent.mmlab.rml.model.RDFTerm.*;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import java.util.HashSet;
@@ -30,19 +27,22 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
 
 	protected Set<IRI> classIRIs;
 	protected HashSet<GraphMap> graphMaps;
+	private FunctionTermMap functionTermMap;
+
         // Log
         private static final Logger log = 
                 LoggerFactory.getLogger(
                 StdObjectMap.class.getSimpleName());
 
 	public StdSubjectMap(TriplesMap ownTriplesMap, Value constantValue,
-			String stringTemplate, IRI termType, String inverseExpression,
-			ReferenceMap referenceValue, Set<IRI> classIRIs, GraphMap graphMap) {
+						 String stringTemplate, IRI termType, String inverseExpression,
+						 ReferenceMap referenceValue, Set<IRI> classIRIs, GraphMap graphMap, FunctionTermMap functionTermMap) {
 		// No Literal term type
 		// ==> No datatype
 		// ==> No specified language tag
 		super(constantValue, null, null, stringTemplate, termType,
 				inverseExpression, referenceValue, graphMap);
+		setFunctionTermMap(functionTermMap);
 		setClassIRIs(classIRIs);
 		//TODO: Remove the following setting GraphMaps
 		setGraphMaps(graphMaps);
@@ -139,6 +139,15 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
 			result += graphMap + ",";
 		result += "]]";
 		return result;
+	}
+
+	@Override
+	public FunctionTermMap getFunctionTermMap() {
+		return this.functionTermMap;
+	}
+
+	public void setFunctionTermMap(FunctionTermMap functionTermMap) {
+		this.functionTermMap = functionTermMap;
 	}
 
 }

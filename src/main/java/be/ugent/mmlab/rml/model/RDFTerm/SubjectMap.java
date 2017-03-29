@@ -46,4 +46,8 @@ public interface SubjectMap extends TermMap {
      */
     public void setGraphMaps(Set<GraphMap> graphMap);
 
+    public FunctionTermMap getFunctionTermMap();
+
+    public void setFunctionTermMap(FunctionTermMap functionTermMap);
+
 }
