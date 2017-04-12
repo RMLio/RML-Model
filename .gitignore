@@ -5,6 +5,9 @@
 *.war
 *.ear
 
+.classpath
+.project
+.settings/
 target/
 .DS_Store
 nb-configuration.xml

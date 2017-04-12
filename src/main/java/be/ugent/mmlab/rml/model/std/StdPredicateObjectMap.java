@@ -28,7 +28,8 @@ import org.slf4j.LoggerFactory;
 public class StdPredicateObjectMap implements PredicateObjectMap {
     
     // Log
-    private static final Logger log = LoggerFactory.getLogger(StdPredicateObjectMap.class);
+    private static final Logger log = 
+            LoggerFactory.getLogger(StdPredicateObjectMap.class.getSimpleName());
 
 	private Set<ObjectMap> objectMaps;
 	private Set<ReferencingObjectMap> refObjectMaps;
@@ -44,14 +45,15 @@ public class StdPredicateObjectMap implements PredicateObjectMap {
 			Set<ObjectMap> objectMaps) {
 		this(predicateMaps);
 		setObjectMaps(objectMaps);
-	}
-	
-	public StdPredicateObjectMap(Set<PredicateMap> predicateMaps,
-			Set<ObjectMap> objectMaps, Set<ReferencingObjectMap> referencingObjectMaps) {
-		this(predicateMaps, objectMaps);
-		setReferencingObjectMap(referencingObjectMaps);
-	}
+	   }
 
+        public StdPredicateObjectMap(Set<PredicateMap> predicateMaps,
+                Set<ObjectMap> objectMaps,
+                Set<ReferencingObjectMap> referencingObjectMaps) {
+            this(predicateMaps, objectMaps);
+            setReferencingObjectMap(referencingObjectMaps);
+        }
+        
         @Override
 	public void setReferencingObjectMap(Set<ReferencingObjectMap> refObjectMaps) {
 		if (refObjectMaps == null)
@@ -60,10 +62,10 @@ public class StdPredicateObjectMap implements PredicateObjectMap {
 			for (ReferencingObjectMap refObjectMap : refObjectMaps) {
 				if (refObjectMap != null)
 					refObjectMap.setPredicateObjectMap(this);
-			}
+                }
 			this.refObjectMaps = refObjectMaps;
-		}
-	}
+            }
+        }
 
         @Override
 	public Set<ObjectMap> getObjectMaps() {
@@ -79,7 +81,7 @@ public class StdPredicateObjectMap implements PredicateObjectMap {
 	public Set<ReferencingObjectMap> getReferencingObjectMaps() {
 		return refObjectMaps;
 	}
-
+        
         @Override
 	public boolean hasReferencingObjectMaps() {
 		return refObjectMaps != null && !refObjectMaps.isEmpty();
@@ -132,7 +134,8 @@ public class StdPredicateObjectMap implements PredicateObjectMap {
 	
         @Override
 	public void setGraphMaps(Set<GraphMap> graphMaps) {
-		this.graphMaps = new HashSet<GraphMap>(graphMaps);
+            if(graphMaps != null && graphMaps.size() > 0)
+                this.graphMaps = new HashSet<GraphMap>(graphMaps);
 	}
 
 

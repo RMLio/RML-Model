@@ -29,6 +29,8 @@ public interface RMLDataset {
     
     public String getMetadataLevel();
     
+    public List getMetadataVocab();
+    
     public void addToRepository(TriplesMap map, 
             Resource s, URI p, Value o, Resource... contexts);
     

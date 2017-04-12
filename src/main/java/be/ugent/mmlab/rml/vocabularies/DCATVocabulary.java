@@ -18,7 +18,9 @@ public class DCATVocabulary {
 
         // DCAT CLASSES
         DISTRIBUTIION_CLASS("Distribution"),
+        DATASET_CLASS("Distribution"),
         // DCAT PROPERTIES
+        DISTRIBUTION("distribution"),
         DOWNLOADURL("downloadURL"),
         ACCESSURL("accessURL");
         

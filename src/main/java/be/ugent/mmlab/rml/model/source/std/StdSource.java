@@ -14,7 +14,8 @@ import org.slf4j.LoggerFactory;
 public class StdSource implements Source{
     
     // Log
-    private static final Logger log = LoggerFactory.getLogger(StdSource.class);
+    private static final Logger log = 
+            LoggerFactory.getLogger(StdSource.class.getSimpleName());
     
     private String name;
     protected String template;

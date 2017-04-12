@@ -33,7 +33,8 @@ public class FileDataset extends StdRMLDataset {
 
     // Log
     private static final Logger log = 
-            LoggerFactory.getLogger(FileDataset.class.getSimpleName());
+            LoggerFactory.getLogger(
+            FileDataset.class.getSimpleName());
     
     private File target;
         
@@ -137,7 +138,7 @@ public class FileDataset extends StdRMLDataset {
             //Prepare file output stream
             FileOutputStream output = 
                     new FileOutputStream(this.target);
-            
+
             writer = Rio.createWriter(this.format, output);
             con.export(writer);
             con.commit();
