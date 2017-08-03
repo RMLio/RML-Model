@@ -337,6 +337,8 @@ public abstract class AbstractTermMap implements TermMap {
                 return TermMapType.TEMPLATE_VALUED;
             } else if (termType == TermType.BLANK_NODE) {
                 return TermMapType.NO_VALUE_FOR_BNODE;
+            } else if (termType == TermType.IRI) {
+                return TermMapType.CONSTANT_VALUED;
             }
             return null;
         }

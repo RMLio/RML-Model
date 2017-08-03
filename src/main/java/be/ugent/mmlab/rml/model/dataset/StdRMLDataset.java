@@ -308,6 +308,9 @@ public class StdRMLDataset implements RMLDataset {
     
     @Override
     public RDFFormat selectFormat(String outputFormat) {
+        if (outputFormat == null) {
+            outputFormat = "";
+        }
         RDFFormat rdfFormat ;
         //TODO: Spring it!
         switch (outputFormat) {
