@@ -212,7 +212,7 @@ public class StdRMLDataset implements RMLDataset {
         for (Statement triple : triples) {
             List<Statement> targetTriples = new ArrayList<Statement>();
             if (isBNode(triple.getSubject()) && isBNode(triple.getObject())) {
-                targetTriples = tuplePattern(null,
+                targetTriples = dataSet.tuplePattern(null,
                         triple.getPredicate(), null, triple.getContext());
                 if (targetTriples.isEmpty()) {
                     log.debug("No result for triple : " + triple);
@@ -237,7 +237,7 @@ public class StdRMLDataset implements RMLDataset {
                     }
                 }
             } else if (isBNode(triple.getSubject())) {
-                targetTriples = tuplePattern(null,
+                targetTriples = dataSet.tuplePattern(null,
                         triple.getPredicate(), triple.getObject(),
                         triple.getContext());
                 if (targetTriples.isEmpty()) {
@@ -262,7 +262,7 @@ public class StdRMLDataset implements RMLDataset {
                 }
 
             } else if (isBNode(triple.getObject())) {
-                targetTriples = tuplePattern(triple.getSubject(),
+                targetTriples = dataSet.tuplePattern(triple.getSubject(),
                         triple.getPredicate(), null, triple.getContext());
                 if (targetTriples.isEmpty()) {
                     log.debug("No result for triple : " + triple);
@@ -286,7 +286,7 @@ public class StdRMLDataset implements RMLDataset {
                     }
                 }
             } else {
-                targetTriples = tuplePattern(triple.getSubject(),
+                targetTriples = dataSet.tuplePattern(triple.getSubject(),
                         triple.getPredicate(), triple.getObject(),
                         triple.getContext());
                 if (targetTriples.size() > 1) {
