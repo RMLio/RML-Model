@@ -5,6 +5,8 @@ import be.ugent.mmlab.rml.model.PredicateObjectMap;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import java.util.HashSet;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.eclipse.rdf4j.model.IRI;
@@ -29,6 +31,19 @@ public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap 
             StdObjectMap.class.getSimpleName());
 
 	private PredicateObjectMap predicateObjectMap;
+
+
+	// added for getting multiple constants
+	private Set<Value> constants;
+
+	public void setConstants(Set<Value> constants) {
+		this.constants = constants;
+	}
+
+	public Set<Value> getConstants() {
+		return constants;
+	}
+
 
 	/**
         *
