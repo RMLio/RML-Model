@@ -1,17 +1,14 @@
 package be.ugent.mmlab.rml.model.std;
 
-import be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap;
-import be.ugent.mmlab.rml.model.RDFTerm.GraphMap;
-import be.ugent.mmlab.rml.model.RDFTerm.SubjectMap;
-import be.ugent.mmlab.rml.model.RDFTerm.TermType;
+import be.ugent.mmlab.rml.model.RDFTerm.*;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import java.util.HashSet;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.openrdf.model.URI;
-import org.openrdf.model.Value;
+import org.eclipse.rdf4j.model.IRI;
+import org.eclipse.rdf4j.model.Value;
 
 /**
  *************************************************************************
@@ -28,21 +25,26 @@ import org.openrdf.model.Value;
  */
 public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
 
-	protected Set<URI> classIRIs;
+	protected Set<IRI> classIRIs;
 	protected HashSet<GraphMap> graphMaps;
+	private FunctionTermMap functionTermMap;
+
         // Log
         private static final Logger log = 
-                LoggerFactory.getLogger(StdObjectMap.class.getSimpleName());
+                LoggerFactory.getLogger(
+                StdObjectMap.class.getSimpleName());
 
 	public StdSubjectMap(TriplesMap ownTriplesMap, Value constantValue,
-			String stringTemplate, URI termType, String inverseExpression,
-			ReferenceMap referenceValue, Set<URI> classIRIs, Set<GraphMap> graphMaps) {
+						 String stringTemplate, IRI termType, String inverseExpression,
+						 ReferenceMap referenceValue, Set<IRI> classIRIs, GraphMap graphMap, FunctionTermMap functionTermMap) {
 		// No Literal term type
 		// ==> No datatype
 		// ==> No specified language tag
 		super(constantValue, null, null, stringTemplate, termType,
-				inverseExpression, referenceValue);
+				inverseExpression, referenceValue, graphMap);
+		setFunctionTermMap(functionTermMap);
 		setClassIRIs(classIRIs);
+		//TODO: Remove the following setting GraphMaps
 		setGraphMaps(graphMaps);
 		setOwnTriplesMap(ownTriplesMap);
 	}
@@ -52,9 +54,7 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
             // Update triples map if not contains this subject map
             if (ownTriplesMap != null && ownTriplesMap.getSubjectMap() != null) {
                 if (ownTriplesMap.getSubjectMap() != this) {
-                    log.error(
-                            "[StdSubjectMap:setSubjectMap] "
-                            + "The own triples map "
+                    log.error("The own triples map "
                             + "already contains another Subject Map !");
                 } else {
                     ownTriplesMap.setSubjectMap(this);
@@ -71,17 +71,17 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
 	}
 
         @Override
-	public void setClassIRIs(Set<URI> classIRIs2) {
-		this.classIRIs = new HashSet<URI>();
+	public void setClassIRIs(Set<IRI> classIRIs2) {
+		this.classIRIs = new HashSet<IRI>();
 		if (classIRIs2 != null) {
 			checkClassIRIs(classIRIs);
 			classIRIs.addAll(classIRIs2);
 		}
 	}
 
-	private void checkClassIRIs(Set<URI> classIRIs2) {
+	private void checkClassIRIs(Set<IRI> classIRIs2) {
             // The values of the rr:class property must be IRIs.
-            for (URI classIRI : classIRIs) {
+            for (IRI classIRI : classIRIs) {
                 //TODO: Add proper URL chekc
                 /*if (!StdIriRdfTerm.isValidURI(classIRI.stringValue())) {
                     log.error(
@@ -92,7 +92,7 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
         }
 
         @Override
-	public Set<URI> getClassIRIs() {
+	public Set<IRI> getClassIRIs() {
 		return classIRIs;
 	}
 
@@ -101,7 +101,7 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
             // If the term map is a subject map: rr:IRI or rr:BlankNode
             if ((tt != TermType.IRI) && (tt != TermType.BLANK_NODE)) {
                 log.error("Invalid Structure "
-                        + "[StdSubjectMap:checkSpecificTermType] If the term map is a "
+                        + "If the term map is a "
                         + "subject map: only rr:IRI or rr:BlankNode is required");
             }
         }
@@ -132,13 +132,22 @@ public class StdSubjectMap extends AbstractTermMap implements SubjectMap {
 	public String toString() {
 		String result = super.toString() 
                         + " [StdSubjectMap : classIRIs = [";
-		for (URI uri : classIRIs)
+		for (IRI uri : classIRIs)
 			result += uri.getLocalName() + ",";
 		result += "], graphMaps = [";
 		for (GraphMap graphMap : graphMaps)
 			result += graphMap + ",";
 		result += "]]";
 		return result;
+	}
+
+	@Override
+	public FunctionTermMap getFunctionTermMap() {
+		return this.functionTermMap;
+	}
+
+	public void setFunctionTermMap(FunctionTermMap functionTermMap) {
+		this.functionTermMap = functionTermMap;
 	}
 
 }

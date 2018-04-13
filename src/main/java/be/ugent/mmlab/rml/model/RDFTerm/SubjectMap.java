@@ -1,7 +1,7 @@
 package be.ugent.mmlab.rml.model.RDFTerm;
 
 import java.util.Set;
-import org.openrdf.model.URI;
+import org.eclipse.rdf4j.model.IRI;
 
 /**
  *************************************************************************
@@ -23,13 +23,13 @@ public interface SubjectMap extends TermMap {
      * @return Set<URI>
      * 
      */
-    public Set<URI> getClassIRIs();
+    public Set<IRI> getClassIRIs();
     
     /**
      *
      * @param uri
      */
-    public void setClassIRIs(Set<URI> uri);
+    public void setClassIRIs(Set<IRI> uri);
 
     /**
      * A Subject Map may have one or more associated Graph Maps.
@@ -45,5 +45,9 @@ public interface SubjectMap extends TermMap {
      * 
      */
     public void setGraphMaps(Set<GraphMap> graphMap);
+
+    public FunctionTermMap getFunctionTermMap();
+
+    public void setFunctionTermMap(FunctionTermMap functionTermMap);
 
 }

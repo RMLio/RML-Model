@@ -20,8 +20,9 @@ public final class StdReferenceMap implements ReferenceMap {
     
     // Log
     private static final Logger log = 
-            LoggerFactory.getLogger(StdReferenceMap.class.getSimpleName());
-      
+            LoggerFactory.getLogger(
+            StdReferenceMap.class.getSimpleName());
+
     //private String reference = null;
     
     @Override
