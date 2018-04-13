@@ -65,6 +65,40 @@ public class TermExtractor {
         }
         return value;
     }
+
+    /**
+     *
+     * @param termType
+     * @param term
+     * @param triplesMap
+     * @return
+     */
+    static public Set<Value> extractValuesFromTermMap(
+            Repository repository, Resource termType, Enum term, TriplesMap triplesMap) {
+        RepositoryResult<Statement> statements ;
+        Set<Value> values = new HashSet<>();
+        try {
+            RepositoryConnection connection = repository.getConnection();
+
+            statements = connection.getStatements(
+                    termType, RMLTermExtractor.getTermURI(repository, term), null, true);
+
+            if (!statements.hasNext())
+                return values;
+            else{
+                while(statements.hasNext()) {
+                    Statement statement = statements.next();
+                    log.debug("Extracted " + term + " : "
+                            + statement.getObject().stringValue());
+                    values.add(statement.getObject());
+                }
+            }
+            connection.close();
+        } catch (RepositoryException ex) {
+            log.error("RepositoryException " + ex);
+        }
+        return values;
+    }
     
     static public Value extractValueFromTermMap(
             Repository repository, Resource termType, IRI uri, TriplesMap triplesMap) {
