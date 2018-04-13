@@ -27,6 +27,7 @@ public class CRMLVocabulary {
         NEGATION_CONDITION("negationOf"),
         PROCESS_CONDITION("processCondition"),
         SPLIT_CONDITION("splitCondition"),
+        FALLBACK("fallbackMap"),
         CONDITION("condition"),
         EXPRESSION("expression"),
         VALUE("value"),

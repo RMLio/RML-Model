@@ -4,10 +4,13 @@
 *.jar
 *.war
 *.ear
+*.iml
 
 target/
 .DS_Store
+.idea/
 nb-configuration.xml
 nbactions.xml
 gc.log
 src/main/java/be/ugent/mmlab/rml/main/Main_*.java
+dependency-reduced-pom.xml

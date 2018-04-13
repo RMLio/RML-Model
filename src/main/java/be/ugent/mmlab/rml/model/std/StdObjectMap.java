@@ -1,17 +1,16 @@
 package be.ugent.mmlab.rml.model.std;
 
-import be.ugent.mmlab.rml.model.RDFTerm.AbstractTermMap;
-import be.ugent.mmlab.rml.model.RDFTerm.ObjectMap;
+import be.ugent.mmlab.rml.model.RDFTerm.*;
 import be.ugent.mmlab.rml.model.PredicateObjectMap;
-import be.ugent.mmlab.rml.model.RDFTerm.TermMap;
-import be.ugent.mmlab.rml.model.RDFTerm.TermType;
 import be.ugent.mmlab.rml.model.TriplesMap;
 import be.ugent.mmlab.rml.model.termMap.ReferenceMap;
 import java.util.HashSet;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.openrdf.model.URI;
-import org.openrdf.model.Value;
+import org.eclipse.rdf4j.model.IRI;
+import org.eclipse.rdf4j.model.Value;
 
 /**
  *************************************************************************
@@ -28,9 +27,23 @@ public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap 
     
     // Log
     private static final Logger log = 
-            LoggerFactory.getLogger(StdObjectMap.class.getSimpleName());
+            LoggerFactory.getLogger(
+            StdObjectMap.class.getSimpleName());
 
 	private PredicateObjectMap predicateObjectMap;
+
+
+	// added for getting multiple constants
+	private Set<Value> constants;
+
+	public void setConstants(Set<Value> constants) {
+		this.constants = constants;
+	}
+
+	public Set<Value> getConstants() {
+		return constants;
+	}
+
 
 	/**
         *
@@ -44,28 +57,17 @@ public class StdObjectMap extends AbstractTermMap implements TermMap, ObjectMap 
         * @param referenceValue
         */
        public StdObjectMap(TriplesMap triplesMap, PredicateObjectMap predicateObjectMap,
-			Value constantValue, URI dataType, String languageTag,
-			String stringTemplate, URI termType, String inverseExpression,
-			ReferenceMap referenceValue)  {
+						   Value constantValue, IRI dataType, String languageTag,
+						   String stringTemplate, IRI termType, String inverseExpression,
+						   ReferenceMap referenceValue, GraphMap graphMap)  {
 		super(constantValue, dataType, languageTag, stringTemplate, termType,
-				inverseExpression, referenceValue);
+				inverseExpression, referenceValue, graphMap);
 		setPredicateObjectMap(predicateObjectMap);
                 setOwnTriplesMap(triplesMap);
 	}
         
         /**
         *
-        * @param predicateObjectMap
-        * @param constantValue
-        * @param dataType
-        * @param languageTag
-        * @param stringTemplate
-        * @param termType
-        * @param inverseExpression
-        * @param referenceValue
-        * @param split
-        * @param process
-        * @param replace
         */
        /*public StdObjectMap(PredicateObjectMap predicateObjectMap,
 			Value constantValue, URI dataType, String languageTag,
